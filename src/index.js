@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'react-input-range/lib/css/index.css';
+import InputRange from 'react-input-range';
 
 function Option(props) {
   return (
@@ -14,6 +16,34 @@ function Question(props) {
   return (
     <h1>{props.question}</h1>
   );
+}
+
+class Slider extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: {
+        min: 5,
+        max: 15,
+      },
+    };
+  }
+
+  render() {
+    return (
+      <form className="form">      
+        <InputRange
+          draggableTrack
+          maxValue={20}
+          minValue={0}
+          formatLabel={value => `${value} GB`}
+          onChange={value => this.setState({ value: value })}
+          onChangeComplete={value => console.log(value)}
+          value={this.state.value} />
+      </form>
+    );
+  }
 }
 
 class Self extends React.Component {
@@ -108,10 +138,11 @@ class App extends React.Component {
 
   render() {
     const options = this.state.options.map((option) => <Option key={option.key} value={option.value} onClick={() => this.handleClick(option.key)}/>);
-
+    
     if (this.state.selfOrFamily === null) {
       return (
         <div>
+          <Slider />
           <Question question={this.state.question}/>
           <ul className="options">{options}</ul>
         </div>
