@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'react-input-range/lib/css/index.css';
 import InputRange from 'react-input-range';
-import update from 'immutability-helper';
 
 function Option(props) {
   return (
@@ -29,9 +28,16 @@ function Slider(props) {
         value={props.value} 
         formatLabel={value => `${value} GB`}
         onChange={newSliderValues => props.onChange(newSliderValues)}
-        //onChangeComplete={value => console.log(value)}
         />
     </form>
+  );
+}
+
+function NextQuestionButton(props) {
+  return (
+    <button onClick={props.onClick}>
+      Confirm
+    </button>
   );
 }
 
@@ -70,7 +76,7 @@ class Self extends React.Component {
     }
   }
   
-  handleClick(option) {
+  handleOptionClick(option) {
     const newOptionsSelected = this.state.optionsSelected.slice();
     newOptionsSelected.push(option);
     this.setState(
@@ -82,16 +88,28 @@ class Self extends React.Component {
     alert(newOptionsSelected);
   }
 
-  handleSlide(newSliderValues) {
+  handleSliderChange(newSliderValues) {
+    const newQuestionsState = this.state.questions.slice();
+    newQuestionsState[this.state.questionNumber].sliderValues = newSliderValues;
     this.setState({
-      questions: update(this.state.questions, {0: {sliderValues: {$set: newSliderValues}}})
+      questions: newQuestionsState,
     });
+  }
+
+  handleNextButtonClick() {
+    const newOptionsSelected = this.state.optionsSelected.slice();
+    newOptionsSelected.push(this.state.questions[this.state.questionNumber].sliderValues);
+    this.setState({
+      questionNumber: this.state.questionNumber + 1,
+      optionsSelected: newOptionsSelected,
+    });
+    alert("Min:" + newOptionsSelected[this.state.questionNumber].min + ". Max:" + newOptionsSelected[this.state.questionNumber].max);
   }
 
   render() {
     const currentQuestion = this.state.questions[this.state.questionNumber];
 
-    if (currentQuestion.selectionMode == 'slider') {
+    if (currentQuestion.selectionMode === 'slider') {
       return (
         <div>
           <Question question={currentQuestion.question}/>
@@ -99,13 +117,14 @@ class Self extends React.Component {
             minValue={currentQuestion.defaultSliderMin}
             maxValue={currentQuestion.defaultSliderMax}
             value={currentQuestion.sliderValues}
-            onChange={(newSliderValues) => this.handleSlide(newSliderValues)}
+            onChange={(newSliderValues) => this.handleSliderChange(newSliderValues)}
           />
+          <NextQuestionButton onClick={() => this.handleNextButtonClick()}/>
         </div>
       );
     }
-    else if (currentQuestion.selectionMode == 'options') {
-      const options = currentQuestion.options.map((option) => <Option key={option.key} value={option.value} onClick={() => this.handleClick(option.key)}/>);
+    else if (currentQuestion.selectionMode === 'options') {
+      const options = currentQuestion.options.map((option) => <Option key={option.key} value={option.value} onClick={() => this.handleOptionClick(option.key)}/>);
       return (
         <div>
           <Question question={currentQuestion.question}/>
