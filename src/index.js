@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'react-input-range/lib/css/index.css';
 import InputRange from 'react-input-range';
+import update from 'immutability-helper';
 
 function Option(props) {
   return (
@@ -18,32 +19,20 @@ function Question(props) {
   );
 }
 
-class Slider extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: {
-        min: 5,
-        max: 15,
-      },
-    };
-  }
-
-  render() {
-    return (
-      <form className="form">      
-        <InputRange
-          draggableTrack
-          maxValue={20}
-          minValue={0}
-          formatLabel={value => `${value} GB`}
-          onChange={value => this.setState({ value: value })}
-          onChangeComplete={value => console.log(value)}
-          value={this.state.value} />
-      </form>
-    );
-  }
+function Slider(props) {
+  return (
+    <form className="form">      
+      <InputRange
+        draggableTrack
+        minValue={props.minValue}
+        maxValue={props.maxValue}
+        value={props.value} 
+        formatLabel={value => `${value} GB`}
+        onChange={newSliderValues => props.onChange(newSliderValues)}
+        //onChangeComplete={value => console.log(value)}
+        />
+    </form>
+  );
 }
 
 class Self extends React.Component {
@@ -53,19 +42,17 @@ class Self extends React.Component {
       questions: [
         {
           question: 'How much data do you need?',
-          options: [
-            {
-              key: '10gb',
-              value: '10gb',
-            },
-            {
-              key: '20gb',
-              value: '20gb',
-            },
-          ],
+          selectionMode: 'slider',
+          sliderValues: {
+            min: 0,
+            max: 20,
+          },
+          defaultSliderMin: 0,
+          defaultSliderMax: 20,
         },
         {
           question: 'How much talktime do you need?',
+          selectionMode: 'options',
           options: [
             {
               key: '100min',
@@ -95,15 +82,37 @@ class Self extends React.Component {
     alert(newOptionsSelected);
   }
 
-  render() {
-    const options = this.state.questions[this.state.questionNumber].options.map((option) => <Option key={option.key} value={option.value} onClick={() => this.handleClick(option.key)}/>);
+  handleSlide(newSliderValues) {
+    this.setState({
+      questions: update(this.state.questions, {0: {sliderValues: {$set: newSliderValues}}})
+    });
+  }
 
-    return (
-      <div>
-        <Question question={this.state.questions[this.state.questionNumber].question}/>
-        <ul className="options">{options}</ul>
-      </div>
-    );
+  render() {
+    const currentQuestion = this.state.questions[this.state.questionNumber];
+
+    if (currentQuestion.selectionMode == 'slider') {
+      return (
+        <div>
+          <Question question={currentQuestion.question}/>
+          <Slider
+            minValue={currentQuestion.defaultSliderMin}
+            maxValue={currentQuestion.defaultSliderMax}
+            value={currentQuestion.sliderValues}
+            onChange={(newSliderValues) => this.handleSlide(newSliderValues)}
+          />
+        </div>
+      );
+    }
+    else if (currentQuestion.selectionMode == 'options') {
+      const options = currentQuestion.options.map((option) => <Option key={option.key} value={option.value} onClick={() => this.handleClick(option.key)}/>);
+      return (
+        <div>
+          <Question question={currentQuestion.question}/>
+          <ul className="options">{options}</ul>
+        </div>
+      );
+    }
   }
 }
 
@@ -142,7 +151,6 @@ class App extends React.Component {
     if (this.state.selfOrFamily === null) {
       return (
         <div>
-          <Slider />
           <Question question={this.state.question}/>
           <ul className="options">{options}</ul>
         </div>
