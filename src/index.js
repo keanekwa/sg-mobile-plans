@@ -26,7 +26,8 @@ function Slider(props) {
         minValue={props.minValue}
         maxValue={props.maxValue}
         value={props.value} 
-        formatLabel={value => `${value} GB`}
+        formatLabel={value => `${value} ${props.unit}`}
+        step={props.step}
         onChange={newSliderValues => props.onChange(newSliderValues)}
         />
     </form>
@@ -50,25 +51,25 @@ class Self extends React.Component {
           question: 'How much data do you need?',
           selectionMode: 'slider',
           sliderValues: {
-            min: 0,
-            max: 20,
+            min: 5,
+            max: 15,
           },
+          unit: 'GB',
+          step: 1,
           defaultSliderMin: 0,
           defaultSliderMax: 20,
         },
         {
           question: 'How much talktime do you need?',
-          selectionMode: 'options',
-          options: [
-            {
-              key: '100min',
-              value: '100min',
-            },
-            {
-              key: '200min',
-              value: '200min',
-            },
-          ],
+          selectionMode: 'slider',
+          sliderValues: {
+            min: 100,
+            max: 400,
+          },
+          unit: 'min',
+          step: 10,
+          defaultSliderMin: 0,
+          defaultSliderMax: 500,
         },
       ],
       questionNumber: 0,
@@ -114,9 +115,11 @@ class Self extends React.Component {
         <div>
           <Question question={currentQuestion.question}/>
           <Slider
+            value={currentQuestion.sliderValues}
+            unit={currentQuestion.unit}
+            step={currentQuestion.step}
             minValue={currentQuestion.defaultSliderMin}
             maxValue={currentQuestion.defaultSliderMax}
-            value={currentQuestion.sliderValues}
             onChange={(newSliderValues) => this.handleSliderChange(newSliderValues)}
           />
           <NextQuestionButton onClick={() => this.handleNextButtonClick()}/>

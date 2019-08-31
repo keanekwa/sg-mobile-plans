@@ -25,3 +25,7 @@ body {
   width: 100%;
   cursor: pointer;
 }
+
+.input-range__label--max .input-range__label-container::before {
+  content: "> ";
+}
