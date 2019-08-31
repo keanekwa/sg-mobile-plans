@@ -23,7 +23,16 @@ class SelectOptionsForSelf extends React.Component {
           selectionMode: 'slider',
           sliderValues: [100,400],
           unit: 'min',
-          step: 10,
+          step: 50,
+          defaultSliderMin: 0,
+          defaultSliderMax: 500,
+        },
+        {
+          question: 'How many SMS do you need?',
+          selectionMode: 'slider',
+          sliderValues: [100,400],
+          unit: '',
+          step: 50,
           defaultSliderMin: 0,
           defaultSliderMax: 500,
         },
@@ -56,11 +65,11 @@ class SelectOptionsForSelf extends React.Component {
     const newOptionsSelected = this.state.optionsSelected.slice();
     newOptionsSelected.push(this.state.questions[this.state.questionNumber].sliderValues);
     this.setState({optionsSelected: newOptionsSelected});
-    if (this.state.questionNumber < 1) {
+    if (this.state.questionNumber < 2) { //go to next question for questions 0 and 1
       this.setState({questionNumber: this.state.questionNumber + 1});
     }
-    else {
-      this.props.onClick('ComparisonPage', newOptionsSelected); //change mode to comparison page
+    else {  //change mode to comparison page after question 2
+      this.props.onClick('ComparisonPage', newOptionsSelected);
     }
   }
 
