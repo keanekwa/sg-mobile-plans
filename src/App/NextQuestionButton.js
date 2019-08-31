@@ -1,8 +1,9 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
 
 function NextQuestionButton(props) {
   return (
-    <button onClick={props.onClick}>Next</button>
+    <Button onClick={props.onClick} variant='contained'>Next</Button>
   );
 }
 

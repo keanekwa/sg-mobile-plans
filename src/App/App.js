@@ -26,7 +26,6 @@ class App extends React.Component {
 
   handleClick(optionKey) {
     this.setState({mode: optionKey});
-    alert(optionKey);
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Question from './Question.js'
 import Option from './Option.js'
-import InputRange from 'react-input-range';
+import { Slider } from '@material-ui/core';
 import NextQuestionButton from './NextQuestionButton.js'
 
 class SelectOptionsForSelf extends React.Component {
@@ -12,10 +12,7 @@ class SelectOptionsForSelf extends React.Component {
         {
           question: 'How much data do you need?',
           selectionMode: 'slider',
-          sliderValues: {
-            min: 5,
-            max: 15,
-          },
+          sliderValues: [5,15],
           unit: 'GB',
           step: 1,
           defaultSliderMin: 0,
@@ -24,10 +21,7 @@ class SelectOptionsForSelf extends React.Component {
         {
           question: 'How much talktime do you need?',
           selectionMode: 'slider',
-          sliderValues: {
-            min: 100,
-            max: 400,
-          },
+          sliderValues: [100,400],
           unit: 'min',
           step: 10,
           defaultSliderMin: 0,
@@ -48,7 +42,6 @@ class SelectOptionsForSelf extends React.Component {
         optionsSelected: newOptionsSelected,
       }
     );
-    alert(newOptionsSelected);
   }
 
   handleSliderChange(newSliderValues) {
@@ -69,7 +62,6 @@ class SelectOptionsForSelf extends React.Component {
     else {
       this.props.onClick('Comparison Page'); //change mode to comparison page
     }
-    alert("Min:" + newOptionsSelected[this.state.questionNumber].min + ". Max:" + newOptionsSelected[this.state.questionNumber].max);
   }
 
   render() {
@@ -79,14 +71,14 @@ class SelectOptionsForSelf extends React.Component {
       return (
         <div>
           <Question question={currentQuestion.question}/>
-          <InputRange
-            draggableTrack
-            minValue={currentQuestion.defaultSliderMin}
-            maxValue={currentQuestion.defaultSliderMax}
-            value={currentQuestion.sliderValues} 
-            formatLabel={value => `${value} ${currentQuestion.unit}`}
+          <Slider
+            min={currentQuestion.defaultSliderMin}
+            max={currentQuestion.defaultSliderMax}
+            value={currentQuestion.sliderValues}
+            valueLabelDisplay='on'
+            valueLabelFormat={value => `${value} ${currentQuestion.unit}`}
             step={currentQuestion.step}
-            onChange={newSliderValues => this.handleSliderChange(newSliderValues)}
+            onChange={(e, newSliderValues) => this.handleSliderChange(newSliderValues)}
           />
           <NextQuestionButton onClick={() => this.handleNextButtonClick()}/>
         </div>
