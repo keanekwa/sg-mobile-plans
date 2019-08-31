@@ -18,31 +18,13 @@ function Question(props) {
   );
 }
 
-function Slider(props) {
-  return (
-    <form className="form">      
-      <InputRange
-        draggableTrack
-        minValue={props.minValue}
-        maxValue={props.maxValue}
-        value={props.value} 
-        formatLabel={value => `${value} ${props.unit}`}
-        step={props.step}
-        onChange={newSliderValues => props.onChange(newSliderValues)}
-        />
-    </form>
-  );
-}
-
 function NextQuestionButton(props) {
   return (
-    <button onClick={props.onClick}>
-      Confirm
-    </button>
+    <button onClick={props.onClick}>Next</button>
   );
 }
 
-class Self extends React.Component {
+class SelectOptionsForSelf extends React.Component {
   constructor(props) {
     super(props);
 		this.state = {
@@ -77,9 +59,9 @@ class Self extends React.Component {
     }
   }
   
-  handleOptionClick(option) {
+  handleOptionClick(optionKey) {
     const newOptionsSelected = this.state.optionsSelected.slice();
-    newOptionsSelected.push(option);
+    newOptionsSelected.push(optionKey);
     this.setState(
       {
         questionNumber: this.state.questionNumber + 1,
@@ -100,10 +82,13 @@ class Self extends React.Component {
   handleNextButtonClick() {
     const newOptionsSelected = this.state.optionsSelected.slice();
     newOptionsSelected.push(this.state.questions[this.state.questionNumber].sliderValues);
-    this.setState({
-      questionNumber: this.state.questionNumber + 1,
-      optionsSelected: newOptionsSelected,
-    });
+    this.setState({optionsSelected: newOptionsSelected});
+    if (this.state.questionNumber < 1) {
+      this.setState({questionNumber: this.state.questionNumber + 1});
+    }
+    else {
+      this.props.onClick('Comparison Page'); //change mode to comparison page
+    }
     alert("Min:" + newOptionsSelected[this.state.questionNumber].min + ". Max:" + newOptionsSelected[this.state.questionNumber].max);
   }
 
@@ -114,13 +99,14 @@ class Self extends React.Component {
       return (
         <div>
           <Question question={currentQuestion.question}/>
-          <Slider
-            value={currentQuestion.sliderValues}
-            unit={currentQuestion.unit}
-            step={currentQuestion.step}
+          <InputRange
+            draggableTrack
             minValue={currentQuestion.defaultSliderMin}
             maxValue={currentQuestion.defaultSliderMax}
-            onChange={(newSliderValues) => this.handleSliderChange(newSliderValues)}
+            value={currentQuestion.sliderValues} 
+            formatLabel={value => `${value} ${currentQuestion.unit}`}
+            step={currentQuestion.step}
+            onChange={newSliderValues => this.handleSliderChange(newSliderValues)}
           />
           <NextQuestionButton onClick={() => this.handleNextButtonClick()}/>
         </div>
@@ -138,9 +124,15 @@ class Self extends React.Component {
   }
 }
 
-class Family extends React.Component {
+class SelectOptionsForFamily extends React.Component {
   render() {
-    return (<h1>Family</h1>);    
+    return (<h1>SelectOptionsForFamily</h1>);    
+  }
+}
+
+class ComparisonPage extends React.Component {
+  render() {
+    return (<h1>ComparisonPage</h1>);    
   }
 }
 
@@ -151,26 +143,27 @@ class App extends React.Component {
       question: 'What are you looking for?',
       options: [
         {
-          key: 'self',
+          key: 'Select Self Criteria',
           value: 'Mobile Plan for Myself',
         },
         {
-          key: 'family',
+          key: 'Select Family Criteria',
           value: 'Plans for Family (e.g. mobile, fiber, cable TV, etc.)',
         },
       ],
-      selfOrFamily: null,
+      mode: null,
     }
 	}
 
   handleClick(optionKey) {
-    this.setState({selfOrFamily: optionKey});
+    this.setState({mode: optionKey});
+    alert(optionKey);
   }
 
   render() {
     const options = this.state.options.map((option) => <Option key={option.key} value={option.value} onClick={() => this.handleClick(option.key)}/>);
-    
-    if (this.state.selfOrFamily === null) {
+
+    if (this.state.mode === null) {
       return (
         <div>
           <Question question={this.state.question}/>
@@ -178,17 +171,24 @@ class App extends React.Component {
         </div>
       );
     }
-    else if (this.state.selfOrFamily === 'self') {
+    else if (this.state.mode === 'Select Self Criteria') {
       return (
         <div> 
-          <Self/>
+          <SelectOptionsForSelf onClick={(mode) => this.handleClick(mode)}/>
         </div>
       );
     }
-    else if (this.state.selfOrFamily === 'family') {
+    else if (this.state.mode === 'Select Family Criteria') {
       return (
         <div> 
-          <Family/>
+          <SelectOptionsForFamily/>
+        </div>
+      );
+    }
+    else if (this.state.mode === 'Comparison Page') {
+      return (
+        <div> 
+          <ComparisonPage/>
         </div>
       );
     }
