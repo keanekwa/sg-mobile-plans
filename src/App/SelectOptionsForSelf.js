@@ -60,7 +60,7 @@ class SelectOptionsForSelf extends React.Component {
       this.setState({questionNumber: this.state.questionNumber + 1});
     }
     else {
-      this.props.onClick('Comparison Page'); //change mode to comparison page
+      this.props.onClick('ComparisonPage', newOptionsSelected); //change mode to comparison page
     }
   }
 

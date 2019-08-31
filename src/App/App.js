@@ -12,20 +12,24 @@ class App extends React.Component {
       question: 'What are you looking for?',
       options: [
         {
-          key: 'Select Self Criteria',
+          key: 'SelectOptionsForSelf',
           value: 'Mobile Plan for Myself',
         },
         {
-          key: 'Select Family Criteria',
+          key: 'SelectOptionsForFamily',
           value: 'Plans for Family (e.g. mobile, fiber, cable TV, etc.)',
         },
       ],
       mode: null,
+      optionsSelected: null,
     }
 	}
 
-  handleClick(optionKey) {
+  handleClick(optionKey, optionsSelected) {
     this.setState({mode: optionKey});
+    if (optionKey === 'ComparisonPage') {
+      this.setState({optionsSelected: optionsSelected});
+    }
   }
 
   render() {
@@ -39,24 +43,24 @@ class App extends React.Component {
         </div>
       );
     }
-    else if (this.state.mode === 'Select Self Criteria') {
+    else if (this.state.mode === 'SelectOptionsForSelf') {
       return (
         <div> 
-          <SelectOptionsForSelf onClick={(mode) => this.handleClick(mode)}/>
+          <SelectOptionsForSelf onClick={(mode, optionsSelected) => this.handleClick(mode, optionsSelected)}/>
         </div>
       );
     }
-    else if (this.state.mode === 'Select Family Criteria') {
+    else if (this.state.mode === 'SelectOptionsForFamily') {
       return (
         <div> 
           <SelectOptionsForFamily/>
         </div>
       );
     }
-    else if (this.state.mode === 'Comparison Page') {
+    else if (this.state.mode === 'ComparisonPage') {
       return (
         <div> 
-          <ComparisonPage/>
+          <ComparisonPage optionsSelected={this.state.optionsSelected}/>
         </div>
       );
     }
