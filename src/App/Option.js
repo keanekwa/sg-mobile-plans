@@ -1,9 +1,10 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
 
 function Option(props) {
   return (
     <li className="option">
-      <button onClick={props.onClick}>{props.value}</button>
+      <Button variant='contained' onClick={props.onClick}>{props.value}</Button>
     </li>
   );
 }

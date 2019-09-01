@@ -5,16 +5,6 @@ import SelectOptionsForSelf from './SelectOptionsForSelf.js'
 import SelectOptionsForFamily from './SelectOptionsForFamily.js'
 import ComparisonPage from './ComparisonPage.js'
 
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-
-const theme = createMuiTheme({
-  background: 'white',
-  padding: '30px',
-  margin: '10px',
-  color: '#333',
-});
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -70,7 +60,7 @@ class App extends React.Component {
     else if (this.state.mode === 'ComparisonPage') {
       return (
         <div> 
-          <ThemeProvider theme={theme}><ComparisonPage optionsSelected={this.state.optionsSelected}/></ThemeProvider>
+          <ComparisonPage optionsSelected={this.state.optionsSelected}/>
         </div>
       );
     }
