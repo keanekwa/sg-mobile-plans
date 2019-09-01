@@ -33,3 +33,7 @@ body {
 .input-range__label--max .input-range__label-container::after {
   content: " - unlimited";
 }
+
+.MuiPaper-root {
+  background: red;
+}
