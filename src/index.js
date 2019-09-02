@@ -9,7 +9,7 @@ const theme = createMuiTheme({
   background: 'white',
   padding: '30px',
   margin: '10px',
-  color: '#333',
+  color: '#333',//test commit from inet
 });
 
 ReactDOM.render(<ThemeProvider theme={theme}><App /></ThemeProvider>, document.getElementById("root"));
