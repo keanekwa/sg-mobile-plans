@@ -80,12 +80,9 @@ class ComparisonPage extends React.Component {
       //add Singtel SIM only plans with the addons also. add youth, silver all that also
     ];
     const filteredMobilePlans = mobilePlans.filter((plan) =>
-      plan.data >= optionsSelected[0][0] &&
-      plan.data <= optionsSelected[0][1] &&
-      plan.talktime >=  optionsSelected[1][0] &&
-      plan.talktime <=  optionsSelected[1][1] &&
-      plan.sms >=  optionsSelected[2][0] &&
-      plan.sms <=  optionsSelected[2][1]
+      plan.data >= optionsSelected.minData &&
+      plan.talktime >=  optionsSelected.minTalktime &&
+      plan.sms >=  optionsSelected.minSMS
     );
     const sortedMobilePlans = filteredMobilePlans.sort((a,b) => (a.price < b.price) ? -1 : 1); //sort by cheap to expensive
     

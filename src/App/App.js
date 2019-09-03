@@ -21,7 +21,9 @@ class App extends React.Component {
         },
       ],
       mode: null,
-      optionsSelected: null,
+      minData: null,
+      minTalktime: null,
+      minSMS: null,
     }
 	}
 
@@ -39,7 +41,7 @@ class App extends React.Component {
       return (
         <div>
           <Question question={this.state.question}/>
-          <ul className="options">{options}</ul>   
+          <ul className='options'>{options}</ul>   
         </div>
       );
     }
