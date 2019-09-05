@@ -17,7 +17,7 @@ class App extends React.Component {
         },
         {
           key: 'SelectOptionsForFamily',
-          value: 'Plans for Family (e.g. mobile, fiber, cable TV, etc.)',
+          value: 'Plans for Family (e.g. mobile, fiber, TV, etc.)',
         },
       ],
       mode: null,
@@ -41,7 +41,7 @@ class App extends React.Component {
       return (
         <div>
           <Question question={this.state.question}/>
-          <ul className='options'>{options}</ul>   
+          <ul className='options'>{options}</ul>
         </div>
       );
     }

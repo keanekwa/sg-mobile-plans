@@ -6,10 +6,15 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 const theme = createMuiTheme({
-  background: 'white',
-  padding: '30px',
-  margin: '10px',
-  color: '#333',
+  spacing: factor => `${0.25 * factor}rem`,
+  light: {
+    background: 'white',
+    color: '#333',
+  },
+  dark: {
+    background: '#333',
+    color: 'white',
+  }
 });
 
 ReactDOM.render(<ThemeProvider theme={theme}><App /></ThemeProvider>, document.getElementById("root"));

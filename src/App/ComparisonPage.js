@@ -77,12 +77,51 @@ class ComparisonPage extends React.Component {
         price: 239.9,
         extras: '2GB Singtel Wifi, 24mths HBO GO, 24mths Entertainment Plus, $500 yearly handset upgrade voucher, Free Caller-ID & AutoRoam',
       },
-      //add Singtel SIM only plans with the addons also. add youth, silver all that also
+      {
+        telco: 'Circles.Life',
+        planName: 'Base Plan (New Number)',
+        data: 20,
+        talktime: 100,
+        sms: 25,
+        price: 28,
+        extras: 'Free Caller-ID',
+      },
+      {
+        telco: 'Circles.Life',
+        planName: 'Base Plan (Transfer Number)',
+        data: 20,
+        talktime: 100,
+        sms: 25,
+        price: 18,
+        caveats: 'Price returns to $28/mo after 1 year',
+        extras: 'Free Caller-ID',
+      },
+      {
+        telco: 'Circles.Life',
+        planName: '$5 Plan',
+        data: 2,
+        talktime: 50,
+        sms: 25,
+        price: 5,
+        caveats: 'Phones, roaming, and unlimited data are only available with 20GB Base Plan sign-ups. No downgrade from Base Plan to $5 Plan.',
+        extras: 'Free Caller-ID',
+      },
+      {
+        telco: 'Gomo (by Singtel)',
+        planName: '$5 Plan',
+        data: 20,
+        talktime: 200,
+        sms: 200,
+        price: 20,
+        extras: 'Free Caller-ID',
+      },
+      //add Singtel SIM only plans with the addons also. add youth, silver all that also. add possible topups
     ];
     const filteredMobilePlans = mobilePlans.filter((plan) =>
       plan.data >= optionsSelected.minData &&
       plan.talktime >=  optionsSelected.minTalktime &&
-      plan.sms >=  optionsSelected.minSMS
+      plan.sms >=  optionsSelected.minSMS &&
+      plan.price <= optionsSelected.price
     );
     const sortedMobilePlans = filteredMobilePlans.sort((a,b) => (a.price < b.price) ? -1 : 1); //sort by cheap to expensive
     
@@ -90,14 +129,16 @@ class ComparisonPage extends React.Component {
       telco={mobilePlan.telco}
       planName={mobilePlan.planName}
       price={mobilePlan.price}
-      data={mobilePlan.data}
-      talktime={mobilePlan.talktime}
-      sms={mobilePlan.sms}
+      data={mobilePlan.data === 10000 ? 'Unlimited' : mobilePlan.data}
+      talktime={mobilePlan.talktime === 10000 ? 'Unlimited' : mobilePlan.talktime}
+      sms={mobilePlan.sms === 10000 ? 'Unlimited' : mobilePlan.sms}
+      caveats={mobilePlan.caveats}
+      extras={mobilePlan.extras}
     />);
 
     return (
       <div>
-      {mobilePlansMapped}
+      {filteredMobilePlans[0] !== undefined ? mobilePlansMapped : 'Sorry but there are no suitable plans for you. Please adjust your selection criteria.'}
       </div>
     );
   }

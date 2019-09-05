@@ -1,15 +1,15 @@
 import React from 'react';
-import { Select } from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
+import MySelect from './MySelect.js';
 import NextButton from './NextButton.js'
 
 class SelectOptionsForSelf extends React.Component {
   constructor(props) {
     super(props);
 		this.state = {
-      minData: 1,
-      minTalktime: 100,
-      minSMS: 100,
+      minData: 0,
+      minTalktime: 0,
+      minSMS: 0,
+      price: 10000,
     }
   }
 
@@ -26,32 +26,15 @@ class SelectOptionsForSelf extends React.Component {
     return (
       <div>
         I need at least
-        <Select value={this.state.minData} name='minData' variant='filled' onChange={(event) => this.handleChange(event)}>
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={30}>30</MenuItem>
-          <MenuItem value={50}>50</MenuItem>
-          <MenuItem value={'unlimited'}>Unlimted</MenuItem>
-        </Select>
+        <MySelect value={this.state.minData} name='minData' options={[0,1,3,5,10,30,50,10000]} onChange={(event) => this.handleChange(event)}/>
         GB of data, 
-        <Select value={this.state.minTalktime} name='minTalktime' variant='filled' onChange={(event) => this.handleChange(event)}>
-          <MenuItem value={100}>100</MenuItem>
-          <MenuItem value={300}>300</MenuItem>
-          <MenuItem value={500}>500</MenuItem>
-          <MenuItem value={1000}>1000</MenuItem>
-          <MenuItem value={'unlimited'}>Unlimited</MenuItem>
-        </Select>
+        <MySelect value={this.state.minTalktime} name='minTalktime' options={[0,100,300,500,1000,10000]}  onChange={(event) => this.handleChange(event)}/>
         min of talktime, and 
-        <Select value={this.state.minSMS} name='minSMS' variant='filled' onChange={(event) => this.handleChange(event)}>
-          <MenuItem value={100}>100</MenuItem>
-          <MenuItem value={300}>300</MenuItem>
-          <MenuItem value={500}>500</MenuItem>
-          <MenuItem value={1000}>1000</MenuItem>
-          <MenuItem value={'unlimited'}>Unlimited</MenuItem>
-        </Select>
-        SMS.
+        <MySelect value={this.state.minSMS} name='minSMS' options={[0,100,300,500,1000,10000]}  onChange={(event) => this.handleChange(event)}/>
+        SMS.<br/>
+        And my budget is
+        <MySelect value={this.state.price} name='price' options={[20,30,40,50,75,100,150,10000]}  onChange={(event) => this.handleChange(event)}/>
+        per month.<br/><br/>
         <NextButton onClick={() => this.handleNextButtonClick()}/>
       </div>
     );

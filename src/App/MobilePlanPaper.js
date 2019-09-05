@@ -5,9 +5,9 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
   root: {
     background: theme.background,
-    padding: theme.padding,
-    color: theme.color,
-    margin: theme.margin,
+    padding: theme.spacing(5),
+    color: theme.light.color,
+    margin: theme.spacing(4),
   },
 }));
 
@@ -16,10 +16,12 @@ function MobilePlanPaper(props) {
   return (
     <Paper className={classes.root}>
       {props.telco} - {props.planName}<br/>
-      Price: ${props.price}<br/>
-      Data: {props.data}GB<br/>
-      Talktime: {props.talktime}min<br/>
-      SMS: {props.sms}
+      Price: ${props.price % 1 == 0 ? props.price : props.price.toFixed(2)}<br/>
+      Data: {props.data}{props.data != 'Unlimited' ? 'GB' : ''}<br/>
+      Talktime: {props.talktime}{props.talktime != 'Unlimited' ? 'min' : ''}<br/>
+      SMS: {props.sms}<br/>
+      {props.caveats === undefined ? '' : ('Caveats: '+ props.caveats)}<br/>
+      {props.extras === undefined ? '' : ('Extras: ' + props.extras)}
     </Paper>
   );
 }
