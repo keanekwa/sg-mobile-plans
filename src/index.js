@@ -14,7 +14,10 @@ const theme = createMuiTheme({
   dark: {
     background: '#333',
     color: 'white',
-  }
+  },
+  clearfix: {
+    overflow: 'auto',
+  },
 });
 
 ReactDOM.render(<ThemeProvider theme={theme}><App /></ThemeProvider>, document.getElementById("root"));
