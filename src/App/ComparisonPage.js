@@ -24,8 +24,8 @@ class ComparisonPage extends React.Component {
       data={mobilePlan.data === 10000 ? 'Unlimited' : mobilePlan.data}
       talktime={mobilePlan.talktime === 10000 ? 'Unlimited' : mobilePlan.talktime}
       sms={mobilePlan.sms === 10000 ? 'Unlimited' : mobilePlan.sms}
-      caveats={mobilePlan.caveats}
-      extras={mobilePlan.extras}
+      pros={mobilePlan.pros}
+      cons={mobilePlan.cons}
     />);
 
     return (

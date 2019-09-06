@@ -27,11 +27,28 @@ const useStyles = makeStyles(theme => ({
   tdth: {
     border: '1px solid #333',
     padding: theme.spacing(3),
-  }
+  },
+  ul: {
+    margin: 0,
+  },
 }));
 
 function MobilePlanPaper(props) {
   const classes = useStyles();
+  let pros, cons = undefined;
+  if (props.pros === undefined) {
+    pros = '';
+  }
+  else {
+    pros = props.pros.map(pro => <li>{pro}</li>);
+  }
+  if (props.cons === undefined) {
+    cons = '';
+  }
+  else {
+    cons = props.cons.map(con => <li>{con}</li>);
+  }
+
   return (
     <Paper className={classes.root}>
       <h3 className={classes.clearfix}><span className={classes.floatLeft}>{props.telco} - {props.planName}</span><span className={classes.floatRight}>${props.price % 1 === 0 ? props.price : props.price.toFixed(2)}</span></h3>
@@ -47,8 +64,10 @@ function MobilePlanPaper(props) {
           <td className={classes.tdth}>{props.sms}</td>
         </tr>
       </table>
-      {props.caveats === undefined ? '' : ('Caveats: '+ props.caveats)}<br/>
-      {props.extras === undefined ? '' : ('Extras: ' + props.extras)}
+      {pros === '' ? '' : 'Pros:'}
+      {pros === '' ? '' : <ul className={classes.ul}>{pros}</ul>}
+      {cons === '' ? '' : 'Cons:'}
+      {cons === '' ? '' : <ul className={classes.ul}>{cons}</ul>}
     </Paper>
   );
 }

@@ -10,13 +10,16 @@ const useStyles = makeStyles(theme => ({
     color: theme.dark.color,
     borderBottom: '1px solid ' + theme.dark.color,
   },
+  icon: {
+    color: theme.dark.color,
+  }
 }));
 
 function MySelect(props) {
   const classes = useStyles();
   const menuItemsMapped = props.options.map((option) => <MenuItem value={option}>{option === 10000 ? 'Unlimited' : option}</MenuItem>);
   return (
-    <Select className={classes.root} value={props.value} name={props.name} onChange={(event) => props.onChange(event)}>
+    <Select className={classes.root} classes={{icon: classes.icon}} value={props.value} name={props.name} onChange={(event) => props.onChange(event)}>
       {menuItemsMapped}
     </Select>
   );
