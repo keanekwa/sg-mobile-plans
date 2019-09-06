@@ -16,9 +16,9 @@ function MobilePlanPaper(props) {
   return (
     <Paper className={classes.root}>
       {props.telco} - {props.planName}<br/>
-      Price: ${props.price % 1 == 0 ? props.price : props.price.toFixed(2)}<br/>
-      Data: {props.data}{props.data != 'Unlimited' ? 'GB' : ''}<br/>
-      Talktime: {props.talktime}{props.talktime != 'Unlimited' ? 'min' : ''}<br/>
+      Price: ${props.price % 1 === 0 ? props.price : props.price.toFixed(2)}<br/>
+      Data: {props.data}{props.data === 'Unlimited' ? '' : 'GB'}<br/>
+      Talktime: {props.talktime}{props.talktime === 'Unlimited' ? '' : 'min'}<br/>
       SMS: {props.sms}<br/>
       {props.caveats === undefined ? '' : ('Caveats: '+ props.caveats)}<br/>
       {props.extras === undefined ? '' : ('Extras: ' + props.extras)}
