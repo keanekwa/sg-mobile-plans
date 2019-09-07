@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
   root: {
     background: theme.background,
-    padding: theme.spacing(5),
+    padding: theme.spacing(5) + ' ' + theme.spacing(6),
     color: theme.light.color,
     margin: theme.spacing(4),
     textAlign: 'left',
@@ -13,10 +13,10 @@ const useStyles = makeStyles(theme => ({
   table: {
     borderCollapse: 'collapse',
     textAlign: 'center',
-    margin: '0 0 ' + theme.spacing(4) + ' 0 ',
+    margin: 0,
   },
   h2: {
-    padding: '0 0 0 ' + theme.spacing(3),
+    padding: '0 0 0 ' + theme.spacing(4),
     margin: 0,
   },
   tdth: {
