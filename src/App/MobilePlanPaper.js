@@ -10,23 +10,20 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(4),
     textAlign: 'left',
   },
-  clearfix: {
-    overflow: theme.clearfix.overflow,
-    margin: '0 0 ' + theme.spacing(4) + ' 0',
-  },
-  floatLeft: {
-    float: 'left',
-  },
-  floatRight: {
-    float: 'right',
-  },
   table: {
     borderCollapse: 'collapse',
+    textAlign: 'center',
     margin: '0 0 ' + theme.spacing(4) + ' 0 ',
   },
+  h2: {
+    padding: '0 0 0 ' + theme.spacing(3),
+    margin: 0,
+  },
   tdth: {
-    border: '1px solid #333',
-    padding: theme.spacing(3),
+    padding: '0 ' + theme.spacing(3) + ' 0 ' + theme.spacing(3),
+    borderRight: '3px solid #d5d5d5',
+    borderLeft: '3px solid #d5d5d5',
+    width: 65,
   },
   ul: {
     margin: 0,
@@ -51,14 +48,16 @@ function MobilePlanPaper(props) {
 
   return (
     <Paper className={classes.root}>
-      <h3 className={classes.clearfix}><span className={classes.floatLeft}>{props.telco} - {props.planName}</span><span className={classes.floatRight}>${props.price % 1 === 0 ? props.price : props.price.toFixed(2)}</span></h3>
       <table className={classes.table}>
         <tr>
+          <th className={classes.tdth}>Price</th>
           <th className={classes.tdth}>Data</th>
           <th className={classes.tdth}>Talktime</th>
           <th className={classes.tdth}>SMS</th>
+          <td rowSpan={2}><h2 className={classes.h2}>{props.telco} - {props.planName}</h2></td>
         </tr>
         <tr>
+          <td className={classes.tdth}>${props.price % 1 === 0 ? props.price : props.price.toFixed(2)}</td>
           <td className={classes.tdth}>{props.data}{props.data === 'Unlimited' ? '' : 'GB'}</td>
           <td className={classes.tdth}>{props.talktime}{props.talktime === 'Unlimited' ? '' : 'min'}</td>
           <td className={classes.tdth}>{props.sms}</td>
