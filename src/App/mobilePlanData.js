@@ -186,7 +186,7 @@ const mobilePlanData = [
     talktime: 200,
     sms: 200,
     price: 20,
-    pros: ['Free Caller-ID'],
+    pros: ['Free Caller-ID', 'No registration and delivery fees', 'Travel roaming available from $10 for 1GB', 'No contract'],
   },
   {
     telco: 'Starhub',
@@ -399,7 +399,8 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 25,
-    pros: ['Free caller ID', 'Free incoming calls'],
+    pros: ['Free caller ID', 'Free incoming calls', 'Unused data can be rolled-over for up to 2 months', 'Travel roaming available from $5 for 1GB', 'No contract'],
+    cons: ['$2 delivery fee']
   },
   {
     telco: 'TPG',

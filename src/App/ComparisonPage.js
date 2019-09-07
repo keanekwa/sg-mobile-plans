@@ -1,5 +1,6 @@
 import React from 'react';
 import mobilePlanData from './mobilePlanData.js'
+import addonsData from './addonsData.js'
 import MobilePlanPaper from './MobilePlanPaper.js';
 
 //if have time, try finding a way to send optionsSelected directly from SelectOptionsForSelf to ComparisonPage without having to go through App
