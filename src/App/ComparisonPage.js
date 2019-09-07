@@ -16,9 +16,41 @@ class ComparisonPage extends React.Component {
       plan.sms >=  optionsSelected.minSMS &&
       plan.price <= optionsSelected.price
     );
+
+    //addons
+    const unfilteredMobilePlans = mobilePlanData.filter((plan) =>
+      plan.data < optionsSelected.minData ||
+      plan.talktime < optionsSelected.minTalktime ||
+      plan.sms < optionsSelected.minSMS ||
+      plan.price > optionsSelected.price
+    );
+    let addonMultiple = 0;
+    for (let mobilePlan of unfilteredMobilePlans) {
+      for (let addon of addonsData) {
+        if (mobilePlan.planName === addon.appliesToPlan) {
+          if (mobilePlan.data < optionsSelected.minData) {
+            addonMultiple = Math.ceil((optionsSelected.minData - mobilePlan.data) / addon.data);
+            if (addonMultiple > 0) {
+              mobilePlan.data += addon.data * addonMultiple;
+              mobilePlan.price += addon.price * addonMultiple;
+              filteredMobilePlans.push({
+                telco: mobilePlan.telco,
+                planName: mobilePlan.planName + ' + ' + addonMultiple + ' x ' + addon.addonName + ' addon',
+                price: mobilePlan.price,
+                data: mobilePlan.data === 10000 ? 'Unlimited' : mobilePlan.data,
+                talktime: mobilePlan.talktime === 10000 ? 'Unlimited' : mobilePlan.talktime,
+                sms: mobilePlan.sms === 10000 ? 'Unlimited' : mobilePlan.sms,
+                pros: mobilePlan.pros,
+                cons: mobilePlan.cons,
+              });
+            }
+          }
+        }
+      }
+    }
+
     const sortedMobilePlans = filteredMobilePlans.sort((a,b) => (a.price < b.price) ? -1 : 1); //sort by cheap to expensive
-    
-    const mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <MobilePlanPaper
+    let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <MobilePlanPaper
       telco={mobilePlan.telco}
       planName={mobilePlan.planName}
       price={mobilePlan.price}

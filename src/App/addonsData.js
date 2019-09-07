@@ -2,6 +2,7 @@ const addonsData = [
   {
     appliesToTelco: '',
     appliesToPlan: 'Giga!',
+    addonName: '1GB',
     data: 1,
     talktime: 0,
     sms: 0,
