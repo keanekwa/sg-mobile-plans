@@ -22,6 +22,7 @@ class SelectOptionsForSelf extends React.Component {
     this.props.onClick('ComparisonPage', optionsSelected);
   }
 
+  // change to slider with tickbox for unlimited when i have time
   render() {
     return (
       <div>
