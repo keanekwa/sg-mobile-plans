@@ -1,7 +1,7 @@
 const addonsData = [
   {
     appliesToTelco: '',
-    appliesToPlan: 'Giga!',
+    appliesToPlans: ['Giga!'],
     addonName: '1GB',
     data: 1,
     talktime: 0,
@@ -11,7 +11,7 @@ const addonsData = [
   },
   {
     appliesToTelco: 'Circles.Life',
-    appliesToPlan: '',
+    appliesToPlans: ['Base Plan (New number)', 'Base Plan (Transfer number)'],
     addonName: 'Unlimited Data',
     data: 10000,
     talktime: 0,

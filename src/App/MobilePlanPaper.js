@@ -49,19 +49,23 @@ function MobilePlanPaper(props) {
   return (
     <Paper className={classes.root}>
       <table className={classes.table}>
-        <tr>
-          <th className={classes.tdth}>Price</th>
-          <th className={classes.tdth}>Data</th>
-          <th className={classes.tdth}>Talktime</th>
-          <th className={classes.tdth}>SMS</th>
-          <td rowSpan={2}><h2 className={classes.h2}>{props.telco} - {props.planName}</h2></td>
-        </tr>
-        <tr>
-          <td className={classes.tdth}>${props.price % 1 === 0 ? props.price : props.price.toFixed(2)}</td>
-          <td className={classes.tdth}>{props.data}{props.data === 'Unlimited' ? '' : 'GB'}</td>
-          <td className={classes.tdth}>{props.talktime}{props.talktime === 'Unlimited' ? '' : 'min'}</td>
-          <td className={classes.tdth}>{props.sms}</td>
-        </tr>
+        <thead>
+          <tr>
+            <th className={classes.tdth}>Price</th>
+            <th className={classes.tdth}>Data</th>
+            <th className={classes.tdth}>Talktime</th>
+            <th className={classes.tdth}>SMS</th>
+            <td rowSpan={2}><h2 className={classes.h2}>{props.telco} - {props.planName}</h2></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className={classes.tdth}>${props.price % 1 === 0 ? props.price : props.price.toFixed(2)}</td>
+            <td className={classes.tdth}>{props.data}{props.data === 'Unlimited' ? '' : 'GB'}</td>
+            <td className={classes.tdth}>{props.talktime}{props.talktime === 'Unlimited' ? '' : 'min'}</td>
+            <td className={classes.tdth}>{props.sms}</td>
+          </tr>
+        </tbody>
       </table>
       {pros === '' ? '' : 'Pros:'}
       {pros === '' ? '' : <ul className={classes.ul}>{pros}</ul>}

@@ -18,6 +18,7 @@ class ComparisonPage extends React.Component {
     );
 
     //see if addding addons can make plans that meet requirements
+    //add exclusions from plans
     const unfilteredMobilePlans = mobilePlanData.filter((plan) =>
       plan.data < optionsSelected.minData ||
       plan.talktime < optionsSelected.minTalktime ||
@@ -26,8 +27,9 @@ class ComparisonPage extends React.Component {
     );
     let addonMultiple = 0;
     for (let mobilePlan of unfilteredMobilePlans) { //go through all the plans that fail the criteria
-      for (let addon of addonsData) {
-        if (mobilePlan.planName === addon.appliesToPlan || mobilePlan.telco === addon.appliesToTelco) {  //see what are the available addons
+      let addonsForTelco = addonsData.filter(addon => addon.appliesToTelco === mobilePlan.telco); //find addons for the telco
+      for (let addon of addonsForTelco) {
+        if (addon.appliesToPlans.includes(mobilePlan.planName)) { //ensure addon is suitable for plan
           if (mobilePlan.data < optionsSelected.minData) {
             addonMultiple = Math.ceil((optionsSelected.minData - mobilePlan.data) / addon.data);  //check how many data addons are required
             if (addon.keepAdding === false && addonMultiple > 1) { 
@@ -46,7 +48,7 @@ class ComparisonPage extends React.Component {
               continue;
             }
           }
-          if (addonMultiple > 0) { //if there is a suitable addon
+          if (addonMultiple > 0) { //if there is a suitable addon, add a new plan suggestion accordingly
             mobilePlan.data += addon.data * addonMultiple;
             mobilePlan.talktime += addon.talktime * addonMultiple;
             mobilePlan.sms += addon.sms * addonMultiple;
@@ -57,8 +59,12 @@ class ComparisonPage extends React.Component {
             else if (addon.pros !== undefined) {
               mobilePlan.pros = addon.pros;
             }
-            mobilePlan.pros = (mobilePlan.pros === undefined) ? addon.pros : mobilePlan.pros.concat(addon.pros);
-            mobilePlan.cons = (mobilePlan.cons === undefined) ? addon.cons : mobilePlan.cons.concat(addon.cons);
+            if (mobilePlan.cons !== undefined && addon.cons !== undefined) {
+              mobilePlan.cons = mobilePlan.cons.concat(addon.cons);
+            }
+            else if (addon.cons !== undefined) {
+              mobilePlan.cons = addon.cons;
+            }
             filteredMobilePlans.push({
               telco: mobilePlan.telco,
               planName: mobilePlan.planName + ' + ' + addonMultiple + ' x ' + addon.addonName + ' addon',
