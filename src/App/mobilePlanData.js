@@ -1,3 +1,5 @@
+//if have time: convert to csv and import csv for easier editing
+
 const mobilePlanData = [
   {
     telco: 'Singtel',

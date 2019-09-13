@@ -3,10 +3,6 @@ import mobilePlanData from './mobilePlanData.js'
 import addonsData from './addonsData.js'
 import MobilePlanPaper from './MobilePlanPaper.js';
 
-//if have time, try finding a way to send optionsSelected directly from SelectOptionsForSelf to ComparisonPage without having to go through App
-//another thing to try is to save data in json so there will be no need to edit the code directly if mobile plans change
-//try to change optionsSelected from plain array to key value pair dictionary
-//change options pages into one page with dropdowns. will make it much easier to fix above problem
 class ComparisonPage extends React.Component {
   render() {
     const optionsSelected = this.props.optionsSelected;
@@ -18,7 +14,6 @@ class ComparisonPage extends React.Component {
     );
 
     //see if addding addons can make plans that meet requirements
-    //add exclusions from plans
     const unfilteredMobilePlans = mobilePlanData.filter((plan) =>
       plan.data < optionsSelected.minData ||
       plan.talktime < optionsSelected.minTalktime ||
