@@ -51,11 +51,17 @@ class ComparisonPage extends React.Component {
             if (mobilePlan.pros !== undefined && addon.pros !== undefined) {
               newPlan.pros = mobilePlan.pros.concat(addon.pros);
             }
+            else if (mobilePlan.pros !== undefined) {
+              newPlan.pros = mobilePlan.pros;
+            }
             else if (addon.pros !== undefined) {
               newPlan.pros = addon.pros;
             }
             if (mobilePlan.cons !== undefined && addon.cons !== undefined) {
               newPlan.cons = mobilePlan.cons.concat(addon.cons);
+            }
+            else if (mobilePlan.cons !== undefined) {
+              newPlan.cons = mobilePlan.cons;
             }
             else if (addon.cons !== undefined) {
               newPlan.cons = addon.cons;
@@ -76,7 +82,7 @@ class ComparisonPage extends React.Component {
     }
 
     const sortedMobilePlans = filteredMobilePlans.sort((a,b) => (a.price < b.price) ? -1 : 1); //sort by cheap to expensive
-    let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <MobilePlanPaper
+    let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) =>       <div><MobilePlanPaper
       telco={mobilePlan.telco}
       planName={mobilePlan.planName}
       price={mobilePlan.price}
@@ -85,7 +91,7 @@ class ComparisonPage extends React.Component {
       sms={mobilePlan.sms >= 10000 ? 'Unlimited' : mobilePlan.sms}
       pros={mobilePlan.pros}
       cons={mobilePlan.cons}
-    />);
+    /></div>);
 
     return (
       <div>

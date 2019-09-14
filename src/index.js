@@ -10,6 +10,7 @@ const theme = createMuiTheme({
   light: {
     background: 'white',
     color: '#333',
+    hover: '#666',
   },
   dark: {
     background: '#333',
