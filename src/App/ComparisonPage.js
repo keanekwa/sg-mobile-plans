@@ -37,9 +37,8 @@ class ComparisonPage extends React.Component {
             const addonMultipleForTalktime = Math.ceil((optionsSelected.minTalktime - mobilePlan.talktime) / addon.talktime) //check how many talktime addons are required
             const addonMultipleForSMS = Math.ceil((optionsSelected.minSMS - mobilePlan.sms) / addon.sms) //check how many sms addons are required
             newPlan.addonMultiple = Math.max(addonMultipleForData, addonMultipleForTalktime, addonMultipleForSMS);
-            if (addon.keepAdding !== true && newPlan.addonMultiple > 1) { 
-              continue;
-            }
+            if (addon.keepAdding !== true && newPlan.addonMultiple > 1) { continue; } //cannot add single-add addons multiple times
+            else if (newPlan.addonMultiple <= 0) { continue;} //cannot have negative addons
             newPlan.data = mobilePlan.data + (newPlan.addonMultiple * addon.data);
             newPlan.talktime = mobilePlan.talktime + (newPlan.addonMultiple * addon.talktime);
             newPlan.sms = mobilePlan.sms + (newPlan.addonMultiple * addon.sms);
