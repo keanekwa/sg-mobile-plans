@@ -182,8 +182,8 @@ const mobilePlanData = [
     pros: ['Free Caller-ID'],
   },
   {
-    telco: 'Singtel',
-    planName: 'GOMO',
+    telco: 'Gomo',
+    planName: 'Base Plan',
     data: 20,
     talktime: 200,
     sms: 200,
@@ -395,8 +395,8 @@ const mobilePlanData = [
     pros: ['2GB Roam Like Home - Essential', 'Free caller ID', 'Free incoming calls'],
   },
   {
-    telco: 'Starhub',
-    planName: 'Giga!',
+    telco: 'Giga!',
+    planName: 'Base Plan',
     data: 25,
     talktime: 1000,
     sms: 1000,
