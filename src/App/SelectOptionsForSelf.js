@@ -1,6 +1,7 @@
 import React from 'react';
 import NextButton from './NextButton.js'
-import MySlider from './MySlider.js'
+import OptionSlider from './OptionSlider.js'
+import UnlimitedCheckbox from './UnlimitedCheckbox.js'
 
 class SelectOptionsForSelf extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class SelectOptionsForSelf extends React.Component {
     return (
       <div>
         What is the minimum amount of data you need?
-        <MySlider
+        <OptionSlider
           defaultValue={0}
           step={5}
           valueLabelFormat={value => `${value} ${'GB'}`}
@@ -31,8 +32,9 @@ class SelectOptionsForSelf extends React.Component {
           max={100}
           onChangeCommitted={(event, value) => this.setState({ ['minData']: value })}
         />
+        <UnlimitedCheckbox/>
         What is the minimum amount of talktime you need?
-        <MySlider
+        <OptionSlider
           defaultValue={0}
           step={100}
           valueLabelFormat={value => `${value} ${'min'}`}
@@ -41,7 +43,7 @@ class SelectOptionsForSelf extends React.Component {
           onChangeCommitted={(event, value) => this.setState({ ['minTalktime']: value })}
         />
         What is the minimum number of SMS you need?
-        <MySlider
+        <OptionSlider
           defaultValue={0}
           step={100}
           min={0}
@@ -49,7 +51,7 @@ class SelectOptionsForSelf extends React.Component {
           onChangeCommitted={(event, value) => this.setState({ ['minSMS']: value })}
         />
         What is your monthly budget?
-        <MySlider
+        <OptionSlider
           defaultValue={0}
           step={10}
           valueLabelFormat={value => `${'$'}${value}`}

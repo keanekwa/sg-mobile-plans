@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function MobilePlanPaper(props) {
+export default function MobilePlanPaper(props) {
   const classes = useStyles();
   let pros, cons = undefined;
   if (props.pros === undefined) {
@@ -84,5 +84,3 @@ function MobilePlanPaper(props) {
     </Collapse>
   );
 }
-
-export default MobilePlanPaper;

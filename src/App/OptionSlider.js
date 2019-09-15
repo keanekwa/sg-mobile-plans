@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function MySlider(props) {
+export default function OptionSlider(props) {
   const classes = useStyles();  
   return (
       <Slider
@@ -25,5 +25,3 @@ function MySlider(props) {
       />
   );
 }
-
-export default MySlider;
