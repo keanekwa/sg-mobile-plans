@@ -14,6 +14,10 @@ class SelectOptionsForSelf extends React.Component {
     }
   }
 
+  handleUnlimitedCheckboxClick(option) {
+    this.setState({ [option]: 10000 });
+  }
+
   handleNextButtonClick() {
     const optionsSelected = this.state;
     this.props.onClick('ComparisonPage', optionsSelected);
@@ -32,7 +36,7 @@ class SelectOptionsForSelf extends React.Component {
           max={100}
           onChangeCommitted={(event, value) => this.setState({ ['minData']: value })}
         />
-        <UnlimitedCheckbox/>
+        <UnlimitedCheckbox onClick={() => this.handleUnlimitedCheckboxClick('minData')}/>
         What is the minimum amount of talktime you need?
         <OptionSlider
           defaultValue={0}
@@ -42,6 +46,7 @@ class SelectOptionsForSelf extends React.Component {
           max={1000}
           onChangeCommitted={(event, value) => this.setState({ ['minTalktime']: value })}
         />
+        <UnlimitedCheckbox onClick={() => this.handleUnlimitedCheckboxClick('minTalktime')}/>
         What is the minimum number of SMS you need?
         <OptionSlider
           defaultValue={0}
@@ -50,6 +55,7 @@ class SelectOptionsForSelf extends React.Component {
           max={1000}
           onChangeCommitted={(event, value) => this.setState({ ['minSMS']: value })}
         />
+        <UnlimitedCheckbox onClick={() => this.handleUnlimitedCheckboxClick('minSMS')}/>
         What is your monthly budget?
         <OptionSlider
           defaultValue={0}
@@ -59,6 +65,7 @@ class SelectOptionsForSelf extends React.Component {
           max={200}
           onChangeCommitted={(event, value) => this.setState({ ['price']: value })}
         />
+        <UnlimitedCheckbox onClick={() => this.handleUnlimitedCheckboxClick('price')}/>
         <NextButton onClick={() => this.handleNextButtonClick()}/>
       </div>
     );

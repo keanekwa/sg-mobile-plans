@@ -21,9 +21,6 @@ class App extends React.Component {
         },
       ],
       mode: null,
-      minData: null,
-      minTalktime: null,
-      minSMS: null,
     }
 	}
 

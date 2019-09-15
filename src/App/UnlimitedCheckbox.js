@@ -27,6 +27,7 @@ export default function OptionSlider(props) {
           <Checkbox
             checked={state.checked}
             onChange={handleChange('checked')}
+            onClick={props.onClick}
             value="checked"
           />
         }
