@@ -19,9 +19,10 @@ export default function MobilePlanPaper(props) {
   }
 
   const [checked, setChecked] = React.useState(false);
-  function expandOrMinimize() {
+  const expandOrMinimize = () => {
     setChecked(prev => !prev);
   }
+  
   return (
     <Collapse in={checked} collapsedHeight='6.75rem'>
       <Paper square={true} class='MobilePlanPaper'>

@@ -23,7 +23,7 @@ class App extends React.Component {
     }
 	}
 
-  handleClick(optionKey, optionsSelected) {
+  handleClick = (optionKey, optionsSelected) => {
     this.setState({mode: optionKey});
     if (optionKey === 'ComparisonPage') {
       this.setState({optionsSelected: optionsSelected});

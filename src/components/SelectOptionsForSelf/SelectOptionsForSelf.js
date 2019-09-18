@@ -14,11 +14,11 @@ class SelectOptionsForSelf extends React.Component {
     }
   }
 
-  handleUnlimitedCheckboxClick(option) {
+  handleUnlimitedCheckboxClick = (option) => {
     this.setState({ [option]: 10000 });
   }
 
-  handleNextButtonClick() {
+  handleNextButtonClick = () => {
     const optionsSelected = this.state;
     this.props.onClick('ComparisonPage', optionsSelected);
   }
