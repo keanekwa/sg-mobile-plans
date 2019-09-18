@@ -1,9 +1,9 @@
 import React from 'react';
-import Option from './Option.js'
-import Question from './Question.js'
-import SelectOptionsForSelf from './SelectOptionsForSelf.js'
-import SelectOptionsForFamily from './SelectOptionsForFamily.js'
-import ComparisonPage from './ComparisonPage.js'
+import Option from './components/Option/Option.js'
+import Question from './components/Question/Question.js'
+import SelectOptionsForSelf from './components/SelectOptionsForSelf/SelectOptionsForSelf.js'
+import SelectOptionsForFamily from './components/SelectOptionsForFamily/SelectOptionsForFamily.js'
+import ComparisonPage from './components/ComparisonPage/ComparisonPage.js'
 
 class App extends React.Component {
   constructor(props) {

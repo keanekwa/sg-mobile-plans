@@ -1,7 +1,7 @@
 import React from 'react';
-import NextButton from './NextButton.js'
-import OptionSlider from './OptionSlider.js'
-import UnlimitedCheckbox from './UnlimitedCheckbox.js'
+import NextButton from '../../components/NextButton/NextButton.js'
+import OptionSlider from '../../components/OptionSlider/OptionSlider.js'
+import UnlimitedCheckbox from '../../components/UnlimitedCheckbox/UnlimitedCheckbox.js'
 
 class SelectOptionsForSelf extends React.Component {
   constructor(props) {

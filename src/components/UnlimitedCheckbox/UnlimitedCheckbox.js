@@ -25,6 +25,7 @@ export default function OptionSlider(props) {
       <FormControlLabel
         control={
           <Checkbox
+            className={classes.root}
             checked={state.checked}
             onChange={handleChange('checked')}
             onClick={props.onClick}

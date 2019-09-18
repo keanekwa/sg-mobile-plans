@@ -1,0 +1,30 @@
+.MobilePlanPaper {
+  background-color: #fff !important;
+  padding: 1.5rem 1.75rem;
+  color: #333;
+  margin: 1.25rem 0 0 0;
+  text-align: left;
+  table {
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 0 1.5rem 0;
+    &:hover, &:focus, &:active {
+      cursor: 'pointer';
+      color: #666;
+    }
+  }
+  h2 {
+    padding: 0 0 0 1rem;
+    margin: 0,
+  }
+  .sideBorderTableCells {
+    padding: 0 0.75rem;
+    border-right: 3px solid #d5d5d5;
+    border-left: 3px solid #d5d5d5;
+    width: 65px;
+    vertical-align: middle;
+  }
+  ul {
+    margin: 0,
+  }
+}

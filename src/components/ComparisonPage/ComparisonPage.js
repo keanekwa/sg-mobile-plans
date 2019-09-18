@@ -1,7 +1,7 @@
 import React from 'react';
-import mobilePlanData from './mobilePlanData.js'
-import addonsData from './addonsData.js'
-import MobilePlanPaper from './MobilePlanPaper.js';
+import mobilePlanData from '../../data/mobilePlanData.js'
+import addonsData from '../../data/addonsData.js'
+import MobilePlanPaper from '../MobilePlanPaper/MobilePlanPaper.js';
 
 class ComparisonPage extends React.Component {
   render() {
@@ -82,16 +82,17 @@ class ComparisonPage extends React.Component {
     }
 
     const sortedMobilePlans = filteredMobilePlans.sort((a,b) => (a.price < b.price) ? -1 : 1); //sort by cheap to expensive
-    let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) =>       <div><MobilePlanPaper
+    let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <MobilePlanPaper
       telco={mobilePlan.telco}
       planName={mobilePlan.planName}
+      key={mobilePlan.telco + ' - ' + mobilePlan.planName}
       price={mobilePlan.price}
       data={mobilePlan.data >= 10000 ? 'Unlimited' : mobilePlan.data}
       talktime={mobilePlan.talktime >= 10000 ? 'Unlimited' : mobilePlan.talktime}
       sms={mobilePlan.sms >= 10000 ? 'Unlimited' : mobilePlan.sms}
       pros={mobilePlan.pros}
       cons={mobilePlan.cons}
-    /></div>);
+    />);
 
     return (
       <div>
