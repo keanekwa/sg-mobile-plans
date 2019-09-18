@@ -1,5 +1,5 @@
 import React from 'react';
-import NextButton from '../../components/NextButton/NextButton.js'
+import Button from '@material-ui/core/Button'
 import OptionSlider from '../../components/OptionSlider/OptionSlider.js'
 import UnlimitedCheckbox from '../../components/UnlimitedCheckbox/UnlimitedCheckbox.js'
 
@@ -66,7 +66,7 @@ class SelectOptionsForSelf extends React.Component {
           onChangeCommitted={(event, value) => this.setState({ ['price']: value })}
         />
         <UnlimitedCheckbox onClick={() => this.handleUnlimitedCheckboxClick('price')}/>
-        <NextButton onClick={() => this.handleNextButtonClick()}/>
+        <Button onClick={() => this.handleNextButtonClick()} variant='contained'>Next</Button>
       </div>
     );
   }

@@ -1,14 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-
-  },
-}));
 
 export default function OptionSlider(props) {
   const classes = useStyles();  

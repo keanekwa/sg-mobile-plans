@@ -1,6 +1,5 @@
 import React from 'react';
-import Option from './components/Option/Option.js'
-import Question from './components/Question/Question.js'
+import Button from '@material-ui/core/Button'
 import SelectOptionsForSelf from './components/SelectOptionsForSelf/SelectOptionsForSelf.js'
 import SelectOptionsForFamily from './components/SelectOptionsForFamily/SelectOptionsForFamily.js'
 import ComparisonPage from './components/ComparisonPage/ComparisonPage.js'
@@ -32,13 +31,12 @@ class App extends React.Component {
   }
 
   render() {
-    const options = this.state.options.map((option) => <Option key={option.key} value={option.value} onClick={() => this.handleClick(option.key)}/>);
-
+    const options = this.state.options.map((option) => <li class='option' key={option.key}><Button variant='contained' onClick={() => this.handleClick(option.key)}>{option.value}</Button></li>);
     if (this.state.mode === null) {
       return (
         <div>
-          <Question question={this.state.question}/>
-          <ul className='options'>{options}</ul>
+          <h1>{this.state.question}</h1>
+          <ul class='options'>{options}</ul>
         </div>
       );
     }
