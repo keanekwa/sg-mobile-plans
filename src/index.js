@@ -1,24 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./index.scss";
 import App from "./App.js";
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 
-const theme = createMuiTheme({
-  spacing: factor => `${0.25 * factor}rem`,
-  light: {
-    background: 'white',
-    color: '#333',
-    hover: '#666',
-  },
-  dark: {
-    background: '#333',
-    color: 'white',
-  },
-  clearfix: {
-    overflow: 'auto',
-  },
-});
-
-ReactDOM.render(<ThemeProvider theme={theme}><App /></ThemeProvider>, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
