@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #282c34;
+  background-color: #263238;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,20 +8,5 @@ body {
   justify-content: center;
   color: white;
   text-align: center;
-  font-family: 'Roboto', 'Arial', sans-serif;
-}
-
-$primary-color: #3F51B5;
-
-.options {
-  list-style-type: none;
-  padding: 0;
-  .option {
-    margin: 1em;
-    button {
-      padding: 1em;
-      width: 100%;
-      cursor: pointer;
-    }    
-  }
+  font-family: 'Roboto', 'Arial', sans-serif,
 }

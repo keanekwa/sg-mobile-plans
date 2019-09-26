@@ -20,7 +20,7 @@ export default function OptionSlider(props) {
             checked={state.checked}
             onChange={handleChange('checked')}
             onClick={props.onClick}
-            value="checked"
+            color='primary'
           />
         }
         label="Unlimited"

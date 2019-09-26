@@ -16,7 +16,7 @@ class App extends React.Component {
         },
         {
           key: 'SelectOptionsForFamily',
-          value: 'Plans for Family (e.g. mobile, fiber, TV, etc.)',
+          value: 'Plans for Family (e.g. mobile, fiber, TV)',
         },
       ],
       mode: null,
@@ -31,12 +31,12 @@ class App extends React.Component {
   }
 
   render() {
-    const options = this.state.options.map((option) => <li class='option' key={option.key}><Button variant='contained' onClick={() => this.handleClick(option.key)}>{option.value}</Button></li>);
+    const options = this.state.options.map((option) => <div><Button size='large' fullWidth={true} key={option.key} color='primary' variant='outlined' onClick={() => this.handleClick(option.key)}>{option.value}</Button></div>);
     if (this.state.mode === null) {
       return (
         <div>
           <h1>{this.state.question}</h1>
-          <ul class='options'>{options}</ul>
+          {options}
         </div>
       );
     }

@@ -66,7 +66,7 @@ class SelectOptionsForSelf extends React.Component {
           onChangeCommitted={(event, value) => this.setState({ ['price']: value })}
         />
         <UnlimitedCheckbox onClick={() => this.handleUnlimitedCheckboxClick('price')}/>
-        <Button onClick={() => this.handleNextButtonClick()} variant='contained'>Next</Button>
+        <Button onClick={() => this.handleNextButtonClick()} variant='outlined' size='large' color='primary'>Next</Button>
       </div>
     );
   }

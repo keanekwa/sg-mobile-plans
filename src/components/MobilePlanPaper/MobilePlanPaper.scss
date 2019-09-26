@@ -1,5 +1,3 @@
-@import '../../index';
-
 .MobilePlanPaper {
   background-color: #fff !important;
   padding: 1.5rem 1.75rem;
@@ -12,7 +10,7 @@
     margin: 0 0 1.5rem 0;
     &:hover, &:focus, &:active {
       cursor: pointer;
-      color: $primary-color;
+      color: 'red';
     }
   }
   h2 {
