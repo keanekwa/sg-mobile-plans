@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button'
-import SelectOptionsForSelf from './components/SelectSelfOptions'
-import SelectOptionsForFamily from './components/SelectFamilyOptions'
-import Results from './components/Results'
+import SelectSelfOptions from './components/SelectSelfOptions'
+import SelectFamilyOptions from './components/SelectFamilyOptions'
+import ResultList from './components/ResultList'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,11 +11,11 @@ class App extends React.Component {
       question: 'What are you looking for?',
       options: [
         {
-          key: 'SelectOptionsForSelf',
+          key: 'SelectSelfOptions',
           value: 'Mobile Plan for Myself',
         },
         {
-          key: 'SelectOptionsForFamily',
+          key: 'SelectFamilyOptions',
           value: 'Plans for Family (e.g. mobile, fiber, TV)',
         },
       ],
@@ -25,7 +25,7 @@ class App extends React.Component {
 
   handleClick = (optionKey, optionsSelected) => {
     this.setState({mode: optionKey});
-    if (optionKey === 'ComparisonPage') {
+    if (optionKey === 'ResultList') {
       this.setState({optionsSelected: optionsSelected});
     }
   }
@@ -40,24 +40,24 @@ class App extends React.Component {
         </div>
       );
     }
-    else if (this.state.mode === 'SelectOptionsForSelf') {
+    else if (this.state.mode === 'SelectSelfOptions') {
       return (
         <div> 
-          <SelectOptionsForSelf onClick={(mode, optionsSelected) => this.handleClick(mode, optionsSelected)}/>
+          <SelectSelfOptions onClick={(mode, optionsSelected) => this.handleClick(mode, optionsSelected)}/>
         </div>
       );
     }
-    else if (this.state.mode === 'SelectOptionsForFamily') {
+    else if (this.state.mode === 'SelectFamilyOptions') {
       return (
         <div> 
-          <SelectOptionsForFamily/>
+          <SelectFamilyOptions/>
         </div>
       );
     }
-    else if (this.state.mode === 'ComparisonPage') {
+    else if (this.state.mode === 'ResultList') {
       return (
         <div> 
-          <Results optionsSelected={this.state.optionsSelected}/>
+          <ResultList optionsSelected={this.state.optionsSelected}/>
         </div>
       );
     }

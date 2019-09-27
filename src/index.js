@@ -5,8 +5,8 @@ import {blueGrey} from '@material-ui/core/colors/';
 import './index.scss';
 import App from './App.js'
 import { BrowserRouter as Router , Route } from 'react-router-dom';
-import SelectOptionsForSelf from './components/SelectSelfOptions';
-import SelectOptionsForFamily from './components/SelectFamilyOptions';
+import SelectSelfOptions from './components/SelectSelfOptions';
+import SelectFamilyOptions from './components/SelectFamilyOptions';
 
 const theme = createMuiTheme({
   palette: {
@@ -24,6 +24,15 @@ const theme = createMuiTheme({
         padding: '14px 24px',
       }
     },
+    MuiInput: {
+      root: {
+        color: blueGrey[50],
+        margin: '0 1rem 0 1rem',
+      },
+      underline: {
+        borderBottom: '1px solid ' + blueGrey[500],
+      }
+    }
   },
 });
 
@@ -32,8 +41,8 @@ function AppRouter() {
     <MuiThemeProvider theme={theme}>
       <Router>
           <Route path="/" exact component={App} />
-          <Route path="/self/" component={SelectOptionsForSelf} />
-          <Route path="/family/" component={SelectOptionsForFamily} />
+          <Route path="/self/" component={SelectSelfOptions} />
+          <Route path="/family/" component={SelectFamilyOptions} />
       </Router>
     </MuiThemeProvider>
     // need to fix the routing and mode functions to ensure the app still works if /self or /family is directly accessed

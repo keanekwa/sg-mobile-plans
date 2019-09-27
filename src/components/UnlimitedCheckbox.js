@@ -3,7 +3,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function OptionSlider(props) {
+export default function UnlimitedCheckbox(props) {
   const [state, setState] = React.useState({
     checked: false,
   });

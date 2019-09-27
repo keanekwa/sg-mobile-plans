@@ -1,9 +1,10 @@
+/* Backup of slider style page
 import React from 'react';
 import Button from '@material-ui/core/Button'
 import OptionSlider from './OptionSlider'
 import UnlimitedCheckbox from './UnlimitedCheckbox'
 
-class SelectOptionsForSelf extends React.Component {
+class SelectSelfOptions extends React.Component {
   constructor(props) {
     super(props);
 		this.state = {
@@ -20,7 +21,7 @@ class SelectOptionsForSelf extends React.Component {
 
   handleNextButtonClick = () => {
     const optionsSelected = this.state;
-    this.props.onClick('ComparisonPage', optionsSelected);
+    this.props.onClick('ResultList', optionsSelected);
   }
 
   // change to slider with tickbox for unlimited when i have time
@@ -72,4 +73,40 @@ class SelectOptionsForSelf extends React.Component {
   }
 }
 
-export default SelectOptionsForSelf;
+export default SelectSelfOptions;
+*/
+import React from 'react';
+import Button from '@material-ui/core/Button'
+import { Input } from '@material-ui/core';
+
+class SelectSelfOptions extends React.Component {
+  constructor(props) {
+    super(props);
+		this.state = {
+      minData: 0,
+      minTalktime: 0,
+      minSMS: 0,
+      price: 0,
+    }
+  }
+
+  handleNextButtonClick = () => {
+    const optionsSelected = this.state;
+    this.props.onClick('ResultList', optionsSelected);
+  }
+
+  // change to slider with tickbox for unlimited when i have time
+  render() {    
+    return (
+      <div>
+        I need at least <Input placeholder={0} onChange={(event) => this.setState({ ['minData']: event.target.value })}/> GB of data, <br/>
+        at least <Input placeholder={0} onChange={(event) => this.setState({ ['minTalktime']: event.target.value })}/> min of talktime, <br/>
+        and at least <Input placeholder={0} onChange={(event) => this.setState({ ['minSMS']: event.target.value })}/> SMS. <br/>
+        My monthly budget for this will be $<Input placeholder={0} onChange={(event) => this.setState({ ['price']: event.target.value })}/><br/>
+        <Button onClick={() => this.handleNextButtonClick()} variant='outlined' size='large' color='primary'>Next</Button>
+      </div>
+    );
+  }
+}
+
+export default SelectSelfOptions;

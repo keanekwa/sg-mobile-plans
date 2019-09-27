@@ -1,9 +1,9 @@
 import React from 'react';
 import mobilePlanData from '../data/mobilePlanData.js'
 import addonsData from '../data/addonsData.js'
-import MobilePlanPaper from './MobilePlanPaper';
+import Result from './Result';
 
-export default function ComparisonPage(props) {
+export default function ResultList(props) {
   const optionsSelected = props.optionsSelected;
   const filteredMobilePlans = mobilePlanData.filter((mobilePlan) =>
     mobilePlan.data >= optionsSelected.minData &&
@@ -81,7 +81,7 @@ export default function ComparisonPage(props) {
   }
 
   const sortedMobilePlans = filteredMobilePlans.sort((a,b) => (a.price < b.price) ? -1 : 1); //sort by cheap to expensive
-  let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <MobilePlanPaper
+  let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <Result
     telco={mobilePlan.telco}
     planName={mobilePlan.planName}
     key={mobilePlan.telco + ' - ' + mobilePlan.planName}

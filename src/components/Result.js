@@ -1,9 +1,9 @@
 import React from 'react';
 import { Paper } from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
-import './MobilePlanPaper.scss'
+import './Result.scss'
 
-export default function MobilePlanPaper(props) {
+export default function Result(props) {
   let pros, cons = undefined;
   if (props.pros === undefined) {
     pros = '';
