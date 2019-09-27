@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '@material-ui/core/Button'
 import SelectSelfOptions from './components/SelectSelfOptions'
 import SelectFamilyOptions from './components/SelectFamilyOptions'
-import ResultList from './components/ResultList'
 
 class App extends React.Component {
   constructor(props) {
@@ -25,9 +24,6 @@ class App extends React.Component {
 
   handleClick = (optionKey, optionsSelected) => {
     this.setState({mode: optionKey});
-    if (optionKey === 'ResultList') {
-      this.setState({optionsSelected: optionsSelected});
-    }
   }
 
   render() {
@@ -43,7 +39,7 @@ class App extends React.Component {
     else if (this.state.mode === 'SelectSelfOptions') {
       return (
         <div> 
-          <SelectSelfOptions onClick={(mode, optionsSelected) => this.handleClick(mode, optionsSelected)}/>
+          <SelectSelfOptions/>
         </div>
       );
     }
@@ -51,13 +47,6 @@ class App extends React.Component {
       return (
         <div> 
           <SelectFamilyOptions/>
-        </div>
-      );
-    }
-    else if (this.state.mode === 'ResultList') {
-      return (
-        <div> 
-          <ResultList optionsSelected={this.state.optionsSelected}/>
         </div>
       );
     }
