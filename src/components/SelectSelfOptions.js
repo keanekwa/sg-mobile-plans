@@ -23,11 +23,14 @@ class SelectSelfOptions extends React.Component {
   render () {
     return (
       <div>
-        I need at least <Input placeholder='0' onChange={(event) => this.setState({ ['minData']: event.target.value })}/> GB of data, <br/>
-        at least <Input placeholder='0' onChange={(event) => this.setState({ ['minTalktime']: event.target.value })}/> min of talktime, <br/>
-        and at least <Input placeholder='0' onChange={(event) => this.setState({ ['minSMS']: event.target.value })}/> SMS. <br/>
-        My monthly budget for this will be $<Input placeholder='0' onChange={(event) => this.setState({ ['price']: event.target.value })}/><br/>
-        <Button onClick={() => this.handleClick()} variant='outlined' size='large' color='primary'>Next</Button> 
+        I need at least
+        <Input placeholder='0' onChange={(event) => this.setState({ ['minData']: event.target.value })}/>
+        GB of data, at least <Input placeholder='0' onChange={(event) => this.setState({ ['minTalktime']: event.target.value })}/>
+        min of talktime, <br/>
+        and at least
+        <Input placeholder='0' onChange={(event) => this.setState({ ['minSMS']: event.target.value })}/>
+        SMS. My monthly budget for this will be $<Input placeholder='0' onChange={(event) => this.setState({ ['price']: event.target.value })}/><br/>
+        {!this.state.showResultList && <Button onClick={() => this.handleClick()} variant='outlined' size='large' color='primary'>Next</Button>} 
         {this.state.showResultList && <ResultList optionsSelected={this.state}/>}
       </div>
     );

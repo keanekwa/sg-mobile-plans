@@ -15,6 +15,11 @@ const theme = createMuiTheme({
     },
   },
   overrides: {
+    App: {
+      root: {
+        backgroundColor: '#000',
+      },
+    },
     MuiButton: {
       root: {
         marginBottom: '1rem',
@@ -22,7 +27,7 @@ const theme = createMuiTheme({
       },
       sizeLarge: {
         padding: '14px 24px',
-      }
+      },
     },
     MuiInput: {
       root: {
@@ -31,8 +36,20 @@ const theme = createMuiTheme({
       },
       underline: {
         borderBottom: '1px solid ' + blueGrey[500],
+      },
+    },
+    MuiCollapse: {
+      container:{
+        border: '1px solid ' + blueGrey[50],
+        margin: '1.25rem 0 0 0',
+      },
+      wrapper: {
+        padding: '1.5rem 1.75rem',
+        textAlign: 'left',
+        color: blueGrey[50],
+        backgroundColor: 'none',
       }
-    }
+    },
   },
 });
 
