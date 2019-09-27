@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button'
-import OptionSlider from '../../components/OptionSlider/OptionSlider.js'
-import UnlimitedCheckbox from '../../components/UnlimitedCheckbox/UnlimitedCheckbox.js'
+import OptionSlider from './OptionSlider'
+import UnlimitedCheckbox from './UnlimitedCheckbox'
 
 class SelectOptionsForSelf extends React.Component {
   constructor(props) {

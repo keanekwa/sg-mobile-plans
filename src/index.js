@@ -5,21 +5,14 @@ import {blueGrey} from '@material-ui/core/colors/';
 import './index.scss';
 import App from './App.js'
 import { BrowserRouter as Router , Route } from 'react-router-dom';
-import SelectOptionsForSelf from './components/SelectOptionsForSelf/SelectOptionsForSelf';
-import SelectOptionsForFamily from './components/SelectOptionsForFamily/SelectOptionsForFamily';
+import SelectOptionsForSelf from './components/SelectSelfOptions';
+import SelectOptionsForFamily from './components/SelectFamilyOptions';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: blueGrey[50],
     },
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
-    contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
-    tonalOffset: 0.2,
   },
   overrides: {
     MuiButton: {

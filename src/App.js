@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button'
-import SelectOptionsForSelf from './components/SelectOptionsForSelf/SelectOptionsForSelf.js'
-import SelectOptionsForFamily from './components/SelectOptionsForFamily/SelectOptionsForFamily.js'
-import ComparisonPage from './components/ComparisonPage/ComparisonPage.js'
+import SelectOptionsForSelf from './components/SelectSelfOptions'
+import SelectOptionsForFamily from './components/SelectFamilyOptions'
+import Results from './components/Results'
 
 class App extends React.Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class App extends React.Component {
     else if (this.state.mode === 'ComparisonPage') {
       return (
         <div> 
-          <ComparisonPage optionsSelected={this.state.optionsSelected}/>
+          <Results optionsSelected={this.state.optionsSelected}/>
         </div>
       );
     }

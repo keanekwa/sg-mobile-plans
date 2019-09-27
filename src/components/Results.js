@@ -1,7 +1,7 @@
 import React from 'react';
-import mobilePlanData from '../../data/mobilePlanData.js'
-import addonsData from '../../data/addonsData.js'
-import MobilePlanPaper from '../MobilePlanPaper/MobilePlanPaper.js';
+import mobilePlanData from '../data/mobilePlanData.js'
+import addonsData from '../data/addonsData.js'
+import MobilePlanPaper from './MobilePlanPaper';
 
 export default function ComparisonPage(props) {
   const optionsSelected = props.optionsSelected;
