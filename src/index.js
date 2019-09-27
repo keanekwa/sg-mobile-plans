@@ -41,8 +41,8 @@ function AppRouter() {
     <MuiThemeProvider theme={theme}>
       <Router>
           <Route path="/" exact component={App} />
-          <Route path="/self/" component={SelectSelfOptions} />
-          <Route path="/family/" component={SelectFamilyOptions} />
+          <Route path="/self/" exact component={SelectSelfOptions} />
+          <Route path="/family/" exact component={SelectFamilyOptions} />
       </Router>
     </MuiThemeProvider>
     // need to fix the routing and mode functions to ensure the app still works if /self or /family is directly accessed

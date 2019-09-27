@@ -19,11 +19,11 @@ export default function ResultList(props) {
     mobilePlan.sms < optionsSelected.minSMS ||
     mobilePlan.price > optionsSelected.price
   );
-  for (let mobilePlan of unfilteredMobilePlans) { //go through all the plans that fail the criteria
-    let addonsForTelco = addonsData.filter(addon => addon.appliesToTelco === mobilePlan.telco); //find addons for the telco
-    for (let addon of addonsForTelco) {
+  for (const mobilePlan of unfilteredMobilePlans) { //go through all the plans that fail the criteria
+    const addonsForTelco = addonsData.filter(addon => addon.appliesToTelco === mobilePlan.telco); //find addons for the telco
+    for (const addon of addonsForTelco) {
       if (addon.appliesToPlans === 'All' || addon.appliesToPlans.includes(mobilePlan.planName)) { //ensure addon is suitable for plan
-        let newPlan = {addonMultiple: 0};
+        const newPlan = {addonMultiple: 0};
         if (addon.multiplier === true) {  //do this for multiplier addons, e.g. Singtel Data X 2
           newPlan.data = mobilePlan.data * addon.data;
           newPlan.talktime = mobilePlan.talktime * addon.talktime;

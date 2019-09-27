@@ -31,7 +31,7 @@ class App extends React.Component {
   }
 
   render() {
-    const options = this.state.options.map((option) => <div><Button size='large' fullWidth={true} key={option.key} color='primary' variant='outlined' onClick={() => this.handleClick(option.key)}>{option.value}</Button></div>);
+    const options = this.state.options.map((option) => <div key={option.key}><Button size='large' fullWidth={true} color='primary' variant='outlined' onClick={() => this.handleClick(option.key)}>{option.value}</Button></div>);
     if (this.state.mode === null) {
       return (
         <div>
