@@ -22,7 +22,7 @@ class App extends React.Component {
     }
 	}
 
-  handleClick = (optionKey, optionsSelected) => {
+  handleClick = (optionKey) => {
     this.setState({mode: optionKey});
   }
 

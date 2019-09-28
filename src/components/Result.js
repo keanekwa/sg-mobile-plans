@@ -1,9 +1,30 @@
 import React from 'react';
-import { Paper } from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
-import './Result.scss'
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
+import { blueGrey } from '@material-ui/core/colors/';
+
+const useStyles = makeStyles({
+  root: {
+    margin: '1.25rem 0 0 0',
+    textAlign: 'left',
+    backgroundColor: blueGrey[800],
+  },
+  button: {
+    justifyContent: 'left',
+    backgroundColor: blueGrey[900],
+  },
+  data: {
+    padding: '0 1rem 1rem 1rem',
+    background: 'none',
+    color: blueGrey[50],
+  },
+});
 
 export default function Result(props) {
+  const classes = useStyles();
+
   let pros, cons = undefined;
   if (props.pros === undefined) {
     pros = '';
@@ -24,28 +45,19 @@ export default function Result(props) {
   }
   
   return (
-    <Collapse in={checked} collapsedHeight='6.75rem'>
-      <table onClick={expandOrMinimize}>
-        <tbody>
-          <tr>
-            <th class='sideBorderTableCells'>Price</th>
-            <th class='sideBorderTableCells'>Data</th>
-            <th class='sideBorderTableCells'>Talktime</th>
-            <th class='sideBorderTableCells'>SMS</th>
-            <td rowSpan={2} align='center'><h2>{props.telco} - {props.planName}</h2></td>
-          </tr>
-          <tr>
-            <td class='sideBorderTableCells'>${props.price % 1 === 0 ? props.price : props.price.toFixed(2)}</td>
-            <td class='sideBorderTableCells'>{props.data}{props.data === 'Unlimited' ? '' : 'GB'}</td>
-            <td class='sideBorderTableCells'>{props.talktime}{props.talktime === 'Unlimited' ? '' : 'min'}</td>
-            <td class='sideBorderTableCells'>{props.sms}</td>
-          </tr>
-        </tbody>
-      </table>
-      {pros === '' ? '' : 'Pros:'}
-      {pros === '' ? '' : <ul>{pros}</ul>}
-      {cons === '' ? '' : 'Cons:'}
-      {cons === '' ? '' : <ul>{cons}</ul>}
+    <Collapse className={classes.root} in={checked} collapsedHeight='56px'>
+      <Button size='large' className={classes.button} component='div' color='primary' variant='outlined' fullWidth={true} onClick={expandOrMinimize}>
+        {props.telco} {props.planName} --- ${props.price % 1 === 0 ? props.price : props.price.toFixed(2)}
+      </Button>
+      <Box className={classes.data} square={true}>
+        Data: {props.data}{props.data === 'Unlimited' ? '' : 'GB'}<br/>
+        Talktime: {props.talktime}{props.talktime === 'Unlimited' ? '' : 'min'}<br/>
+        SMS: {props.sms}<br/>
+        {pros === '' ? '' : 'Pros:'}
+        {pros === '' ? '' : <ul>{pros}</ul>}
+        {cons === '' ? '' : 'Cons:'}
+        {cons === '' ? '' : <ul>{cons}</ul>}
+      </Box>
     </Collapse>
   );
 }
