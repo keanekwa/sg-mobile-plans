@@ -37,8 +37,16 @@ class SelectSelfOptions extends React.Component {
   }
 
   handleClick = () => {
-    this.setState({ ['showResultList']: true });
-    return <ResultList optionsSelected={this.state}/>;
+    this.setState({ ['showResultList'] : true, ['confirmedOptions'] : {
+      minData: this.state.minData,
+      minTalktime: this.state.minTalktime,
+      minSMS: this.state.minSMS,
+      price: this.state.price,
+    }});
+  }
+
+  handleChange = (event, option) => {
+    this.setState({ [option]: event.target.value });
   }
 
   render () {
@@ -63,7 +71,7 @@ class SelectSelfOptions extends React.Component {
                 endAdornment:
                   <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>GB</InputAdornment>,
               }}
-              variant='outlined' label='Min. Data' fullWidth={true} onChange={(event) => this.setState({ ['minData']: event.target.value })}
+              variant='outlined' label='Min. Data' fullWidth={true} onChange={(event) => this.handleChange(event, 'minData')}
             />
           </Grid>
           <Grid item xs='12'sm='4'>
@@ -81,7 +89,7 @@ class SelectSelfOptions extends React.Component {
                 inputMode: 'numeric',
                 endAdornment: <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>min</InputAdornment>,
               }}
-              variant='outlined' label='Min. Talktime' fullWidth={true} onChange={(event) => this.setState({ ['minTalktime']: event.target.value })}
+              variant='outlined' label='Min. Talktime' fullWidth={true} onChange={(event) => this.handleChange(event, 'minTalktime')}
             />
           </Grid>
           <Grid item xs='12'sm='4'>
@@ -98,7 +106,7 @@ class SelectSelfOptions extends React.Component {
                 },
                 inputMode: 'numeric',
               }}
-              variant='outlined' label='Min. SMS' fullWidth={true} onChange={(event) => this.setState({ ['minSMS']: event.target.value })}
+              variant='outlined' label='Min. SMS' fullWidth={true} onChange={(event) => this.handleChange(event, 'minSMS')}
             />
           </Grid>
           <Grid item xs='12'>My monthly budget is:</Grid>
@@ -117,24 +125,14 @@ class SelectSelfOptions extends React.Component {
                 inputMode: 'numeric',
                 startAdornment: <InputAdornment className={classes.InputAdornment} position='start' disableTypography={true}>$</InputAdornment>,
               }}
-              variant='outlined' fullWidth={true} onChange={(event) => this.setState({ ['price']: event.target.value })}
+              variant='outlined' fullWidth={true} onChange={(event) => this.handleChange(event, 'price')}
             />
           </Grid>
           <Grid item xs='12'>
-            {
-              !this.state.showResultList &&
-              <Button
-                onClick={() => this.handleClick()}
-                variant='outlined'
-                size='large'
-                color='primary'>Next
-              </Button>
-            } 
+            <Button onClick={() => this.handleClick()} variant='outlined' size='large' color='primary'>Confirm</Button>
             {
               this.state.showResultList &&
-              <ResultList
-                optionsSelected={this.state}
-              />
+              <ResultList optionsSelected={this.state.confirmedOptions} />
             }
           </Grid>
         </Grid>

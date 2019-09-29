@@ -81,17 +81,25 @@ export default function ResultList(props) {
   }
 
   const sortedMobilePlans = filteredMobilePlans.sort((a,b) => (a.price < b.price) ? -1 : 1); //sort by cheap to expensive
-  let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <Result
-    telco={mobilePlan.telco}
-    planName={mobilePlan.planName}
-    key={mobilePlan.telco + ' - ' + mobilePlan.planName}
-    price={mobilePlan.price}
-    data={mobilePlan.data >= 10000 ? 'Unlimited' : mobilePlan.data}
-    talktime={mobilePlan.talktime >= 10000 ? 'Unlimited' : mobilePlan.talktime}
-    sms={mobilePlan.sms >= 10000 ? 'Unlimited' : mobilePlan.sms}
-    pros={mobilePlan.pros}
-    cons={mobilePlan.cons}
-  />);
+  let resultGrowDelay = 0;
+  for (const mobilePlan of sortedMobilePlans) {
+    mobilePlan.delay = resultGrowDelay;
+    resultGrowDelay += 50;
+  }
+  let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => 
+    <Result
+      telco={mobilePlan.telco}
+      planName={mobilePlan.planName}
+      key={mobilePlan.telco + ' - ' + mobilePlan.planName}
+      price={mobilePlan.price}
+      data={mobilePlan.data >= 10000 ? 'Unlimited' : mobilePlan.data}
+      talktime={mobilePlan.talktime >= 10000 ? 'Unlimited' : mobilePlan.talktime}
+      sms={mobilePlan.sms >= 10000 ? 'Unlimited' : mobilePlan.sms}
+      pros={mobilePlan.pros}
+      cons={mobilePlan.cons}
+      delay={mobilePlan.delay}
+    />
+  );
 
   return (
     <div>
