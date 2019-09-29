@@ -34,15 +34,23 @@ class SelectSelfOptions extends React.Component {
       price: 0,
       showResultList: false,
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick = () => {
-    this.setState({ ['showResultList'] : true, ['confirmedOptions'] : {
-      minData: this.state.minData,
-      minTalktime: this.state.minTalktime,
-      minSMS: this.state.minSMS,
-      price: this.state.price,
-    }});
+    this.setState({ ['showResultList'] : false}, () => this.handleForceRefresh());
+  }
+
+  handleForceRefresh = () => {
+    this.setState({
+      ['showResultList'] : true,
+      ['confirmedOptions'] : {
+        minData: this.state.minData,
+        minTalktime: this.state.minTalktime,
+        minSMS: this.state.minSMS,
+        price: this.state.price,
+      }
+    });
   }
 
   handleChange = (event, option) => {
