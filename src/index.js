@@ -24,15 +24,6 @@ const theme = createMuiTheme({
         padding: '14px 24px',
       },
     },
-    MuiInput: {
-      root: {
-        color: blueGrey[50],
-        margin: '0 0.5rem',
-      },
-      underline: {
-        borderBottom: '1px solid ' + blueGrey[500],
-      },
-    },
   },
   table: {
     root: {
