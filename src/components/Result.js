@@ -43,7 +43,7 @@ export default function Result(props) {
   const expandOrMinimize = () => {
     setChecked(prev => !prev);
   }
-  
+
   return (
     <Collapse className={classes.root} in={checked} collapsedHeight='56px'>
       <Button size='large' className={classes.button} component='div' color='primary' variant='outlined' fullWidth={true} onClick={expandOrMinimize}>

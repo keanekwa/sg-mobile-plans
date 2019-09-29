@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button'
-import { Input } from '@material-ui/core';
+import Input from '@material-ui/core/Input';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 import ResultList from './ResultList'
 
 class SelectSelfOptions extends React.Component {
@@ -13,6 +15,7 @@ class SelectSelfOptions extends React.Component {
       price: 0,
       showResultList: false,
     }
+    //change this to redux so that I can use makeStyles
   }
 
   handleClick = () => {
@@ -22,17 +25,21 @@ class SelectSelfOptions extends React.Component {
 
   render () {
     return (
-      <div>
-        I need at least
-        <Input placeholder='0' onChange={(event) => this.setState({ ['minData']: event.target.value })}/>
-        GB of data, at least <Input placeholder='0' onChange={(event) => this.setState({ ['minTalktime']: event.target.value })}/>
-        min of talktime, <br/>
-        and at least
-        <Input placeholder='0' onChange={(event) => this.setState({ ['minSMS']: event.target.value })}/>
-        SMS. My monthly budget for this will be $<Input placeholder='0' onChange={(event) => this.setState({ ['price']: event.target.value })}/><br/>
-        {!this.state.showResultList && <Button onClick={() => this.handleClick()} variant='outlined' size='large' color='primary'>Next</Button>} 
-        {this.state.showResultList && <ResultList optionsSelected={this.state}/>}
-      </div>
+      <Container maxWidth='md'>
+        <Box>
+          I need at least:
+          <Input placeholder='0 GB of data' onChange={(event) => this.setState({ ['minData']: event.target.value })}/>
+          <Input placeholder='0 min of talktime' onChange={(event) => this.setState({ ['minTalktime']: event.target.value })}/>
+          <Input placeholder='0 SMS' onChange={(event) => this.setState({ ['minSMS']: event.target.value })}/>
+        </Box>
+        <Box>
+          My monthly budget for this will be $<Input placeholder='0' onChange={(event) => this.setState({ ['price']: event.target.value })}/>
+        </Box>
+        <Box>
+          {!this.state.showResultList && <Button onClick={() => this.handleClick()} variant='outlined' size='large' color='primary'>Next</Button>} 
+          {this.state.showResultList && <ResultList optionsSelected={this.state}/>}
+        </Box>
+      </Container>
     );
   }
 }
