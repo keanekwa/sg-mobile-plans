@@ -1,6 +1,6 @@
 import React from 'react';
-import mobilePlanData from '../data/mobilePlanData.js'
-import addonsData from '../data/addonsData.js'
+import mobilePlanData from '../data/mobilePlanData'
+import addonsData from '../data/addonsData'
 import Result from './Result';
 
 export default function ResultList(props) {

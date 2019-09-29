@@ -1,14 +1,10 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
+import { Box, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { withStyles } from '@material-ui/core/styles';
 import { blueGrey } from '@material-ui/core/colors/';
 
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-const useStyles = makeStyles({
+const styles = theme => ({
   ExpansionPanel: {
     background: 'none',
     color: blueGrey[50],
@@ -30,8 +26,8 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Result(props) {
-  const classes = useStyles();
+const Result = props => {
+  const { classes } = props;
 
   let pros, cons = undefined;
   if (props.pros === undefined) {
@@ -68,3 +64,5 @@ export default function Result(props) {
     </ExpansionPanel>
   );
 }
+
+export default withStyles(styles)(Result);

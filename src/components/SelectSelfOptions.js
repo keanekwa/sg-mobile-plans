@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Box, TextField, InputAdornment, Grid } from '@material-ui/core'
+import { Button, Container, TextField, InputAdornment, Grid } from '@material-ui/core'
 import ResultList from './ResultList'
 import { withStyles } from '@material-ui/core/styles';
 

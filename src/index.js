@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import {blueGrey} from '@material-ui/core/colors/';
-import './index.scss';
-import App from './App.js'
 import { BrowserRouter as Router , Route } from 'react-router-dom';
+import App from './App'
 import SelectSelfOptions from './components/SelectSelfOptions';
 import SelectFamilyOptions from './components/SelectFamilyOptions';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { blueGrey } from '@material-ui/core/colors/';
+import './index.scss';
 
 const theme = createMuiTheme({
   palette: {
