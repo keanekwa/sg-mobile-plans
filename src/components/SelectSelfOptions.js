@@ -4,12 +4,22 @@ import ResultList from './ResultList'
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
+  SelectOptions: {
+    marginTop: '10rem',
+    transition: theme.transitions.create(
+      ['margin'],
+      { duration: 500 }
+    ),
+  },
+  clicked: {
+    marginTop: '2rem',
+  },
   TextField: {
     color: `${theme.palette.primary.main}`,
     '&$cssFocused $notchedOutline': {
       borderColor: `${theme.palette.primary.main} !important`,
       borderRadius: 0,
-    }
+    },
   },
   TextFieldLabel: {
     color: `${theme.palette.primary.main}`,
@@ -60,7 +70,7 @@ class SelectSelfOptions extends React.Component {
   render () {
     const { classes } = this.props;
     return (
-      <Container maxWidth='md'>
+      <Container className={!this.state.showResultList ? classes.SelectOptions : classes.SelectOptions + ' ' + classes.clicked} maxWidth='md'>
         <Grid container spacing='2'>
           <Grid item xs='12'>I need at least:</Grid>
           <Grid item xs='12' sm='4'>
