@@ -9,7 +9,7 @@ const styles = theme => ({
     background: 'none',
     color: blueGrey[50],
     border: '1px solid ' + blueGrey[50],
-    marginBottom: '1rem',
+    marginBottom: '16px',
   },
   ExpandMoreIcon: {
     color: blueGrey[50],

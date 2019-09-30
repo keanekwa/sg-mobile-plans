@@ -5,14 +5,14 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   SelectOptions: {
-    marginTop: '10rem',
+    marginTop: 'calc(40vh - 168px)',
     transition: theme.transitions.create(
       ['margin'],
       { duration: 500 }
     ),
   },
-  clicked: {
-    marginTop: '2rem',
+  SelectOptionsClicked: {
+    marginTop: '50px',
   },
   TextField: {
     color: `${theme.palette.primary.main}`,
@@ -31,7 +31,7 @@ const styles = theme => ({
   },
   InputAdornment: {
     color: `${theme.palette.primary.main} !important`,
-  }
+  },
 });
 
 class SelectSelfOptions extends React.Component {
@@ -43,8 +43,7 @@ class SelectSelfOptions extends React.Component {
       minSMS: 0,
       price: 0,
       showResultList: false,
-    }
-    this.handleClick = this.handleClick.bind(this);
+    };
   }
 
   handleClick = () => {
@@ -70,7 +69,7 @@ class SelectSelfOptions extends React.Component {
   render () {
     const { classes } = this.props;
     return (
-      <Container className={!this.state.showResultList ? classes.SelectOptions : classes.SelectOptions + ' ' + classes.clicked} maxWidth='md'>
+      <Container className={!this.state.showResultList ? classes.SelectOptions : classes.SelectOptions + ' ' + classes.SelectOptionsClicked} maxWidth='md'>
         <Grid container spacing='2'>
           <Grid item xs='12'>I need at least:</Grid>
           <Grid item xs='12' sm='4'>
@@ -147,12 +146,15 @@ class SelectSelfOptions extends React.Component {
             />
           </Grid>
           <Grid item xs='12'>
-            <Button onClick={() => this.handleClick()} variant='outlined' size='large' color='primary'>Confirm</Button>
-            {
-              this.state.showResultList &&
-              <ResultList optionsSelected={this.state.confirmedOptions} />
-            }
+            <Button className={classes.Button} onClick={() => this.handleClick()} variant='outlined' size='large' color='primary'>Confirm</Button>
           </Grid>
+          {
+            this.state.showResultList && (
+              <Grid item xs='12'>
+                <ResultList optionsSelected={this.state.confirmedOptions}/>
+              </Grid>
+            )
+          }
         </Grid>
       </Container>
     );

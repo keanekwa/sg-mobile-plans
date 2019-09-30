@@ -25,20 +25,10 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         borderRadius: '0',
-        marginBottom: '1rem',
       },
       sizeLarge: {
         padding: '14px 24px',
       },
-    },
-  },
-  table: {
-    root: {
-      padding: '0 0.75rem',
-      borderRight: '3px solid #d5d5d5',
-      borderLeft: '3px solid #d5d5d5',
-      width: '65px',
-      verticalAlign: 'middle',
     },
   },
 });

@@ -2,7 +2,7 @@ import React from 'react';
 
 class SelectFamilyOptions extends React.Component {
   render() {
-    return (<h1>SelectOptionsForFamily</h1>);    
+    return (<h1>SelectFamilyOptions</h1>);    
   }
 }
 
