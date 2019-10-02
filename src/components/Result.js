@@ -1,8 +1,18 @@
 import React from 'react';
-import { Box, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Fade } from '@material-ui/core';
+import { Box, ExpansionPanel, ExpansionPanelDetails, Fade } from '@material-ui/core';
+import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { withStyles } from '@material-ui/core/styles';
 import { blueGrey } from '@material-ui/core/colors/';
+
+const ExpansionPanelSummary = withStyles({
+  root: {
+    padding: '0 1.5rem',
+  },
+  content: {
+    display: 'block',
+  },
+})(MuiExpansionPanelSummary);
 
 const styles = theme => ({
   ExpansionPanel: {
@@ -14,17 +24,19 @@ const styles = theme => ({
   ExpandMoreIcon: {
     color: blueGrey[50],
   },
-  ExpansionPanelSummary: {
-    padding: '0 1.5rem',
+  ExpansionPanelSummaryLeft: {
+    float: 'left',
+    maxWidth: '70%',
+  },
+  ExpansionPanelSummaryRight: {
+    color: blueGrey[200],
+    float: 'right',
   },
   ExpansionPanelDetails: {
     backgroundColor: blueGrey[800],
     padding: '1.5rem',
     flexDirection: 'column',
   },
-  price: {
-    color: blueGrey[200],
-  }
 });
 
 const Result = props => {
@@ -47,7 +59,8 @@ const Result = props => {
     <Fade in={true} timeout={1000} mountOnEnter unmountOnExit style={{ transitionDelay: `${props.delay}ms` }}>
       <ExpansionPanel square={true} className={classes.ExpansionPanel}>
         <ExpansionPanelSummary className={classes.ExpansionPanelSummary} disableRipple={false} disableTouchRipple={false} expandIcon={<ExpandMoreIcon className={classes.ExpandMoreIcon}/>}>
-          {props.telco} {props.planName} <Box className={classes.price}>&nbsp;| ${props.price % 1 === 0 ? props.price : props.price.toFixed(2)}</Box>
+          <Box className={classes.ExpansionPanelSummaryLeft}>{props.telco} {props.planName}</Box>
+          <Box className={classes.ExpansionPanelSummaryRight}>${props.price.toFixed(2)}</Box>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.ExpansionPanelDetails}>
           <Box>

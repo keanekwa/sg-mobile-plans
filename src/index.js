@@ -20,6 +20,7 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+    fontSize: '1rem',
   },
   overrides: {
     MuiButton: {
