@@ -16,7 +16,6 @@ const ExpansionPanelSummary = withStyles({
 
 const styles = theme => ({
   ExpansionPanel: {
-    background: 'none',
     marginBottom: '16px',
   },
   ExpansionPanelSummaryLeft: {
