@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, ExpansionPanel, ExpansionPanelDetails, Fade } from '@material-ui/core';
+import { Box, ExpansionPanel, ExpansionPanelDetails, Fade, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { withStyles } from '@material-ui/core/styles';
-import { blueGrey } from '@material-ui/core/colors/';
+import { indigo } from '@material-ui/core/colors/';
 
 const ExpansionPanelSummary = withStyles({
   root: {
@@ -17,23 +17,17 @@ const ExpansionPanelSummary = withStyles({
 const styles = theme => ({
   ExpansionPanel: {
     background: 'none',
-    color: blueGrey[50],
-    border: '1px solid ' + blueGrey[50],
     marginBottom: '16px',
-  },
-  ExpandMoreIcon: {
-    color: blueGrey[50],
   },
   ExpansionPanelSummaryLeft: {
     float: 'left',
     maxWidth: '70%',
   },
   ExpansionPanelSummaryRight: {
-    color: blueGrey[200],
+    color: indigo[800],
     float: 'right',
   },
   ExpansionPanelDetails: {
-    backgroundColor: blueGrey[800],
     padding: '1.5rem',
     flexDirection: 'column',
   },
@@ -57,16 +51,31 @@ const Result = props => {
   }
   return (
     <Fade in={true} timeout={1000} mountOnEnter unmountOnExit style={{ transitionDelay: `${props.delay}ms` }}>
-      <ExpansionPanel square={true} className={classes.ExpansionPanel}>
+      <ExpansionPanel className={classes.ExpansionPanel}>
         <ExpansionPanelSummary className={classes.ExpansionPanelSummary} disableRipple={false} disableTouchRipple={false} expandIcon={<ExpandMoreIcon className={classes.ExpandMoreIcon}/>}>
           <Box className={classes.ExpansionPanelSummaryLeft}>{props.telco} {props.planName}</Box>
           <Box className={classes.ExpansionPanelSummaryRight}>${props.price.toFixed(2)}</Box>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.ExpansionPanelDetails}>
           <Box>
-            Data: {props.data}{props.data === 'Unlimited' ? '' : 'GB'}<br/>
-            Talktime: {props.talktime}{props.talktime === 'Unlimited' ? '' : 'min'}<br/>
-            SMS: {props.sms}<br/>
+            <Table size='small'>
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell>Data</TableCell>
+                  <TableCell>Talktime</TableCell>
+                  <TableCell>SMS</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Base Plan</TableCell>
+                  <TableCell>{props.data}{props.data === 'Unlimited' ? '' : 'GB'}</TableCell>
+                  <TableCell>{props.talktime}{props.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
+                  <TableCell>{props.sms}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </Box>
           <Box>
             {pros === '' ? '' : 'Pros:'}<br/>

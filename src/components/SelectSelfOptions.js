@@ -1,37 +1,26 @@
 import React from 'react';
-import { Button, Container, TextField, InputAdornment, Grid } from '@material-ui/core'
+import { Button, Container, TextField, InputAdornment, Grid, Paper } from '@material-ui/core'
 import ResultList from './ResultList'
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-  SelectOptions: {
-    marginTop: 'calc(40vh - 168px)',
+  outerContainer: {
+    paddingTop: 'calc(40vh - 168px)',
     transition: theme.transitions.create(
-      ['margin'],
+      ['padding'],
       { duration: 500 }
     ),
+    background: `url(https://images.unsplash.com/photo-1562184647-dfdfb9c0bf3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9)`,
+    backgroundSize: 'cover',
+    height: '100vh',
   },
-  SelectOptionsClicked: {
-    marginTop: '50px',
+  outerContainerWithResultList: {
+    paddingTop: '50px',
   },
-  TextField: {
-    color: `${theme.palette.primary.main}`,
-    '&$cssFocused $notchedOutline': {
-      borderColor: `${theme.palette.primary.main} !important`,
-      borderRadius: 0,
-    },
-  },
-  TextFieldLabel: {
-    color: `${theme.palette.primary.main}`,
-  },
-  TextFieldNotchedOutline: {
-    borderWidth: '1px',
-    borderColor: `${theme.palette.primary.main} !important`,
-    borderRadius: 0,
-  },
-  InputAdornment: {
-    color: `${theme.palette.primary.main} !important`,
-  },
+  paper: {
+    padding: '50px 30px',
+    backgroundColor: 'rgba(255,255,255,0.8)',
+  }
 });
 
 class SelectSelfOptions extends React.Component {
@@ -69,93 +58,104 @@ class SelectSelfOptions extends React.Component {
   render () {
     const { classes } = this.props;
     return (
-      <Container className={!this.state.showResultList ? classes.SelectOptions : classes.SelectOptions + ' ' + classes.SelectOptionsClicked} maxWidth='md'>
-        <Grid container spacing='2'>
-          <Grid item xs='12'>I need at least:</Grid>
-          <Grid item xs='12' sm='4'>
-            <TextField
-              InputLabelProps={{
-                classes: {
-                  root: classes.TextFieldLabel,
-                },
-              }}
-              InputProps={{
-                classes: {
-                  root: classes.TextField,
-                  notchedOutline: classes.TextFieldNotchedOutline,
-                },
-                inputMode: 'numeric',
-                endAdornment:
-                  <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>GB</InputAdornment>,
-              }}
-              variant='outlined' label='Min. Data' fullWidth={true} onChange={(event) => this.handleChange(event, 'minData')}
-            />
+      <Container className={!this.state.showResultList ? classes.outerContainer : classes.outerContainer + ' ' + classes.outerContainerWithResultList} maxWidth={false}>
+        <Container maxWidth='lg'>
+          <Grid container spacing='2'>
+            <Grid item xs='12' sm='6'>
+              <h1>What if you weren't restricted by your mobile plan?</h1>
+            </Grid>
+            <Grid item xs='12' sm='6'>
+              <Paper className={classes.paper}>
+                <Grid container spacing='2'>
+                  <Grid item xs='12'>I need at least:</Grid>
+                  <Grid item xs='12' sm='4'>
+                    <TextField
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.TextFieldLabel,
+                        },
+                      }}
+                      InputProps={{
+                        classes: {
+                          root: classes.TextField,
+                          notchedOutline: classes.TextFieldNotchedOutline,
+                        },
+                        inputMode: 'numeric',
+                        endAdornment:
+                          <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>GB</InputAdornment>,
+                      }}
+                      variant='outlined' label='Data' fullWidth={true} onChange={(event) => this.handleChange(event, 'minData')}
+                    />
+                  </Grid>
+                  <Grid item xs='12'sm='4'>
+                    <TextField
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.TextFieldLabel,
+                        },
+                      }}
+                      InputProps={{
+                        classes: {
+                          root: classes.TextField,
+                          notchedOutline: classes.TextFieldNotchedOutline,
+                        },
+                        inputMode: 'numeric',
+                        endAdornment: <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>min</InputAdornment>,
+                      }}
+                      variant='outlined' label='Talktime' fullWidth={true} onChange={(event) => this.handleChange(event, 'minTalktime')}
+                    />
+                  </Grid>
+                  <Grid item xs='12'sm='4'>
+                    <TextField
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.TextFieldLabel,
+                        },
+                      }}
+                      InputProps={{
+                        classes: {
+                          root: classes.TextField,
+                          notchedOutline: classes.TextFieldNotchedOutline,
+                        },
+                        inputMode: 'numeric',
+                      }}
+                      variant='outlined' label='SMS' fullWidth={true} onChange={(event) => this.handleChange(event, 'minSMS')}
+                    />
+                  </Grid>
+                  <Grid item xs='12'>My monthly budget is:</Grid>
+                  <Grid item xs='12'>
+                    <TextField
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.TextFieldLabel,
+                        },
+                      }}
+                      InputProps={{
+                        classes: {
+                          root: classes.TextField,
+                          notchedOutline: classes.TextFieldNotchedOutline,
+                        },
+                        inputMode: 'numeric',
+                        startAdornment: <InputAdornment className={classes.InputAdornment} position='start' disableTypography={true}>$</InputAdornment>,
+                      }}
+                      variant='outlined' fullWidth={true} onChange={(event) => this.handleChange(event, 'price')}
+                    />
+                  </Grid>
+                  <Grid item xs='12'>
+                    <Button className={classes.Button} onClick={() => this.handleClick()} variant='contained' size='large' color='primary'>Confirm</Button>
+                  </Grid>
+                  {
+                    this.state.showResultList && (
+                      <Grid item xs='12'>
+                        <ResultList optionsSelected={this.state.confirmedOptions}/>
+                      </Grid>
+                    )
+                  }
+                </Grid>
+              </Paper>
+            </Grid>
           </Grid>
-          <Grid item xs='12'sm='4'>
-            <TextField
-              InputLabelProps={{
-                classes: {
-                  root: classes.TextFieldLabel,
-                },
-              }}
-              InputProps={{
-                classes: {
-                  root: classes.TextField,
-                  notchedOutline: classes.TextFieldNotchedOutline,
-                },
-                inputMode: 'numeric',
-                endAdornment: <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>min</InputAdornment>,
-              }}
-              variant='outlined' label='Min. Talktime' fullWidth={true} onChange={(event) => this.handleChange(event, 'minTalktime')}
-            />
-          </Grid>
-          <Grid item xs='12'sm='4'>
-            <TextField
-              InputLabelProps={{
-                classes: {
-                  root: classes.TextFieldLabel,
-                },
-              }}
-              InputProps={{
-                classes: {
-                  root: classes.TextField,
-                  notchedOutline: classes.TextFieldNotchedOutline,
-                },
-                inputMode: 'numeric',
-              }}
-              variant='outlined' label='Min. SMS' fullWidth={true} onChange={(event) => this.handleChange(event, 'minSMS')}
-            />
-          </Grid>
-          <Grid item xs='12'>My monthly budget is:</Grid>
-          <Grid item xs='12'>
-            <TextField
-              InputLabelProps={{
-                classes: {
-                  root: classes.TextFieldLabel,
-                },
-              }}
-              InputProps={{
-                classes: {
-                  root: classes.TextField,
-                  notchedOutline: classes.TextFieldNotchedOutline,
-                },
-                inputMode: 'numeric',
-                startAdornment: <InputAdornment className={classes.InputAdornment} position='start' disableTypography={true}>$</InputAdornment>,
-              }}
-              variant='outlined' fullWidth={true} onChange={(event) => this.handleChange(event, 'price')}
-            />
-          </Grid>
-          <Grid item xs='12'>
-            <Button className={classes.Button} onClick={() => this.handleClick()} variant='outlined' size='large' color='primary'>Confirm</Button>
-          </Grid>
-          {
-            this.state.showResultList && (
-              <Grid item xs='12'>
-                <ResultList optionsSelected={this.state.confirmedOptions}/>
-              </Grid>
-            )
-          }
-        </Grid>
+        </Container>
       </Container>
     );
   }

@@ -6,26 +6,22 @@ import SelectSelfOptions from './components/SelectSelfOptions';
 import SelectFamilyOptions from './components/SelectFamilyOptions';
 import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { blueGrey } from '@material-ui/core/colors/';
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
-    primary: {
-      main: blueGrey[50],
-    },
-    background: {
-      default: blueGrey[900],
-    },
+    type: 'light',
   },
   typography: {
-    fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+    fontFamily: 'Noto Sans, Helvetica, Arial, sans-serif',
     fontSize: '1rem',
   },
   overrides: {
     MuiButton: {
-      root: {
-        borderRadius: '0',
+      outlinedPrimary: {
+        borderWidth: '2px',
+        '&:hover, &:focus': {
+          borderWidth: '2px',
+        }
       },
       sizeLarge: {
         padding: '14px 24px',
