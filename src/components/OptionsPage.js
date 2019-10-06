@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography } from '@material-ui/core'
-import ResultsList from './ResultsList'
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -9,20 +8,13 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    background: `url(https://images.unsplash.com/photo-1562184647-dfdfb9c0bf3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9) center`,
+    background: `url(https://firebasestorage.googleapis.com/v0/b/telco-comparison.appspot.com/o/background.jpg?alt=media&token=06710f10-1913-479e-a76b-eea90797bdf2) center`, //todo: resize for different screen sizes
     backgroundSize: 'cover',
-  },
-  outerContainerShiftedUp: {
-    padding: '30px 0',
   },
   paper: {
     padding: '32px 24px',
     backgroundColor: 'rgba(255,255,255,0.8)',
   },
-  resultsListContainer: {
-    paddingTop: '50px',
-    paddingBottom: '50px',
-  }
 });
 
 class SelectSelfOptions extends React.Component {
@@ -37,22 +29,6 @@ class SelectSelfOptions extends React.Component {
     };
   }
 
-  handleClick = () => {
-    this.setState({ ['showResultsList'] : false}, () => this.handleForceRefresh());
-  }
-
-  handleForceRefresh = () => {
-    this.setState({
-      ['showResultsList'] : true,
-      ['confirmedOptions'] : {
-        minData: this.state.minData,
-        minTalktime: this.state.minTalktime,
-        minSMS: this.state.minSMS,
-        price: this.state.price,
-      }
-    });
-  }
-
   handleChange = (event, option) => {
     this.setState({ [option]: event.target.value });
   }
@@ -60,7 +36,7 @@ class SelectSelfOptions extends React.Component {
   render () {
     const { classes } = this.props;
     return (
-      <Container className={!this.state.showResultsList ? classes.outerContainer : classes.outerContainer + ' ' + classes.outerContainerShiftedUp} maxWidth={false}>
+      <Container className={classes.outerContainer} maxWidth={false}>
         <Container maxWidth='lg'>
           <Typography variant='h4' gutterBottom={true}>What do you need?</Typography><br/>
           <Paper className={classes.paper}>
@@ -140,7 +116,7 @@ class SelectSelfOptions extends React.Component {
                 />
               </Grid>
               <Grid item xs='12'>
-                <Button className={classes.Button} onClick={() => this.handleClick()} variant='contained' size='large' color='primary'>Confirm</Button>
+                <Button className={classes.Button} onClick={() => this.props.history.push('/results')} variant='contained' size='large' color='primary'>Confirm</Button>
               </Grid>
             </Grid>
           </Paper>

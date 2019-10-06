@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router , Route } from 'react-router-dom';
+import { BrowserRouter , Route } from 'react-router-dom';
 import OptionsPage from './components/OptionsPage';
 import ResultsPage from './components/ResultsPage';
 import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const theme = createMuiTheme({
   palette: {
@@ -60,14 +62,15 @@ const theme = createMuiTheme({
 
 function AppRouter() {
   return (
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <Route path="/" exact component={OptionsPage} />
-        <Route path="/result-list" exact component={ResultsPage} />
-      </Router>
-    </MuiThemeProvider>
-    // create SelectFamilyOptions later, now it is directly linked to SelectSelfOptions
+    <Provider store={store}>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <BrowserRouter>
+          <Route path="/" exact component={OptionsPage} />
+          <Route path="/results" exact component={ResultsPage} />
+        </BrowserRouter>
+      </MuiThemeProvider>
+    </Provider>
   );
 }
 
