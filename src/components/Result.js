@@ -16,7 +16,11 @@ const ExpansionPanelSummary = withStyles({
 
 const styles = theme => ({
   ExpansionPanel: {
-    marginBottom: '16px',
+    marginBottom: '8px',
+    transition: theme.transitions.create(
+      ['margin'],
+      { duration: 500 }
+    ),
   },
   ExpansionPanelSummaryLeft: {
     float: 'left',

@@ -1,15 +1,14 @@
 import React from 'react';
-import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography, Box } from '@material-ui/core'
-import ResultList from './ResultList'
+import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography } from '@material-ui/core'
+import ResultsList from './ResultsList'
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   outerContainer: {
-    padding: 'calc(40vh - 168px) 0',
-    transition: theme.transitions.create(
-      ['padding'],
-      { duration: 500 }
-    ),
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     background: `url(https://images.unsplash.com/photo-1562184647-dfdfb9c0bf3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9) center`,
     backgroundSize: 'cover',
   },
@@ -20,7 +19,7 @@ const styles = theme => ({
     padding: '32px 24px',
     backgroundColor: 'rgba(255,255,255,0.8)',
   },
-  resultListContainer: {
+  resultsListContainer: {
     paddingTop: '50px',
     paddingBottom: '50px',
   }
@@ -34,17 +33,17 @@ class SelectSelfOptions extends React.Component {
       minTalktime: 0,
       minSMS: 0,
       price: 0,
-      showResultList: false,
+      showResultsList: false,
     };
   }
 
   handleClick = () => {
-    this.setState({ ['showResultList'] : false}, () => this.handleForceRefresh());
+    this.setState({ ['showResultsList'] : false}, () => this.handleForceRefresh());
   }
 
   handleForceRefresh = () => {
     this.setState({
-      ['showResultList'] : true,
+      ['showResultsList'] : true,
       ['confirmedOptions'] : {
         minData: this.state.minData,
         minTalktime: this.state.minTalktime,
@@ -61,8 +60,7 @@ class SelectSelfOptions extends React.Component {
   render () {
     const { classes } = this.props;
     return (
-      <Box>
-      <Container className={!this.state.showResultList ? classes.outerContainer : classes.outerContainer + ' ' + classes.outerContainerShiftedUp} maxWidth={false}>
+      <Container className={!this.state.showResultsList ? classes.outerContainer : classes.outerContainer + ' ' + classes.outerContainerShiftedUp} maxWidth={false}>
         <Container maxWidth='lg'>
           <Typography variant='h4' gutterBottom={true}>What do you need?</Typography><br/>
           <Paper className={classes.paper}>
@@ -148,21 +146,6 @@ class SelectSelfOptions extends React.Component {
           </Paper>
         </Container>
       </Container>
-      {
-        this.state.showResultList && (
-        <Container className={classes.resultListContainer} maxWidth='lg'>
-          <Grid ontainer spacing={2}>
-            <Grid item xs='12'>
-              <Typography variant='h4' gutterBottom={true}>Suitable Plans:</Typography><br/>
-            </Grid>
-            <Grid item xs='12'>
-              <ResultList optionsSelected={this.state.confirmedOptions}/>
-            </Grid>
-          </Grid>
-        </Container>
-        )
-      }
-      </Box>
     );
   }
 }

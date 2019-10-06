@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router , Route } from 'react-router-dom';
-import App from './App'
-import SelectSelfOptions from './components/SelectSelfOptions';
-import SelectFamilyOptions from './components/SelectFamilyOptions';
+import OptionsPage from './components/OptionsPage';
+import ResultsPage from './components/ResultsPage';
 import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -64,9 +63,8 @@ function AppRouter() {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-          <Route path="/" exact component={SelectSelfOptions} />
-          <Route path="/self/" exact component={SelectSelfOptions} />
-          <Route path="/family/" exact component={SelectFamilyOptions} />
+        <Route path="/" exact component={OptionsPage} />
+        <Route path="/result-list" exact component={ResultsPage} />
       </Router>
     </MuiThemeProvider>
     // create SelectFamilyOptions later, now it is directly linked to SelectSelfOptions
