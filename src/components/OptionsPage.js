@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import { setOptions } from '../redux/options/options-actions'
+import { setIsShowResults } from '../redux/results/results-actions'
 
 const styles = theme => ({
   outerContainer: {
@@ -18,19 +21,20 @@ const styles = theme => ({
 });
 
 class SelectSelfOptions extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      minData: 0,
-      minTalktime: 0,
-      minSMS: 0,
-      price: 0,
-      showResultsList: false,
-    };
+  componentDidMount () {
+    this.props.setOptions({
+        minData: 0,
+        minTalktime: 0,
+        minSMS: 0,
+        price: 0,
+      }
+    );
   }
 
   handleChange = (event, option) => {
-    this.setState({ [option]: event.target.value });
+    const newOptions = this.props.options;
+    newOptions[`${option}`] = event.target.value;
+    this.props.setOptions(newOptions);
   }
 
   render () {
@@ -41,8 +45,8 @@ class SelectSelfOptions extends React.Component {
           <Typography variant='h4' gutterBottom={true}>What do you need?</Typography><br/>
           <Paper className={classes.paper}>
             <Grid container spacing={2}>
-              <Grid item xs='12'>I need at least:</Grid>
-              <Grid item xs='12' sm='4'>
+              <Grid item xs={12}>I need at least:</Grid>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   InputLabelProps={{
                     classes: {
@@ -61,7 +65,7 @@ class SelectSelfOptions extends React.Component {
                   variant='outlined' label='Data' fullWidth={true} onChange={(event) => this.handleChange(event, 'minData')}
                 />
               </Grid>
-              <Grid item xs='12'sm='4'>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   InputLabelProps={{
                     classes: {
@@ -79,7 +83,7 @@ class SelectSelfOptions extends React.Component {
                   variant='outlined' label='Talktime' fullWidth={true} onChange={(event) => this.handleChange(event, 'minTalktime')}
                 />
               </Grid>
-              <Grid item xs='12'sm='4'>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   InputLabelProps={{
                     classes: {
@@ -96,8 +100,8 @@ class SelectSelfOptions extends React.Component {
                   variant='outlined' label='SMS' fullWidth={true} onChange={(event) => this.handleChange(event, 'minSMS')}
                 />
               </Grid>
-              <Grid item xs='12'>My monthly budget is:</Grid>
-              <Grid item xs='12'>
+              <Grid item xs={12}>My monthly budget is:</Grid>
+              <Grid item xs={12}>
                 <TextField
                   InputLabelProps={{
                     classes: {
@@ -115,8 +119,8 @@ class SelectSelfOptions extends React.Component {
                   variant='outlined' fullWidth={true} onChange={(event) => this.handleChange(event, 'price')}
                 />
               </Grid>
-              <Grid item xs='12'>
-                <Button className={classes.Button} onClick={() => this.props.history.push('/results')} variant='contained' size='large' color='primary'>Confirm</Button>
+              <Grid item xs={12}>
+                <Button className={classes.Button} onClick={() => this.props.setIsShowResults(true)} variant='contained' size='large' color='primary'>Confirm</Button>
               </Grid>
             </Grid>
           </Paper>
@@ -126,5 +130,13 @@ class SelectSelfOptions extends React.Component {
   }
 }
 
-export default withStyles(styles)(SelectSelfOptions);
+const mapStateToProps = state => ({
+  options: state.options.options,
+});
 
+const mapDispatchToProps = dispatch => ({
+  setOptions: options => dispatch(setOptions(options)),
+  setIsShowResults: isShowResults=> dispatch(setIsShowResults(isShowResults)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SelectSelfOptions));

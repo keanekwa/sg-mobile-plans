@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter , Route } from 'react-router-dom';
-import OptionsPage from './components/OptionsPage';
-import ResultsPage from './components/ResultsPage';
 import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import App from './App';
 
 const theme = createMuiTheme({
   palette: {
@@ -60,18 +58,12 @@ const theme = createMuiTheme({
   },
 });
 
-function AppRouter() {
-  return (
-    <Provider store={store}>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <BrowserRouter>
-          <Route path="/" exact component={OptionsPage} />
-          <Route path="/results" exact component={ResultsPage} />
-        </BrowserRouter>
-      </MuiThemeProvider>
-    </Provider>
-  );
-}
-
-ReactDOM.render(<AppRouter />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </MuiThemeProvider>
+  </Provider>,
+  document.getElementById("root")
+);

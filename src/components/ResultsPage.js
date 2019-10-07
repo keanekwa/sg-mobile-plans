@@ -3,6 +3,7 @@ import { Container, Grid, Typography } from '@material-ui/core';
 import ResultsList from './ResultsList'
 import { withStyles } from '@material-ui/core/styles';
 import { indigo } from '@material-ui/core/colors/';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   ExpansionPanel: {
@@ -31,16 +32,20 @@ const ResultsPage = props => {
 
   return (
     <Container className={classes.resultsListContainer} maxWidth='lg'>
-      <Grid ontainer spacing={2}>
-        <Grid item xs='12'>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
           <Typography variant='h4' gutterBottom={true}>Suitable Plans:</Typography><br/>
         </Grid>
-        <Grid item xs='12'>
-          <ResultsList optionsSelected={this.state.confirmedOptions}/>
+        <Grid item xs={12}>
+          <ResultsList optionsSelected={props.options}/>
         </Grid>
       </Grid>
     </Container>
   );
 }
 
-export default withStyles(styles)(ResultsPage);
+const mapStateToProps = state => ({
+  options: state.options.options,
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(ResultsPage));

@@ -1,15 +1,14 @@
 const INITIAL_STATE = {
-  optionsSelected: null,
+  options: 'null',
 }
 
 const optionsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'SET_OPTIONS_SELECTED':
+    case 'SET_OPTIONS':
       return {
         ...state,
-        optionsSelected: action.payload
+        options: action.payload
       }
-
     default:
       return state;
   }
