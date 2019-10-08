@@ -1,95 +1,48 @@
 import React from 'react';
-import { Box, ExpansionPanel, ExpansionPanelDetails, Fade, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+//import components
+import { Box, Button, Typography } from '@material-ui/core';
+//import styles
 import { withStyles } from '@material-ui/core/styles';
 import { indigo } from '@material-ui/core/colors/';
-
-const ExpansionPanelSummary = withStyles({
-  root: {
-    padding: '0 1.5rem',
-  },
-  content: {
-    display: 'block',
-  },
-})(MuiExpansionPanelSummary);
+//import redux
+import { connect } from 'react-redux';
+import { setResultSelected } from '../redux/results/results-actions';
 
 const styles = theme => ({
-  ExpansionPanel: {
-    marginBottom: '8px',
-    transition: theme.transitions.create(
-      ['margin'],
-      { duration: 500 }
-    ),
+  Result: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottom: '1px solid ' + indigo[100],
+    textTransform: 'none',
+    borderRadius: '0',
+    padding: '1rem 1.5rem',
   },
-  ExpansionPanelSummaryLeft: {
-    float: 'left',
+  ResultLeft: {
     maxWidth: '70%',
+    textAlign: 'left',
   },
-  ExpansionPanelSummaryRight: {
+  ResultRight: {
     color: indigo[800],
-    float: 'right',
-  },
-  ExpansionPanelDetails: {
-    padding: '1.5rem',
-    flexDirection: 'column',
   },
 });
 
 const Result = props => {
   const { classes } = props;
 
-  let pros, cons = undefined;
-  if (props.pros === undefined) {
-    pros = '';
-  }
-  else {
-    pros = props.pros.map(pro => <li key={pro}>{pro}</li>);
-  }
-  if (props.cons === undefined) {
-    cons = '';
-  }
-  else {
-    cons = props.cons.map(con => <li key={con}>{con}</li>);
-  }
   return (
-    <Fade in={true} timeout={1000} mountOnEnter unmountOnExit style={{ transitionDelay: `${props.delay}ms` }}>
-      <ExpansionPanel className={classes.ExpansionPanel}>
-        <ExpansionPanelSummary className={classes.ExpansionPanelSummary} disableRipple={false} disableTouchRipple={false} expandIcon={<ExpandMoreIcon className={classes.ExpandMoreIcon}/>}>
-          <Box className={classes.ExpansionPanelSummaryLeft}>{props.telco} {props.planName}</Box>
-          <Box className={classes.ExpansionPanelSummaryRight}>${props.price.toFixed(2)}</Box>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.ExpansionPanelDetails}>
-          <Box>
-            <Table size='small'>
-              <TableHead>
-                <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell>Data</TableCell>
-                  <TableCell>Talktime</TableCell>
-                  <TableCell>SMS</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Base Plan</TableCell>
-                  <TableCell>{props.data}{props.data === 'Unlimited' ? '' : 'GB'}</TableCell>
-                  <TableCell>{props.talktime}{props.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
-                  <TableCell>{props.sms}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Box>
-          <Box>
-            {pros === '' ? '' : 'Pros:'}<br/>
-            {pros === '' ? '' : <ul>{pros}</ul>}
-            {cons === '' ? '' : 'Cons:'}<br/>
-            {cons === '' ? '' : <ul>{cons}</ul>}
-          </Box>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </Fade>
+    <Button className={classes.Result} fullWidth={true} onClick={() => props.setResultSelected(props.mobilePlan)}>
+      <Box className={classes.ResultLeft}>
+        <Typography variant='h6'>{props.mobilePlan.telco} {props.mobilePlan.planName}</Typography>
+        {props.mobilePlan.data} GB | {props.mobilePlan.talktime} min | {props.mobilePlan.sms} SMS
+      </Box>
+      <Box className={classes.ResultRight}>${props.mobilePlan.price.toFixed(2)}</Box>
+    </Button>
   );
 }
 
-export default withStyles(styles)(Result);
+const mapDispatchToProps = dispatch => ({
+  setResultSelected: resultSelected => dispatch(setResultSelected(resultSelected)),
+});
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(Result));

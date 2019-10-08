@@ -1,9 +1,24 @@
 import React from 'react';
-import mobilePlanData from '../data/mobilePlanData'
-import addonsData from '../data/addonsData'
+//import data
+import mobilePlanData from '../data/mobilePlanData';
+import addonsData from '../data/addonsData';
+//import styles
+import { withStyles } from '@material-ui/styles';
+import { indigo } from '@material-ui/core/colors/';
+//import components
+import { Box } from '@material-ui/core';
 import Result from './Result';
 
-export default function ResultList(props) {
+const styles = theme => ({
+  ResultsList: {
+    height: '100%',
+    overflowY: 'scroll',
+    borderRight: '1px solid ' + indigo[100],
+  }
+});
+
+const ResultsList = props => {
+  const { classes } = props;
   const optionsSelected = props.optionsSelected;
   const filteredMobilePlans = mobilePlanData.filter((mobilePlan) =>
     mobilePlan.data >= optionsSelected.minData &&
@@ -81,29 +96,13 @@ export default function ResultList(props) {
   }
 
   const sortedMobilePlans = filteredMobilePlans.sort((a,b) => (a.price < b.price) ? -1 : 1); //sort by cheap to expensive
-  let resultGrowDelay = 0;
-  for (const mobilePlan of sortedMobilePlans) {
-    mobilePlan.delay = resultGrowDelay;
-    resultGrowDelay += 50;
-  }
-  let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => 
-    <Result
-      telco={mobilePlan.telco}
-      planName={mobilePlan.planName}
-      key={mobilePlan.telco + ' - ' + mobilePlan.planName}
-      price={mobilePlan.price}
-      data={mobilePlan.data >= 10000 ? 'Unlimited' : mobilePlan.data}
-      talktime={mobilePlan.talktime >= 10000 ? 'Unlimited' : mobilePlan.talktime}
-      sms={mobilePlan.sms >= 10000 ? 'Unlimited' : mobilePlan.sms}
-      pros={mobilePlan.pros}
-      cons={mobilePlan.cons}
-      delay={mobilePlan.delay}
-    />
-  );
+  let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <Result key={mobilePlan.planName} mobilePlan={mobilePlan}/>);
 
   return (
-    <div>
-    {filteredMobilePlans[0] !== undefined ? mobilePlansMapped : 'Sorry but there are no suitable plans for you. Please adjust your selection criteria.'}
-    </div>
+    <Box className={classes.ResultsList}>
+      {filteredMobilePlans[0] !== undefined ? mobilePlansMapped : 'Sorry but there are no suitable plans for you. Please adjust your selection criteria.'}
+    </Box>
   );
 }
+
+export default withStyles(styles)(ResultsList);

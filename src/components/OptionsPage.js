@@ -1,6 +1,9 @@
 import React from 'react';
+//import components
 import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography } from '@material-ui/core'
+//import styles
 import { withStyles } from '@material-ui/core/styles';
+//import redux
 import { connect } from 'react-redux';
 import { setOptions } from '../redux/options/options-actions'
 import { setIsShowResults } from '../redux/results/results-actions'
@@ -14,10 +17,13 @@ const styles = theme => ({
     background: `url(https://firebasestorage.googleapis.com/v0/b/telco-comparison.appspot.com/o/background.jpg?alt=media&token=06710f10-1913-479e-a76b-eea90797bdf2) center`, //todo: resize for different screen sizes
     backgroundSize: 'cover',
   },
-  paper: {
+  Paper: {
     padding: '32px 24px',
     backgroundColor: 'rgba(255,255,255,0.8)',
   },
+  Button: {
+    padding: '14px 24px',
+  }
 });
 
 class SelectSelfOptions extends React.Component {
@@ -43,7 +49,7 @@ class SelectSelfOptions extends React.Component {
       <Container className={classes.outerContainer} maxWidth={false}>
         <Container maxWidth='lg'>
           <Typography variant='h4' gutterBottom={true}>What do you need?</Typography><br/>
-          <Paper className={classes.paper}>
+          <Paper className={classes.Paper}>
             <Grid container spacing={2}>
               <Grid item xs={12}>I need at least:</Grid>
               <Grid item xs={12} sm={4}>

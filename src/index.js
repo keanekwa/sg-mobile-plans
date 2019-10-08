@@ -14,17 +14,6 @@ const theme = createMuiTheme({
     fontFamily: 'Noto Sans, Helvetica, Arial, sans-serif',
   },
   overrides: {
-    MuiButton: {
-      outlinedPrimary: {
-        borderWidth: '2px',
-        '&:hover, &:focus': {
-          borderWidth: '2px',
-        }
-      },
-      sizeLarge: {
-        padding: '14px 24px',
-      },
-    },
     MuiInputBase: {
       root: {
         fontSize: '0.9rem',
