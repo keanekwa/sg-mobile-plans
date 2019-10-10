@@ -1,6 +1,7 @@
 import React from 'react';
 //import components
-import { Box, Button, Fade, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Box, IconButton, Fade, Table, TableBody, TableCell, TableHead, TableRow, AppBar, Toolbar  } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 //import styles
 import { withStyles } from '@material-ui/core/styles';
 //import redux
@@ -10,7 +11,13 @@ import { setIsShowMobileResultDetails } from '../../redux/results/results-action
 const styles = theme => ({
   outerBox: {
     padding: '1rem 1.5rem',
-  }
+  },
+  AppBar: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+    color: 'white',
+  },
 });
 
 const ResultDetails = props => {
@@ -30,39 +37,48 @@ const ResultDetails = props => {
     cons = props.resultSelected.cons.map(con => <li key={con}>{con}</li>);
   }
   return (
-    <Fade in={true} timeout={500} mountOnEnter unmountOnExit>
-      <Box className={classes.outerBox}>
-        <Button onClick={() => props.setIsShowMobileResultDetails(false)}>Back</Button>
-        <Box>{props.resultSelected.telco} {props.resultSelected.planName}</Box>
-        <Box>${props.resultSelected.price.toFixed(2)}</Box>
-        <Box>
-          <Table size='small'>
-            <TableHead>
-              <TableRow>
-                <TableCell></TableCell>
-                <TableCell>Data</TableCell>
-                <TableCell>Talktime</TableCell>
-                <TableCell>SMS</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell>Base Plan</TableCell>
-                <TableCell>{props.resultSelected.data}{props.resultSelected.data === 'Unlimited' ? '' : 'GB'}</TableCell>
-                <TableCell>{props.resultSelected.talktime}{props.resultSelected.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
-                <TableCell>{props.resultSelected.sms}</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
+    <Box>
+      <AppBar className={classes.AppBar} position='static'>
+        <Toolbar>
+          <IconButton color='inherit' onClick={() => props.setIsShowMobileResultDetails(false)}>
+            <ArrowBackIcon/>
+          </IconButton>
+          <Box>{props.resultSelected.telco} {props.resultSelected.planName}</Box>
+        </Toolbar>
+      </AppBar>
+      <Fade in={true} timeout={500} mountOnEnter unmountOnExit>
+        <Box className={classes.outerBox}>
+          <Box>{props.resultSelected.telco} {props.resultSelected.planName}</Box>
+          <Box>${props.resultSelected.price.toFixed(2)}</Box>
+          <Box>
+            <Table size='small'>
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell>Data</TableCell>
+                  <TableCell>Talktime</TableCell>
+                  <TableCell>SMS</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Base Plan</TableCell>
+                  <TableCell>{props.resultSelected.data}{props.resultSelected.data === 'Unlimited' ? '' : 'GB'}</TableCell>
+                  <TableCell>{props.resultSelected.talktime}{props.resultSelected.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
+                  <TableCell>{props.resultSelected.sms}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Box>
+          <Box>
+            {pros === '' ? '' : 'Pros:'}<br/>
+            {pros === '' ? '' : <ul>{pros}</ul>}
+            {cons === '' ? '' : 'Cons:'}<br/>
+            {cons === '' ? '' : <ul>{cons}</ul>}
+          </Box>
         </Box>
-        <Box>
-          {pros === '' ? '' : 'Pros:'}<br/>
-          {pros === '' ? '' : <ul>{pros}</ul>}
-          {cons === '' ? '' : 'Cons:'}<br/>
-          {cons === '' ? '' : <ul>{cons}</ul>}
-        </Box>
-      </Box>
-    </Fade>
+      </Fade>
+    </Box>
   );
 }
 
