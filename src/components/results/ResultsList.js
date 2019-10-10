@@ -6,33 +6,43 @@ import addonsData from '../../data/addonsData';
 import { withStyles } from '@material-ui/styles';
 import { indigo } from '@material-ui/core/colors/';
 //import components
-import { Box } from '@material-ui/core';
+import { Box, AppBar, Toolbar, IconButton } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Result from './Result';
+//import redux
+import { connect } from 'react-redux';
+import { setIsShowResults } from '../../redux/results/results-actions'
 
 const styles = theme => ({
   ResultsList: {
     height: '100%',
     overflowY: 'scroll',
     borderRight: '1px solid ' + indigo[100],
-  }
+  },
+  AppBar: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+    color: 'white',
+  },
 });
 
 const ResultsList = props => {
   const { classes } = props;
-  const optionsSelected = props.optionsSelected;
+  const options = props.options;
   const filteredMobilePlans = mobilePlanData.filter((mobilePlan) =>
-    mobilePlan.data >= optionsSelected.minData &&
-    mobilePlan.talktime >=  optionsSelected.minTalktime &&
-    mobilePlan.sms >=  optionsSelected.minSMS &&
-    mobilePlan.price <= optionsSelected.price
+    mobilePlan.data >= options.minData &&
+    mobilePlan.talktime >=  options.minTalktime &&
+    mobilePlan.sms >=  options.minSMS &&
+    mobilePlan.price <= options.price
   );
 
   //see if addding addons can make plans that meet requirements
   const unfilteredMobilePlans = mobilePlanData.filter((mobilePlan) =>
-    mobilePlan.data < optionsSelected.minData ||
-    mobilePlan.talktime < optionsSelected.minTalktime ||
-    mobilePlan.sms < optionsSelected.minSMS ||
-    mobilePlan.price > optionsSelected.price
+    mobilePlan.data < options.minData ||
+    mobilePlan.talktime < options.minTalktime ||
+    mobilePlan.sms < options.minSMS ||
+    mobilePlan.price > options.price
   );
   for (const mobilePlan of unfilteredMobilePlans) { //go through all the plans that fail the criteria
     const addonsForTelco = addonsData.filter(addon => addon.appliesToTelco === mobilePlan.telco); //find addons for the telco
@@ -47,9 +57,9 @@ const ResultsList = props => {
           newPlan.addonMultiple = 1;
         }
         else {  //do this for non-multiplier addons, e.g. Singtel DataMore
-          const addonMultipleForData = Math.ceil((optionsSelected.minData - mobilePlan.data) / addon.data);  //check how many data addons are required
-          const addonMultipleForTalktime = Math.ceil((optionsSelected.minTalktime - mobilePlan.talktime) / addon.talktime) //check how many talktime addons are required
-          const addonMultipleForSMS = Math.ceil((optionsSelected.minSMS - mobilePlan.sms) / addon.sms) //check how many sms addons are required
+          const addonMultipleForData = Math.ceil((options.minData - mobilePlan.data) / addon.data);  //check how many data addons are required
+          const addonMultipleForTalktime = Math.ceil((options.minTalktime - mobilePlan.talktime) / addon.talktime) //check how many talktime addons are required
+          const addonMultipleForSMS = Math.ceil((options.minSMS - mobilePlan.sms) / addon.sms) //check how many sms addons are required
           newPlan.addonMultiple = Math.max(addonMultipleForData, addonMultipleForTalktime, addonMultipleForSMS);
           if (addon.keepAdding !== true && newPlan.addonMultiple > 1) { continue; } //cannot add single-add addons multiple times
           else if (newPlan.addonMultiple <= 0) { continue;} //cannot have negative addons
@@ -58,10 +68,10 @@ const ResultsList = props => {
           newPlan.sms = mobilePlan.sms + (newPlan.addonMultiple * addon.sms);
           newPlan.price = mobilePlan.price + (newPlan.addonMultiple * addon.price);
         }
-        if (newPlan.data >= optionsSelected.minData &&
-          newPlan.talktime >= optionsSelected.minTalktime &&
-          newPlan.sms >= optionsSelected.minSMS &&
-          newPlan.price <= optionsSelected.price) { //if there is a suitable addon, add a new plan suggestion accordingly
+        if (newPlan.data >= options.minData &&
+          newPlan.talktime >= options.minTalktime &&
+          newPlan.sms >= options.minSMS &&
+          newPlan.price <= options.price) { //if there is a suitable addon, add a new plan suggestion accordingly
           if (mobilePlan.pros !== undefined && addon.pros !== undefined) {
             newPlan.pros = mobilePlan.pros.concat(addon.pros);
           }
@@ -100,9 +110,25 @@ const ResultsList = props => {
 
   return (
     <Box className={classes.ResultsList}>
+      <AppBar className={classes.AppBar} position='static'>
+        <Toolbar>
+          <IconButton color='inherit' onClick={() => props.setIsShowResults(false)}>
+            <ArrowBackIcon/>
+          </IconButton>
+          <Box>Suitable Plans</Box>
+        </Toolbar>
+      </AppBar>
       {filteredMobilePlans[0] !== undefined ? mobilePlansMapped : 'Sorry but there are no suitable plans for you. Please adjust your selection criteria.'}
     </Box>
   );
 }
 
-export default withStyles(styles)(ResultsList);
+const mapStateToProps = state => ({
+  options: state.options.options,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setIsShowResults: isShowResults=> dispatch(setIsShowResults(isShowResults)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ResultsList));

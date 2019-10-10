@@ -27,17 +27,16 @@ const ResultsPage = props => {
   return (
     <Grid container className={classes.fullHeight}>
       <Grid item xs={12} md={6} className={classes.fullHeight, props.isShowMobileResultDetails ? classes.ShowMobileResultDetails : null}>
-        <ResultsList optionsSelected={props.options}/>
+        <ResultsList />
       </Grid>
       <Grid item xs={12} md={6} className={!props.isShowMobileResultDetails ? classes.ShowMobileResultDetails : null}>
-        {props.resultSelected != null && <ResultDetails resultSelected={props.resultSelected}/>}
+        {props.resultSelected != null && <ResultDetails/>}
       </Grid>
     </Grid>
   );
 }
 
 const mapStateToProps = state => ({
-  options: state.options.options,
   resultSelected: state.results.resultSelected,
   isShowMobileResultDetails: state.results.isShowMobileResultDetails,
 });
