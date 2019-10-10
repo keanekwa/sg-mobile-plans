@@ -1,7 +1,7 @@
 import React from 'react';
 //import data
-import mobilePlanData from '../data/mobilePlanData';
-import addonsData from '../data/addonsData';
+import mobilePlanData from '../../data/mobilePlanData';
+import addonsData from '../../data/addonsData';
 //import styles
 import { withStyles } from '@material-ui/styles';
 import { indigo } from '@material-ui/core/colors/';

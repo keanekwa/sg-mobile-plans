@@ -1,10 +1,11 @@
 import React from 'react';
 //import components
-import { Box, Fade, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Box, Button, Fade, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 //import styles
 import { withStyles } from '@material-ui/core/styles';
 //import redux
 import { connect } from 'react-redux';
+import { setIsShowMobileResultDetails } from '../../redux/results/results-actions';
 
 const styles = theme => ({
   outerBox: {
@@ -31,6 +32,7 @@ const ResultDetails = props => {
   return (
     <Fade in={true} timeout={500} mountOnEnter unmountOnExit>
       <Box className={classes.outerBox}>
+        <Button onClick={() => props.setIsShowMobileResultDetails(false)}>Back</Button>
         <Box>{props.resultSelected.telco} {props.resultSelected.planName}</Box>
         <Box>${props.resultSelected.price.toFixed(2)}</Box>
         <Box>
@@ -68,4 +70,8 @@ const mapStateToProps = state => ({
   resultSelected: state.results.resultSelected,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(ResultDetails));
+const mapDispatchToProps = dispatch => ({
+  setIsShowMobileResultDetails: isShowMobileResultDetails =>  dispatch(setIsShowMobileResultDetails(isShowMobileResultDetails))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ResultDetails));

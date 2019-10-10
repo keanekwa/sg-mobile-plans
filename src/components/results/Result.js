@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { indigo } from '@material-ui/core/colors/';
 //import redux
 import { connect } from 'react-redux';
-import { setResultSelected } from '../redux/results/results-actions';
+import { setResultSelected, setIsShowMobileResultDetails } from '../../redux/results/results-actions';
 
 const styles = theme => ({
   Result: {
@@ -31,7 +31,7 @@ const Result = props => {
   const { classes } = props;
 
   return (
-    <Button className={classes.Result} fullWidth={true} onClick={() => props.setResultSelected(props.mobilePlan)}>
+    <Button className={classes.Result} fullWidth={true} onClick={() => {props.setResultSelected(props.mobilePlan); props.setIsShowMobileResultDetails(true);}}>
       <Box className={classes.ResultLeft}>
         <Typography variant='h6'>{props.mobilePlan.telco} {props.mobilePlan.planName}</Typography>
         {props.mobilePlan.data} GB | {props.mobilePlan.talktime} min | {props.mobilePlan.sms} SMS
@@ -43,6 +43,7 @@ const Result = props => {
 
 const mapDispatchToProps = dispatch => ({
   setResultSelected: resultSelected => dispatch(setResultSelected(resultSelected)),
+  setIsShowMobileResultDetails: isShowMobileResultDetails =>  dispatch(setIsShowMobileResultDetails(isShowMobileResultDetails)),
 });
 
 export default connect(null, mapDispatchToProps)(withStyles(styles)(Result));

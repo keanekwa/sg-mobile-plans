@@ -5,8 +5,8 @@ import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography }
 import { withStyles } from '@material-ui/core/styles';
 //import redux
 import { connect } from 'react-redux';
-import { setOptions } from '../redux/options/options-actions'
-import { setIsShowResults } from '../redux/results/results-actions'
+import { setOptions } from '../../redux/options/options-actions'
+import { setIsShowResults } from '../../redux/results/results-actions'
 
 const styles = theme => ({
   outerContainer: {
