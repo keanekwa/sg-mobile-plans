@@ -10,12 +10,13 @@ import { setIsShowResults } from '../../redux/results/results-actions'
 
 const styles = theme => ({
   outerContainer: {
-    height: '100%',
+    minHeight: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     background: `url(https://firebasestorage.googleapis.com/v0/b/telco-comparison.appspot.com/o/background.jpg?alt=media&token=06710f10-1913-479e-a76b-eea90797bdf2) center`, //todo: resize for different screen sizes
     backgroundSize: 'cover',
+    padding: '40px 0',
   },
   Paper: {
     padding: '32px 24px',
