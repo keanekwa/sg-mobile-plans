@@ -23,14 +23,14 @@ const styles = theme => ({
 const ResultDetails = props => {
   const { classes } = props;
 
-  let pros, cons = undefined;
-  if (props.resultSelected.pros === undefined) {
+  let pros, cons = null;
+  if (props.resultSelected.pros === null) {
     pros = '';
   }
   else {
     pros = props.resultSelected.pros.map(pro => <li key={pro}>{pro}</li>);
   }
-  if (props.resultSelected.cons === undefined) {
+  if (props.resultSelected.cons === null) {
     cons = '';
   }
   else {

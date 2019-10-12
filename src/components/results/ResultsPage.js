@@ -22,7 +22,6 @@ const styles = theme => ({
 
 const ResultsPage = props => {
   const { classes } = props;
-  console.log(props.isHideResultsListGrid);
 
   return (
     <Grid container className={classes.fullHeight}>
