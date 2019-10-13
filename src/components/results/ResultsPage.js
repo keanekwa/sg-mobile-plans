@@ -25,7 +25,7 @@ const ResultsPage = props => {
 
   return (
     <Grid container className={classes.fullHeight}>
-      <Grid item xs={12} md={6} className={classes.fullHeight, props.isShowMobileResultDetails ? classes.ShowMobileResultDetails : null}>
+      <Grid item xs={12} md={6} className={`${classes.fullHeight} ${props.isShowMobileResultDetails ? classes.ShowMobileResultDetails : null}`}>
         <ResultsList />
       </Grid>
       <Grid item xs={12} md={6} className={!props.isShowMobileResultDetails ? classes.ShowMobileResultDetails : null}>

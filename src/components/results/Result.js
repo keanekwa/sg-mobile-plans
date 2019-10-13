@@ -34,7 +34,13 @@ const Result = props => {
     <Button className={classes.Result} fullWidth={true} onClick={() => {props.setResultSelected(props.mobilePlan); props.setIsShowMobileResultDetails(true);}}>
       <Box className={classes.ResultLeft}>
         <Typography variant='h6'>{props.mobilePlan.telco} {props.mobilePlan.planName}</Typography>
-        {props.mobilePlan.data} GB | {props.mobilePlan.talktime} min | {props.mobilePlan.sms} SMS
+        {
+          (props.mobilePlan.addons !== undefined && props.mobilePlan.addons !== []) && 
+          <Box>
+            Combine with addons: {props.mobilePlan.addons.map((addon) => <Box>{addon}</Box>)}
+          </Box>
+        }
+        <Box>{props.mobilePlan.data} GB | {props.mobilePlan.talktime} min | {props.mobilePlan.sms} SMS</Box>
       </Box>
       <Box className={classes.ResultRight}>${props.mobilePlan.price.toFixed(2)}</Box>
     </Button>

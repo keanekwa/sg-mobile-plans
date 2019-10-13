@@ -62,16 +62,14 @@ const ResultsList = props => {
           const addonMultipleForSMS = Math.ceil((options.minSMS - mobilePlan.sms) / addon.sms) //check how many sms addons are required
           newPlan.addonMultiple = Math.max(addonMultipleForData, addonMultipleForTalktime, addonMultipleForSMS);
           if (addon.keepAdding !== true && newPlan.addonMultiple > 1) { continue; } //cannot add single-add addons multiple times
-          else if (newPlan.addonMultiple <= 0) { continue;} //cannot have negative addons
+          else if (newPlan.addonMultiple <= 0) { continue; } //cannot have negative addons
           newPlan.data = mobilePlan.data + (newPlan.addonMultiple * addon.data);
           newPlan.talktime = mobilePlan.talktime + (newPlan.addonMultiple * addon.talktime);
           newPlan.sms = mobilePlan.sms + (newPlan.addonMultiple * addon.sms);
           newPlan.price = mobilePlan.price + (newPlan.addonMultiple * addon.price);
+          
         }
-        if (newPlan.data >= options.minData &&
-          newPlan.talktime >= options.minTalktime &&
-          newPlan.sms >= options.minSMS &&
-          newPlan.price <= options.price) { //if there is a suitable addon, add a new plan suggestion accordingly
+        if (newPlan.data >= options.minData && newPlan.talktime >= options.minTalktime && newPlan.sms >= options.minSMS && newPlan.price <= options.price) { //if there is a suitable addon, add a new plan suggestion accordingly
           if (mobilePlan.pros !== undefined && addon.pros !== undefined) {
             newPlan.pros = mobilePlan.pros.concat(addon.pros);
           }
@@ -90,13 +88,16 @@ const ResultsList = props => {
           else if (addon.cons !== undefined) {
             newPlan.cons = addon.cons;
           }
+          newPlan.addons = [];
+          newPlan.addons.push(newPlan.addonMultiple + ' x ' + addon.addonName);
           filteredMobilePlans.push({
             telco: mobilePlan.telco,
-            planName: mobilePlan.planName + ' + ' + newPlan.addonMultiple + ' x ' + addon.addonName + ' addon',
+            planName: mobilePlan.planName,
+            addons: newPlan.addons,
             price: newPlan.price,
-            data: newPlan.data >= 10000 ? 'Unlimited' : newPlan.data,
-            talktime: newPlan.talktime >= 10000 ? 'Unlimited' : newPlan.talktime,
-            sms: newPlan.sms >= 10000 ? 'Unlimited' : newPlan.sms,
+            data: newPlan.data,
+            talktime: newPlan.talktime,
+            sms: newPlan.sms,
             pros: newPlan.pros,
             cons: newPlan.cons,
           });
