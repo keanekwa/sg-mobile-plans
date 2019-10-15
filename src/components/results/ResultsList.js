@@ -44,55 +44,50 @@ const ResultsList = props => {
     mobilePlan.sms < options.minSMS ||
     mobilePlan.price > options.price
   );
+
   for (const mobilePlan of unfilteredMobilePlans) { //go through all the plans that fail the criteria
-    const addonsForTelco = addonsData.filter(addon => addon.appliesToTelco === mobilePlan.telco); //find addons for the telco
-    for (const addon of addonsForTelco) {
-      if (addon.appliesToPlans === 'All' || addon.appliesToPlans.includes(mobilePlan.planName)) { //ensure addon is suitable for plan
-        const newPlan = {addonMultiple: 0};
+    const addonsForPlan = addonsData.filter(addon => addon.appliesToTelco === mobilePlan.telco && (addon.appliesToPlans === 'All' || addon.appliesToPlans.includes(mobilePlan.planName))); //find suitable addons, i.e. those that apply to entire telco or those that only apply to the mobile plan
+    for (let x = 0; x < addonsForPlan.length; x++) { //double for loop to permutate addons
+      const newPlan = {
+        ...mobilePlan,
+        basePlan: {
+          data: mobilePlan.data,
+          talktime: mobilePlan.talktime,
+          sms: mobilePlan.sms,
+          price: mobilePlan.price,
+        },
+        addons: [],
+      };
+      for (let y = x; y < addonsForPlan.length; y++) {
+        const addon = addonsForPlan[y];
         if (addon.multiplier === true) {  //do this for multiplier addons, e.g. Singtel Data X 2
-          newPlan.data = mobilePlan.data * addon.data;
-          newPlan.talktime = mobilePlan.talktime * addon.talktime;
-          newPlan.sms = mobilePlan.sms * addon.sms;
-          newPlan.price = mobilePlan.price + addon.price;
-          newPlan.addonMultiple = 1;
+          newPlan.data *= addon.data;
+          newPlan.talktime *= addon.talktime;
+          newPlan.sms *= addon.sms;
+          newPlan.price += addon.price;
+          newPlan.addons.push({...addon, addonMultiple: 1});
         }
         else {  //do this for non-multiplier addons, e.g. Singtel DataMore
-          const addonMultipleForData = Math.ceil((options.minData - mobilePlan.data) / addon.data);  //check how many data addons are required
-          const addonMultipleForTalktime = Math.ceil((options.minTalktime - mobilePlan.talktime) / addon.talktime) //check how many talktime addons are required
-          const addonMultipleForSMS = Math.ceil((options.minSMS - mobilePlan.sms) / addon.sms) //check how many sms addons are required
-          newPlan.addonMultiple = Math.max(addonMultipleForData, addonMultipleForTalktime, addonMultipleForSMS);
-          if (addon.keepAdding !== true && newPlan.addonMultiple > 1) { continue; } //cannot add single-add addons multiple times
-          else if (newPlan.addonMultiple <= 0) { continue; } //cannot have negative addons
-          newPlan.data = mobilePlan.data + (newPlan.addonMultiple * addon.data);
-          newPlan.talktime = mobilePlan.talktime + (newPlan.addonMultiple * addon.talktime);
-          newPlan.sms = mobilePlan.sms + (newPlan.addonMultiple * addon.sms);
-          newPlan.price = mobilePlan.price + (newPlan.addonMultiple * addon.price);
-          
+          const addonMultipleForData = Math.ceil((options.minData - newPlan.data) / addon.data);  //check how many data addons are required
+          const addonMultipleForTalktime = Math.ceil((options.minTalktime - newPlan.talktime) / addon.talktime) //check how many talktime addons are required
+          const addonMultipleForSMS = Math.ceil((options.minSMS - newPlan.sms) / addon.sms) //check how many sms addons are required
+          const addonMultiple = Math.max(addonMultipleForData, addonMultipleForTalktime, addonMultipleForSMS);
+          if (addon.keepAdding !== true && addonMultiple > 1) { continue; } //cannot add single-add addons multiple times
+          else if (addonMultiple <= 0) { continue; } //cannot have negative addons
+          newPlan.data += addonMultiple * addon.data;
+          newPlan.talktime += addonMultiple * addon.talktime;
+          newPlan.sms += addonMultiple * addon.sms;
+          newPlan.price += addonMultiple * addon.price;
+          newPlan.addons.push({...addon, addonMultiple: addonMultiple});
         }
-        if (newPlan.data >= options.minData && newPlan.talktime >= options.minTalktime && newPlan.sms >= options.minSMS && newPlan.price <= options.price) { //if there is a suitable addon, add a new plan suggestion accordingly
-          if (mobilePlan.pros !== undefined && addon.pros !== undefined) {
-            newPlan.pros = mobilePlan.pros.concat(addon.pros);
-          }
-          else if (mobilePlan.pros !== undefined) {
-            newPlan.pros = mobilePlan.pros;
-          }
-          else if (addon.pros !== undefined) {
-            newPlan.pros = addon.pros;
-          }
-          if (mobilePlan.cons !== undefined && addon.cons !== undefined) {
-            newPlan.cons = mobilePlan.cons.concat(addon.cons);
-          }
-          else if (mobilePlan.cons !== undefined) {
-            newPlan.cons = mobilePlan.cons;
-          }
-          else if (addon.cons !== undefined) {
-            newPlan.cons = addon.cons;
-          }
-          newPlan.addons = [];
-          newPlan.addons.push(newPlan.addonMultiple + ' x ' + addon.addonName);
+        if (newPlan.data >= options.minData && newPlan.talktime >= options.minTalktime && newPlan.sms >= options.minSMS && newPlan.price <= options.price) { // if so far, newPlan is suitable then push newPlan to filteredMobilePlans, then break the y for loop. Otherwise, continue looping and adding more addons to newPlan
+          const addonPros = newPlan.addons.reduce((allAddonPros, addonPros) => allAddonPros.push(addonPros)).pros;
+          const addonCons = newPlan.addons.reduce((allAddonCons, addonCons) => allAddonCons.push(addonCons)).cons;
+          {newPlan.pros !== undefined ? newPlan.pros.push(addonPros) : newPlan.pros = addonPros}
+          {newPlan.cons !== undefined ? newPlan.cons.push(addonCons) : newPlan.cons = addonCons}
           filteredMobilePlans.push({
-            telco: mobilePlan.telco,
-            planName: mobilePlan.planName,
+            telco: newPlan.telco,
+            planName: newPlan.planName,
             addons: newPlan.addons,
             price: newPlan.price,
             data: newPlan.data,
@@ -101,13 +96,14 @@ const ResultsList = props => {
             pros: newPlan.pros,
             cons: newPlan.cons,
           });
+          continue;
         }
       }
     }
   }
 
   const sortedMobilePlans = filteredMobilePlans.sort((a,b) => (a.price < b.price) ? -1 : 1); //sort by cheap to expensive
-  let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <Result key={mobilePlan.planName} mobilePlan={mobilePlan}/>);
+  let mobilePlansMapped = sortedMobilePlans.map((mobilePlan) => <Result key={mobilePlan.telco + ' ' + mobilePlan.planName} mobilePlan={mobilePlan}/>);
 
   return (
     <Box className={classes.ResultsList}>

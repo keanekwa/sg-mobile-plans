@@ -29,7 +29,6 @@ const styles = theme => ({
 
 const Result = props => {
   const { classes } = props;
-
   return (
     <Button className={classes.Result} fullWidth={true} onClick={() => {props.setResultSelected(props.mobilePlan); props.setIsShowMobileResultDetails(true);}}>
       <Box className={classes.ResultLeft}>
@@ -37,7 +36,7 @@ const Result = props => {
         {
           (props.mobilePlan.addons !== undefined && props.mobilePlan.addons !== []) && 
           <Box>
-            Combine with addons: {props.mobilePlan.addons.map((addon) => <Box>{addon}</Box>)}
+            Combine with addons: {props.mobilePlan.addons.map((addon) => <Box key={addon.addonName}>{addon.addonMultiple} x {addon.addonName} Addon</Box>)}
           </Box>
         }
         <Box>{props.mobilePlan.data} GB | {props.mobilePlan.talktime} min | {props.mobilePlan.sms} SMS</Box>

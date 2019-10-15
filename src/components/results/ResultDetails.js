@@ -23,19 +23,19 @@ const styles = theme => ({
 const ResultDetails = props => {
   const { classes } = props;
 
-  let pros, cons = null;
-  if (props.resultSelected.pros === undefined) {
-    pros = '';
-  }
-  else {
-    pros = props.resultSelected.pros.map(pro => <li key={pro}>{pro}</li>);
-  }
-  if (props.resultSelected.cons === undefined) {
-    cons = '';
-  }
-  else {
-    cons = props.resultSelected.cons.map(con => <li key={con}>{con}</li>);
-  }
+  const pros = props.resultSelected.pros !== undefined && props.resultSelected.pros.map(pro => <li key={pro}>{pro}</li>);
+  const cons = props.resultSelected.cons !== undefined && props.resultSelected.cons.map(con => <li key={con}>{con}</li>);
+  const basePlan = props.resultSelected.basePlan !== undefined ? props.resultSelected.basePlan : props.resultSelected;
+  const addons = props.resultSelected.addons !== undefined ? props.resultSelected.addons : null;
+  const addonTableRows = addons !== null && addons.map( addon => (
+    <TableRow>
+      <TableCell>{addon.addonName} Addon</TableCell>
+      <TableCell>{addon.data}{addon.data === 'Unlimited' ? '' : 'GB'}</TableCell>
+      <TableCell>{addon.talktime}{addon.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
+      <TableCell>{addon.sms}</TableCell>
+    </TableRow>
+  ));
+
   return (
     <Box>
       <AppBar className={classes.AppBar} position='static'>
@@ -63,18 +63,17 @@ const ResultDetails = props => {
               <TableBody>
                 <TableRow>
                   <TableCell>Base Plan</TableCell>
-                  <TableCell>{props.resultSelected.data}{props.resultSelected.data === 'Unlimited' ? '' : 'GB'}</TableCell>
-                  <TableCell>{props.resultSelected.talktime}{props.resultSelected.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
-                  <TableCell>{props.resultSelected.sms}</TableCell>
+                  <TableCell>{basePlan.data}{basePlan.data === 'Unlimited' ? '' : 'GB'}</TableCell>
+                  <TableCell>{basePlan.talktime}{basePlan.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
+                  <TableCell>{basePlan.sms}</TableCell>
                 </TableRow>
+                {addonTableRows !== undefined && addonTableRows}
               </TableBody>
             </Table>
           </Box>
           <Box>
-            {pros === '' ? '' : 'Pros:'}<br/>
-            {pros === '' ? '' : <ul>{pros}</ul>}
-            {cons === '' ? '' : 'Cons:'}<br/>
-            {cons === '' ? '' : <ul>{cons}</ul>}
+            {pros !== undefined && <Box>Pros:<ul>{pros}</ul></Box>}
+            {cons !== undefined && <Box>Cons:<ul>{cons}</ul></Box>}
           </Box>
         </Box>
       </Fade>
