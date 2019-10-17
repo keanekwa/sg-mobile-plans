@@ -83,8 +83,18 @@ const ResultsList = props => {
         if (newPlan.data >= options.minData && newPlan.talktime >= options.minTalktime && newPlan.sms >= options.minSMS && newPlan.price <= options.price) { // if so far, newPlan is suitable then push newPlan to filteredMobilePlans, then break the y for loop. Otherwise, continue looping and adding more addons to newPlan
           const addonPros = newPlan.addons.reduce((allAddonPros, addonPros) => allAddonPros.push(addonPros)).pros;
           const addonCons = newPlan.addons.reduce((allAddonCons, addonCons) => allAddonCons.push(addonCons)).cons;
-          {newPlan.pros !== undefined ? newPlan.pros.push(addonPros) : newPlan.pros = addonPros}
-          {newPlan.cons !== undefined ? newPlan.cons.push(addonCons) : newPlan.cons = addonCons}
+          if (addonPros !== undefined && newPlan.pros !== undefined) { 
+            newPlan.pros.push(addonPros);
+          }
+          else if (addonPros !== undefined) {
+            newPlan.pros = addonPros;
+          }
+          if (addonCons !== undefined && newPlan.cons !== undefined) { 
+            newPlan.cons.push(addonCons);
+          }
+          else if (addonCons !== undefined) {
+            newPlan.cons = addonCons;
+          }
           filteredMobilePlans.push({
             telco: newPlan.telco,
             planName: newPlan.planName,
@@ -96,7 +106,7 @@ const ResultsList = props => {
             pros: newPlan.pros,
             cons: newPlan.cons,
           });
-          continue;
+          break;
         }
       }
     }

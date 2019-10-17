@@ -13,7 +13,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottom: '1px solid ' + indigo[100],
+    borderBottom: '1px solid ' + theme.palette.primary.main,
     textTransform: 'none',
     borderRadius: '0',
     padding: '1rem 1.5rem',
@@ -23,7 +23,7 @@ const styles = theme => ({
     textAlign: 'left',
   },
   ResultRight: {
-    color: indigo[800],
+    color: theme.palette.primary.main,
   },
 });
 
