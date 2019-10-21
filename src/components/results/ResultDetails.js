@@ -38,6 +38,7 @@ const ResultDetails = props => {
       <TableCell>{addon.data}{addon.data === 'Unlimited' ? '' : 'GB'}</TableCell>
       <TableCell>{addon.talktime}{addon.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
       <TableCell>{addon.sms}</TableCell>
+      <TableCell>${addon.price.toFixed(2)}</TableCell>
     </TableRow>
   ));
 
@@ -61,6 +62,7 @@ const ResultDetails = props => {
                   <TableCell className={classes.tableHeadCell}>Data</TableCell>
                   <TableCell className={classes.tableHeadCell}>Talktime</TableCell>
                   <TableCell className={classes.tableHeadCell}>SMS</TableCell>
+                  <TableCell className={classes.tableHeadCell}>Price</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -69,31 +71,32 @@ const ResultDetails = props => {
                   <TableCell>{basePlan.data}{basePlan.data === 'Unlimited' ? '' : 'GB'}</TableCell>
                   <TableCell>{basePlan.talktime}{basePlan.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
                   <TableCell>{basePlan.sms}</TableCell>
+                  <TableCell>${basePlan.price.toFixed(2)}</TableCell>
                 </TableRow>
                 {addonTableRows !== undefined && addonTableRows}
               </TableBody>
               {
                 pros !== null && 
                 <TableHead>
-                  <TableCell colSpan={4} className={classes.tableHeadCell}>Pros</TableCell>
+                  <TableCell colSpan={5} className={classes.tableHeadCell}>Pros</TableCell>
                 </TableHead>
               }
               {
                 pros !== null && 
                 <TableBody>
-                  <TableCell colSpan={4}><ul>{pros}</ul></TableCell>
+                  <TableCell colSpan={5}><ul>{pros}</ul></TableCell>
                 </TableBody>
               }
               {
                 cons !== null && 
                 <TableHead>
-                  <TableCell colSpan={4} className={classes.tableHeadCell}>Cons</TableCell>
+                  <TableCell colSpan={5} className={classes.tableHeadCell}>Cons</TableCell>
                 </TableHead>
               }
               {
                 cons !== null && 
                 <TableBody>
-                  <TableCell colSpan={4}><ul>{cons}</ul></TableCell>
+                  <TableCell colSpan={5}><ul>{cons}</ul></TableCell>
                 </TableBody>
               }
             </Table>

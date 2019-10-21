@@ -22,6 +22,10 @@ const styles = theme => ({
     padding: '32px 24px',
     backgroundColor: 'rgba(255,255,255,0.8)',
   },
+  question: {
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+  },
   Button: {
     padding: '14px 24px',
   }
@@ -49,10 +53,10 @@ class SelectSelfOptions extends React.Component {
     return (
       <Container className={classes.outerContainer} maxWidth={false}>
         <Container maxWidth='lg'>
-          <Typography variant='h4' gutterBottom={true}>What do you need?</Typography><br/>
           <Paper className={classes.Paper}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>I need at least:</Grid>
+              <Grid item xs={12}><Typography variant='h4' gutterBottom={true}>Find the best telco for your needs.</Typography></Grid>
+              <Grid item className={classes.question} xs={12}>I need at least:</Grid>
               <Grid item xs={12} sm={4}>
                 <TextField
                   InputLabelProps={{
@@ -107,7 +111,7 @@ class SelectSelfOptions extends React.Component {
                   variant='outlined' label='SMS' fullWidth={true} onChange={(event) => this.handleChange(event, 'minSMS')}
                 />
               </Grid>
-              <Grid item xs={12}>My monthly budget is:</Grid>
+              <Grid item className={classes.question} xs={12}>My monthly budget is:</Grid>
               <Grid item xs={12}>
                 <TextField
                   InputLabelProps={{
