@@ -1,30 +1,21 @@
 import React from 'react';
 //import components
-import { Box, IconButton, Fade, Table, TableBody, TableCell, TableHead, TableRow, AppBar, Toolbar, Typography, Paper } from '@material-ui/core';
+import { Box, IconButton, Fade, Table, TableBody, TableCell, TableHead, TableRow, AppBar, Toolbar } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 //import styles
 import { withStyles } from '@material-ui/core/styles';
 //import redux
 import { connect } from 'react-redux';
 import { setIsShowMobileResultDetails } from '../../redux/results/results-actions';
+import { blueGrey } from '@material-ui/core/colors';
 
 const styles = theme => ({
-  headerBox: {
-    borderBottom: '1px solid ' + theme.palette.primary.main,
-    padding: '1rem 1.5rem',
-  },
-  contentBox: {
-    padding: '1rem 1.5rem',
-  },
-  price: {
-    lineHeight: '1.75',
-  },
   Table: {
     marginBottom: '1.5rem',
   },
   tableHeadCell: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
+    backgroundColor: blueGrey[100],
+    fontWeight: '700',
   },
   AppBar: {
     [theme.breakpoints.up('md')]: {
@@ -57,41 +48,55 @@ const ResultDetails = props => {
           <IconButton color='inherit' onClick={() => props.setIsShowMobileResultDetails(false)}>
             <ArrowBackIcon/>
           </IconButton>
-          <Box>{props.resultSelected.telco} {props.resultSelected.planName}</Box>
+          <Box>{props.resultSelected.telco} {props.resultSelected.planName} - ${props.resultSelected.price.toFixed(2)}</Box>
         </Toolbar>
       </AppBar>
       <Fade in={true} timeout={500} mountOnEnter unmountOnExit>
         <Box>
-          <Box className={classes.headerBox}>
-            <Typography variant='h6'>{props.resultSelected.telco} {props.resultSelected.planName}</Typography>
-            <Box className={classes.price}>${props.resultSelected.price.toFixed(2)}</Box>
-          </Box>
           <Box className={classes.contentBox}>
-            <Paper>
-              <Table className={classes.Table}>
+            <Table className={classes.Table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell className={classes.tableHeadCell}>Breakdown</TableCell>
+                  <TableCell className={classes.tableHeadCell}>Data</TableCell>
+                  <TableCell className={classes.tableHeadCell}>Talktime</TableCell>
+                  <TableCell className={classes.tableHeadCell}>SMS</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Base Plan</TableCell>
+                  <TableCell>{basePlan.data}{basePlan.data === 'Unlimited' ? '' : 'GB'}</TableCell>
+                  <TableCell>{basePlan.talktime}{basePlan.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
+                  <TableCell>{basePlan.sms}</TableCell>
+                </TableRow>
+                {addonTableRows !== undefined && addonTableRows}
+              </TableBody>
+              {
+                pros !== null && 
                 <TableHead>
-                  <TableRow>
-                    <TableCell className={classes.tableHeadCell}></TableCell>
-                    <TableCell className={classes.tableHeadCell}>Data</TableCell>
-                    <TableCell className={classes.tableHeadCell}>Talktime</TableCell>
-                    <TableCell className={classes.tableHeadCell}>SMS</TableCell>
-                  </TableRow>
+                  <TableCell colSpan={4} className={classes.tableHeadCell}>Pros</TableCell>
                 </TableHead>
+              }
+              {
+                pros !== null && 
                 <TableBody>
-                  <TableRow>
-                    <TableCell>Base Plan</TableCell>
-                    <TableCell>{basePlan.data}{basePlan.data === 'Unlimited' ? '' : 'GB'}</TableCell>
-                    <TableCell>{basePlan.talktime}{basePlan.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
-                    <TableCell>{basePlan.sms}</TableCell>
-                  </TableRow>
-                  {addonTableRows !== undefined && addonTableRows}
+                  <TableCell colSpan={4}><ul>{pros}</ul></TableCell>
                 </TableBody>
-              </Table>
-            </Paper>
-            <Paper>
-              {pros !== null && <Box>Pros:<ul>{pros}</ul></Box>}
-              {cons !== null && <Box>Cons:<ul>{cons}</ul></Box>}
-            </Paper>
+              }
+              {
+                cons !== null && 
+                <TableHead>
+                  <TableCell colSpan={4} className={classes.tableHeadCell}>Cons</TableCell>
+                </TableHead>
+              }
+              {
+                cons !== null && 
+                <TableBody>
+                  <TableCell colSpan={4}><ul>{cons}</ul></TableCell>
+                </TableBody>
+              }
+            </Table>
           </Box>
         </Box>
       </Fade>

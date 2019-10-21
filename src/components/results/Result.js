@@ -3,7 +3,6 @@ import React from 'react';
 import { Box, Button, Typography } from '@material-ui/core';
 //import styles
 import { withStyles } from '@material-ui/core/styles';
-import { indigo } from '@material-ui/core/colors/';
 //import redux
 import { connect } from 'react-redux';
 import { setResultSelected, setIsShowMobileResultDetails } from '../../redux/results/results-actions';
@@ -13,7 +12,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottom: '1px solid ' + theme.palette.primary.main,
+    borderBottom: '1px solid ' + theme.palette.secondary.light,
     textTransform: 'none',
     borderRadius: '0',
     padding: '1rem 1.5rem',

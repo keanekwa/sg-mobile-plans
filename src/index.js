@@ -5,10 +5,12 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import App from './App';
+import { blueGrey } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
     type: 'light',
+    secondary: blueGrey,
   },
   typography: {
     fontFamily: 'Noto Sans, Helvetica, Arial, sans-serif',
