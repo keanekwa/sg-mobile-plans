@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 //import components
 import { Box, Button, Typography } from '@material-ui/core';
 //import styles
@@ -16,20 +17,27 @@ const styles = theme => ({
     textTransform: 'none',
     borderRadius: '0',
     padding: '1rem 1.5rem',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.common.white,
+      borderBottom: '1px solid ' + theme.palette.primary.main,
+    },
+  },    
+  ResultSelected: {
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.common.white,
+    borderBottom: '1px solid ' + theme.palette.primary.dark,
   },
   ResultLeft: {
     maxWidth: '70%',
     textAlign: 'left',
-  },
-  ResultRight: {
-    color: theme.palette.primary.main,
   },
 });
 
 const Result = props => {
   const { classes } = props;
   return (
-    <Button className={classes.Result} fullWidth={true} onClick={() => {props.setResultSelected(props.mobilePlan); props.setIsShowMobileResultDetails(true);}}>
+    <Button className={clsx(classes.Result, props.resultSelected === props.mobilePlan && classes.ResultSelected)} fullWidth={true} onClick={() => {props.setResultSelected(props.mobilePlan); props.setIsShowMobileResultDetails(true);}}>
       <Box className={classes.ResultLeft}>
         <Typography variant='h6'>{props.mobilePlan.telco} {props.mobilePlan.planName}</Typography>
         {
@@ -40,14 +48,18 @@ const Result = props => {
         }
         <Box>{props.mobilePlan.data} GB | {props.mobilePlan.talktime} min | {props.mobilePlan.sms} SMS</Box>
       </Box>
-      <Box className={classes.ResultRight}>${props.mobilePlan.price.toFixed(2)}</Box>
+      <Box>${props.mobilePlan.price.toFixed(2)}</Box>
     </Button>
   );
 }
+
+const mapStateToProps = state => ({
+  resultSelected: state.results.resultSelected,
+});
 
 const mapDispatchToProps = dispatch => ({
   setResultSelected: resultSelected => dispatch(setResultSelected(resultSelected)),
   setIsShowMobileResultDetails: isShowMobileResultDetails =>  dispatch(setIsShowMobileResultDetails(isShowMobileResultDetails)),
 });
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Result));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Result));
