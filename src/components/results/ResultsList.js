@@ -81,31 +81,21 @@ const ResultsList = props => {
           newPlan.addons.push({...addon, addonMultiple: addonMultiple});
         }
         if (newPlan.data >= options.minData && newPlan.talktime >= options.minTalktime && newPlan.sms >= options.minSMS && newPlan.price <= options.price) { // if so far, newPlan is suitable then push newPlan to filteredMobilePlans, then break the y for loop. Otherwise, continue looping and adding more addons to newPlan
-          const addonPros = newPlan.addons.reduce((allAddonPros, addonPros) => allAddonPros.push(addonPros)).pros;
-          const addonCons = newPlan.addons.reduce((allAddonCons, addonCons) => allAddonCons.push(addonCons)).cons;
-          if (addonPros !== undefined && newPlan.pros !== undefined) { 
+          const addonPros = newPlan.addons.pros !== undefined ? newPlan.addons.reduce((allAddonPros, addonPros) => allAddonPros.concat([addonPros]),[]).pros : null;
+          const addonCons = newPlan.addons.cons !== undefined ? newPlan.addons.reduce((allAddonCons, addonCons) => allAddonCons.concat([addonCons]),[]).cons : null;
+          if (addonPros !== null && newPlan.pros !== undefined) { 
             newPlan.pros.push(addonPros);
           }
-          else if (addonPros !== undefined) {
+          else if (addonPros !== null) {
             newPlan.pros = addonPros;
           }
-          if (addonCons !== undefined && newPlan.cons !== undefined) { 
+          if (addonCons !== null && newPlan.cons !== undefined) { 
             newPlan.cons.push(addonCons);
           }
-          else if (addonCons !== undefined) {
+          else if (addonCons !== null) {
             newPlan.cons = addonCons;
           }
-          filteredMobilePlans.push({
-            telco: newPlan.telco,
-            planName: newPlan.planName,
-            addons: newPlan.addons,
-            price: newPlan.price,
-            data: newPlan.data,
-            talktime: newPlan.talktime,
-            sms: newPlan.sms,
-            pros: newPlan.pros,
-            cons: newPlan.cons,
-          });
+          filteredMobilePlans.push(newPlan);
           break;
         }
       }

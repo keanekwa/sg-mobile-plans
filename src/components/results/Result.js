@@ -43,7 +43,7 @@ const Result = props => {
         {
           (props.mobilePlan.addons !== undefined && props.mobilePlan.addons !== []) && 
           <Box>
-            Combine with addons: {props.mobilePlan.addons.map((addon) => <Box key={addon.addonName}>{addon.addonMultiple} x {addon.addonName} Addon</Box>)}
+            Combine with addons: {props.mobilePlan.addons.map((addon) => <Box key={addon.addonName}>{addon.addonName} Addon (x{addon.addonMultiple}) </Box>)}
           </Box>
         }
         <Box>{props.mobilePlan.data} GB | {props.mobilePlan.talktime} min | {props.mobilePlan.sms} SMS</Box>

@@ -31,13 +31,14 @@ const ResultDetails = props => {
   const pros = props.resultSelected.pros !== undefined ? props.resultSelected.pros.map(pro => <li key={pro}>{pro}</li>) : null;
   const cons = props.resultSelected.cons !== undefined ? props.resultSelected.cons.map(con => <li key={con}>{con}</li>) : null;
   const basePlan = props.resultSelected.basePlan !== undefined ? props.resultSelected.basePlan : props.resultSelected;
+  console.log(props.resultSelected.planName + basePlan.data);
   const addons = props.resultSelected.addons !== undefined ? props.resultSelected.addons : null;
   const addonTableRows = addons !== null && addons.map( addon => (
     <TableRow>
-      <TableCell>{addon.addonMultiple} x {addon.addonName} Addon</TableCell>
-      <TableCell>{addon.data}{addon.data === 'Unlimited' ? '' : 'GB'}</TableCell>
-      <TableCell>{addon.talktime}{addon.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
-      <TableCell>{addon.sms}</TableCell>
+      <TableCell>{addon.addonName} Addon (x{addon.addonMultiple})</TableCell>
+      <TableCell>{addon.data * addon.addonMultiple}GB</TableCell>
+      <TableCell>{addon.talktime * addon.addonMultiple}min</TableCell>
+      <TableCell>{addon.sms * addon.addonMultiple}</TableCell>
       <TableCell>${addon.price.toFixed(2)}</TableCell>
     </TableRow>
   ));
