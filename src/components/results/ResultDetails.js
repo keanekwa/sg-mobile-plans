@@ -40,7 +40,7 @@ const ResultDetails = props => {
   const addonTableRows = addons !== null && addons.map( addon => (
     <TableRow>
       <TableCell>{addon.addonName} Addon (x{addon.addonMultiple})</TableCell>
-      <TableCell>{addon.data * addon.addonMultiple}GB</TableCell>
+      <TableCell>{addon.multiplier === true && 'x'}{addon.data * addon.addonMultiple}{addon.multiplier !== true && 'GB'}</TableCell>
       <TableCell>{addon.talktime * addon.addonMultiple}min</TableCell>
       <TableCell>{addon.sms * addon.addonMultiple}</TableCell>
       <TableCell>${addon.price.toFixed(2)}</TableCell>
@@ -73,12 +73,19 @@ const ResultDetails = props => {
               <TableBody>
                 <TableRow>
                   <TableCell>Base Plan</TableCell>
-                  <TableCell>{basePlan.data}{basePlan.data === 'Unlimited' ? '' : 'GB'}</TableCell>
-                  <TableCell>{basePlan.talktime}{basePlan.talktime === 'Unlimited' ? '' : 'min'}</TableCell>
+                  <TableCell>{basePlan.data}GB</TableCell>
+                  <TableCell>{basePlan.talktime}min</TableCell>
                   <TableCell>{basePlan.sms}</TableCell>
                   <TableCell>${basePlan.price.toFixed(2)}</TableCell>
                 </TableRow>
                 {addonTableRows !== undefined && addonTableRows}
+                <TableRow>
+                  <TableCell>Total</TableCell>
+                  <TableCell>{props.resultSelected.data}GB</TableCell>
+                  <TableCell>{props.resultSelected.talktime}min</TableCell>
+                  <TableCell>{props.resultSelected.sms}</TableCell>
+                  <TableCell>${props.resultSelected.price.toFixed(2)}</TableCell>
+                </TableRow>
               </TableBody>
               {
                 pros !== null && 
