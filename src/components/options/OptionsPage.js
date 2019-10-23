@@ -55,7 +55,7 @@ class SelectSelfOptions extends React.Component {
         <Container maxWidth='lg'>
           <Paper className={classes.Paper}>
             <Grid container spacing={2}>
-              <Grid item xs={12}><Typography variant='h4' gutterBottom={true}>Find the best telco for your needs.</Typography></Grid>
+              <Grid item xs={12}><Typography variant='h4' gutterBottom={true}>Find the best mobile plan for your needs.</Typography></Grid>
               <Grid item className={classes.question} xs={12}>I need at least:</Grid>
               <Grid item xs={12} sm={4}>
                 <TextField

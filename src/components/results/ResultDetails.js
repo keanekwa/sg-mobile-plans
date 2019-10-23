@@ -10,6 +10,10 @@ import { setIsShowMobileResultDetails } from '../../redux/results/results-action
 import { blueGrey } from '@material-ui/core/colors';
 
 const styles = theme => ({
+  contentBox: {
+    maxWidth: '100%',
+    overflowX: 'scroll',
+  },
   Table: {
     marginBottom: '1.5rem',
   },
