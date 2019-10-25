@@ -12,7 +12,7 @@ import { blueGrey } from '@material-ui/core/colors';
 const styles = theme => ({
   contentBox: {
     maxWidth: '100%',
-    overflowX: 'scroll',
+    overflowX: 'auto',
   },
   Table: {
     marginBottom: '1.5rem',

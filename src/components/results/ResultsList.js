@@ -16,7 +16,7 @@ import { setIsShowResults } from '../../redux/results/results-actions'
 const styles = theme => ({
   ResultsList: {
     height: '100%',
-    overflowY: 'scroll',
+    overflowY: 'auto',
     borderRight: '1px solid ' + indigo[100],
   },
   AppBar: {
@@ -96,6 +96,9 @@ const ResultsList = props => {
             newPlan.cons = addonCons;
           }
           filteredMobilePlans.push(newPlan);
+          break;
+        }
+        else if (addon.multiplier === true) { //multiplier addon cannot be combined with other addons
           break;
         }
       }
