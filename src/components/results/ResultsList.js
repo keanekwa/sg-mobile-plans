@@ -83,6 +83,7 @@ const ResultsList = props => {
         if (newPlan.data >= options.minData && newPlan.talktime >= options.minTalktime && newPlan.sms >= options.minSMS && newPlan.price <= options.price) { // if so far, newPlan is suitable then push newPlan to filteredMobilePlans, then break the y for loop. Otherwise, continue looping and adding more addons to newPlan
           const addonPros = newPlan.addons.pros !== undefined ? newPlan.addons.reduce((allAddonPros, addonPros) => allAddonPros.concat([addonPros]),[]).pros : null;
           const addonCons = newPlan.addons.cons !== undefined ? newPlan.addons.reduce((allAddonCons, addonCons) => allAddonCons.concat([addonCons]),[]).cons : null;
+          const addonNotes = newPlan.addons.notes !== undefined ? newPlan.addons.reduce((allAddonNotes, addonNotes) => allAddonNotes.concat([addonNotes]),[]).notes : null;
           if (addonPros !== null && newPlan.pros !== undefined) { 
             newPlan.pros.push(addonPros);
           }
@@ -95,10 +96,16 @@ const ResultsList = props => {
           else if (addonCons !== null) {
             newPlan.cons = addonCons;
           }
+          if (addonNotes !== null && newPlan.notes !== undefined) { 
+            newPlan.notes.push(addonNotes);
+          }
+          else if (addonNotes !== null) {
+            newPlan.notes = addonNotes;
+          }
           filteredMobilePlans.push(newPlan);
           break;
         }
-        else if (addon.multiplier === true) { //multiplier addon cannot be combined with other addons
+        else if (addon.mutuallyExclusive === true) { //mutually exclusive addons cannot be combined with other addons
           break;
         }
       }

@@ -34,6 +34,7 @@ const ResultDetails = props => {
   
   const pros = props.resultSelected.pros !== undefined ? props.resultSelected.pros.map(pro => <li key={pro}>{pro}</li>) : null;
   const cons = props.resultSelected.cons !== undefined ? props.resultSelected.cons.map(con => <li key={con}>{con}</li>) : null;
+  const notes = props.resultSelected.notes !== undefined ? props.resultSelected.notes.map(note => <li key={note}>{note}</li>) : null;
   const basePlan = props.resultSelected.basePlan !== undefined ? props.resultSelected.basePlan : props.resultSelected;
   console.log(props.resultSelected.planName + basePlan.data);
   const addons = props.resultSelected.addons !== undefined ? props.resultSelected.addons : null;
@@ -63,7 +64,7 @@ const ResultDetails = props => {
             <Table className={classes.Table}>
               <TableHead>
                 <TableRow>
-                  <TableCell className={classes.tableHeadCell}>Breakdown</TableCell>
+                  <TableCell className={classes.tableHeadCell}>Breakdown:</TableCell>
                   <TableCell className={classes.tableHeadCell}>Data</TableCell>
                   <TableCell className={classes.tableHeadCell}>Talktime</TableCell>
                   <TableCell className={classes.tableHeadCell}>SMS</TableCell>
@@ -90,7 +91,7 @@ const ResultDetails = props => {
               {
                 pros !== null && 
                 <TableHead>
-                  <TableCell colSpan={5} className={classes.tableHeadCell}>Pros</TableCell>
+                  <TableCell colSpan={5} className={classes.tableHeadCell}>Pros:</TableCell>
                 </TableHead>
               }
               {
@@ -102,13 +103,25 @@ const ResultDetails = props => {
               {
                 cons !== null && 
                 <TableHead>
-                  <TableCell colSpan={5} className={classes.tableHeadCell}>Cons</TableCell>
+                  <TableCell colSpan={5} className={classes.tableHeadCell}>Cons:</TableCell>
                 </TableHead>
               }
               {
                 cons !== null && 
                 <TableBody>
                   <TableCell colSpan={5}><ul>{cons}</ul></TableCell>
+                </TableBody>
+              }
+              {
+                notes !== null && 
+                <TableHead>
+                  <TableCell colSpan={5} className={classes.tableHeadCell}>Things to Note:</TableCell>
+                </TableHead>
+              }
+              {
+                notes !== null && 
+                <TableBody>
+                  <TableCell colSpan={5}><ul>{notes}</ul></TableCell>
                 </TableBody>
               }
             </Table>
