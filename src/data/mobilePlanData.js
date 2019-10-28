@@ -1,3 +1,7 @@
+const NO_CONTRACT = 'No contract';
+const PLAN_12_MTH = '12 month contract';
+const PLAN_24_MTH = '24 month contract';
+
 const FREE_CALLER_ID = 'Free Caller ID';
 const FREE_VOICEMAIL = 'Free voicemail';
 const FREE_INCOMING_CALLS = 'Free incoming calls';
@@ -6,6 +10,7 @@ const FREE_REGISTRATION_DELIVERY_SIM = 'Free registration, delivery and SIM card
 const FREE_REGISTRATION_SIM = 'Free registration and SIM card';
 const FREE_NUMBER_PORTING = 'Free number porting';
 const FREE_MALAYSIA_INDO_DATA_ROAMING = 'Free data roaming in Malaysia and Indonesia';
+const FREE_WEEKEND_DATA = 'Free weekend data';
 
 const UNLIMITED_DATA_2_DAY = 'Data marketed as unlimited, but usage in excess of 2 GB/day may be at controlled speeds';
 const UNLIMITED_DATA_3_DAY = 'Data marketed as unlimited, but usage in excess of 3 GB/day may be at controlled speeds';
@@ -64,30 +69,37 @@ const mobilePlanData = [
   {
     telco: 'Singtel',
     planName: 'XO 48',
+    planType: PLAN_24_MTH,
     data: 5,
     talktime: 100,
     sms: 100,
     price: 48,
+    pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
   },
   {
     telco: 'Singtel',
     planName: 'XO 78',
+    planType: PLAN_24_MTH,
     data: 30,
     talktime: 300,
     sms: 300,
     price: 78,
+    pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ],
   },
   {
     telco: 'Singtel',
     planName: 'XO 108',
+    planType: PLAN_24_MTH,
     data: 50,
     talktime: 500,
     sms: 500,
     price: 108,
+    pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ],
   },
   {
     telco: 'Singtel',
     planName: 'Combo 1',
+    planType: PLAN_24_MTH,
     data: 0.1,
     talktime: 100,
     sms: 500,
@@ -96,35 +108,39 @@ const mobilePlanData = [
   {
     telco: 'Singtel',
     planName: 'Combo 2',
+    planType: PLAN_24_MTH,
     data: 2,
     talktime: 200,
     sms: 1000,
     price: 42.9,
-    pros: [SINGTEL_2GB_SINGTEL_WIFI],
+    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
   },
   {
     telco: 'Singtel',
     planName: 'Combo 3',
+    planType: PLAN_24_MTH,
     data: 3,
     talktime: 10000,
     sms: 10000,
     price: 68.9,
-    pros: [SINGTEL_2GB_SINGTEL_WIFI],
+    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
     notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000],
   },
   {
     telco: 'Singtel',
     planName: 'Combo 6',
+    planType: PLAN_24_MTH,
     data: 6,
     talktime: 10000,
     sms: 10000,
     price: 95.9,
-    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
+    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ],
     notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000],
   },
   {
     telco: 'Singtel',
     planName: 'Combo 12',
+    planType: PLAN_24_MTH,
     data: 12,
     talktime: 10000,
     sms: 10000,
@@ -134,25 +150,28 @@ const mobilePlanData = [
   },
   {
     telco: 'Singtel',
-    planName: 'SIM Only 10 GB Plan + Free extra 20 GB',
-    data: 30,
-    talktime: 150,
-    sms: 500,
-    price: 36.05,
-    pros: [SINGTEL_UNLIMITED_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS],
+    planName: 'SIM Only 3 GB Plan + Free 3 GB',
+    planType: NO_CONTRACT,
+    data: 6,
+    talktime: 0,
+    sms: 0,
+    price: 20,
+    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS],
   },
   {
     telco: 'Singtel',
-    planName: 'SIM Only 5 GB Plan + Free extra 10 GB',
-    data: 15,
+    planName: 'SIM Only 20 GB Plan',
+    planType: PLAN_12_MTH,
+    data: 20,
     talktime: 150,
     sms: 500,
-    price: 20,
-    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS],
+    price: 25.35,
+    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_UNLIMITED_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS],
   },
   {
     telco: 'Singtel',
     planName: 'Silver Combo 1',
+    planType: PLAN_24_MTH,
     data: 0.1,
     talktime: 100,
     sms: 500,
@@ -162,6 +181,7 @@ const mobilePlanData = [
   {
     telco: 'Singtel',
     planName: 'Silver Combo 2',
+    planType: PLAN_24_MTH,
     data: 2,
     talktime: 200,
     sms: 1000,
@@ -171,6 +191,7 @@ const mobilePlanData = [
   {
     telco: 'Singtel',
     planName: 'Silver Combo 3',
+    planType: PLAN_24_MTH,
     data: 3,
     talktime: 10000,
     sms: 10000,
@@ -181,6 +202,7 @@ const mobilePlanData = [
   {
     telco: 'Singtel',
     planName: 'Youth Combo 1',
+    planType: PLAN_24_MTH,
     data: 0.1,
     talktime: 100,
     sms: 10000,
@@ -191,6 +213,7 @@ const mobilePlanData = [
   {
     telco: 'Singtel',
     planName: 'Youth Combo 2',
+    planType: PLAN_24_MTH,
     data: 4,
     talktime: 10000,
     sms: 10000,
@@ -201,6 +224,7 @@ const mobilePlanData = [
   {
     telco: 'Singtel',
     planName: 'Youth Combo 3',
+    planType: PLAN_24_MTH,
     data: 7,
     talktime: 10000,
     sms: 10000,
@@ -211,6 +235,7 @@ const mobilePlanData = [
   {
     telco: 'Singtel',
     planName: 'Youth Combo 6',
+    planType: PLAN_24_MTH,
     data: 7,
     talktime: 10000,
     sms: 10000,
@@ -221,6 +246,7 @@ const mobilePlanData = [
   {
     telco: 'Circles.Life',
     planName: 'Base Plan (New number)',
+    planType: NO_CONTRACT,
     data: 20,
     talktime: 100,
     sms: 25,
@@ -230,6 +256,7 @@ const mobilePlanData = [
   {
     telco: 'Circles.Life',
     planName: 'Base Plan (Transfer number)',
+    planType: NO_CONTRACT,
     data: 20,
     talktime: 100,
     sms: 25,
@@ -240,6 +267,7 @@ const mobilePlanData = [
   {
     telco: 'Circles.Life',
     planName: '$5 Plan',
+    planType: NO_CONTRACT,
     data: 2,
     talktime: 50,
     sms: 25,
@@ -250,6 +278,7 @@ const mobilePlanData = [
   {
     telco: 'Gomo',
     planName: 'Base Plan',
+    planType: NO_CONTRACT,
     data: 20,
     talktime: 200,
     sms: 200,
@@ -259,6 +288,7 @@ const mobilePlanData = [
   {
     telco: 'Starhub',
     planName: '$50 2-year Plan',
+    planType: PLAN_24_MTH,
     data: 15,
     talktime: 100,
     sms: 0,
@@ -268,6 +298,7 @@ const mobilePlanData = [
   {
     telco: 'Starhub',
     planName: '$75 2-year Plan',
+    planType: PLAN_24_MTH,
     data: 40,
     talktime: 300,
     sms: 0,
@@ -277,6 +308,7 @@ const mobilePlanData = [
   {
     telco: 'Starhub',
     planName: '$105 2-year Plan',
+    planType: PLAN_24_MTH,
     data: 70,
     talktime: 500,
     sms: 0,
@@ -286,6 +318,7 @@ const mobilePlanData = [
   {
     telco: 'Starhub',
     planName: '$238 2-year Plan',
+    planType: PLAN_24_MTH,
     data: 110,
     talktime: 10000,
     sms: 10000,
@@ -295,6 +328,7 @@ const mobilePlanData = [
   {
     telco: 'Starhub',
     planName: '$25 SIM Only Plan',
+    planType: NO_CONTRACT,
     data: 15,
     talktime: 100,
     sms: 0,
@@ -304,6 +338,7 @@ const mobilePlanData = [
   {
     telco: 'Starhub',
     planName: '$50 SIM Only Plan',
+    planType: NO_CONTRACT,
     data: 40,
     talktime: 300,
     sms: 0,
@@ -313,6 +348,7 @@ const mobilePlanData = [
   {
     telco: 'Starhub',
     planName: '$80 SIM Only Plan',
+    planType: NO_CONTRACT,
     data: 70,
     talktime: 500,
     sms: 0,
@@ -322,6 +358,7 @@ const mobilePlanData = [
   {
     telco: 'M1',
     planName: 'SIM Only Plan',
+    planType: NO_CONTRACT,
     data: 30,
     talktime: 1000,
     sms: 1000,
@@ -331,6 +368,7 @@ const mobilePlanData = [
   {
     telco: 'M1',
     planName: 'Plan with Device',
+    planType: PLAN_24_MTH,
     data: 12,
     talktime: 100,
     sms: 100,
@@ -340,6 +378,7 @@ const mobilePlanData = [
   {
     telco: 'Zero1',
     planName: '1 GB to Unlimited Data',
+    planType: NO_CONTRACT,
     data: 1,
     talktime: 200,
     sms: 200,
@@ -350,6 +389,7 @@ const mobilePlanData = [
   {
     telco: 'Zero1',
     planName: '3 GB to Unlimited Data Bonus 12',
+    planType: NO_CONTRACT,
     data: 15,
     talktime: 200,
     sms: 200,
@@ -360,6 +400,7 @@ const mobilePlanData = [
   {
     telco: 'Zero1',
     planName: '9 GB to Unlimited Data Bonus 18',
+    planType: NO_CONTRACT,
     data: 27,
     talktime: 450,
     sms: 450,
@@ -370,6 +411,7 @@ const mobilePlanData = [
   {
     telco: 'Zero Mobile',
     planName: 'Zero X (New number)',
+    planType: NO_CONTRACT,
     data: 45,
     talktime: 5000,
     sms: 5000,
@@ -380,6 +422,7 @@ const mobilePlanData = [
   {
     telco: 'Zero Mobile',
     planName: 'Zero X (Transfer number)',
+    planType: NO_CONTRACT,
     data: 45,
     talktime: 5000,
     sms: 5000,
@@ -390,6 +433,7 @@ const mobilePlanData = [
   {
     telco: 'Zero Mobile',
     planName: 'Zero Xs (New number)',
+    planType: NO_CONTRACT,
     data: 45,
     talktime: 100,
     sms: 100,
@@ -400,6 +444,7 @@ const mobilePlanData = [
   {
     telco: 'Zero Mobile',
     planName: 'Zero Xs (Transfer number)',
+    planType: NO_CONTRACT,
     data: 45,
     talktime: 100,
     sms: 100,
@@ -410,6 +455,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Unlimited',
+    planType: NO_CONTRACT,
     data: 90,
     talktime: 8000,
     sms: 8000,
@@ -420,6 +466,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Unlimited (for existing broadband customers only)',
+    planType: NO_CONTRACT,
     data: 90,
     talktime: 8000,
     sms: 8000,
@@ -430,6 +477,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Uno 18',
+    planType: NO_CONTRACT,
     data: 1,
     talktime: 1000,
     sms: 1000,
@@ -440,6 +488,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Smart 35',
+    planType: NO_CONTRACT,
     data: 12,
     talktime: 1000,
     sms: 1000,
@@ -450,6 +499,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Smart 35 (for existing broadband customers only)',
+    planType: NO_CONTRACT,
     data: 15,
     talktime: 1000,
     sms: 1000,
@@ -460,6 +510,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Ultimate 80',
+    planType: NO_CONTRACT,
     data: 80,
     talktime: 1000,
     sms: 1000,
@@ -470,6 +521,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Mega 55',
+    planType: NO_CONTRACT,
     data: 18,
     talktime: 1000,
     sms: 1000,
@@ -480,6 +532,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Mega 55 (for existing broadband customers only)',
+    planType: NO_CONTRACT,
     data: 26,
     talktime: 1000,
     sms: 1000,
@@ -490,6 +543,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Xtra 85',
+    planType: NO_CONTRACT,
     data: 30,
     talktime: 1000,
     sms: 1000,
@@ -500,6 +554,7 @@ const mobilePlanData = [
   {
     telco: 'MyRepublic',
     planName: 'Xtra 85 (for existing broadband customers only)',
+    planType: NO_CONTRACT,
     data: 38,
     talktime: 1000,
     sms: 1000,
@@ -510,6 +565,7 @@ const mobilePlanData = [
   {
     telco: 'Giga!',
     planName: 'Base Plan',
+    planType: NO_CONTRACT,
     data: 25,
     talktime: 1000,
     sms: 1000,
@@ -519,6 +575,7 @@ const mobilePlanData = [
   {
     telco: 'TPG',
     planName: 'SIM Only Mobile Plan',
+    planType: NO_CONTRACT,
     data: 60,
     talktime: 20,
     sms: 20,

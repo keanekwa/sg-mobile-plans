@@ -18,9 +18,9 @@ const styles = theme => ({
     borderRadius: '0',
     padding: '1rem 1.5rem',
     '&:hover': {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.light,
       color: theme.palette.common.white,
-      borderBottom: '1px solid ' + theme.palette.primary.main,
+      borderBottom: '1px solid ' + theme.palette.primary.light,
     },
   },    
   ResultSelected: {

@@ -29,14 +29,34 @@ const styles = theme => ({
   },
 });
 
+const addPlanTypeToProsCons = (planType, propsProsCons) => {
+  let newProsOrCons = null;
+  if (propsProsCons !== undefined) {
+    newProsOrCons = [planType].concat(propsProsCons);
+  }
+  else {
+    newProsOrCons = [planType];
+  }
+  return newProsOrCons;
+}
+
 const ResultDetails = props => {
   const { classes } = props;
   
-  const pros = props.resultSelected.pros !== undefined ? props.resultSelected.pros.map(pro => <li key={pro}>{pro}</li>) : null;
-  const cons = props.resultSelected.cons !== undefined ? props.resultSelected.cons.map(con => <li key={con}>{con}</li>) : null;
-  const notes = props.resultSelected.notes !== undefined ? props.resultSelected.notes.map(note => <li key={note}>{note}</li>) : null;
+  let pros = null;
+  let cons = null;
+  if (props.resultSelected.planType === 'No contract') {
+    pros = addPlanTypeToProsCons(props.resultSelected.planType, props.resultSelected.pros);
+    cons = props.resultSelected.cons !== undefined ? props.resultSelected.cons : null;
+  }
+  else if (props.resultSelected.planType === '24 month contract' || props.resultSelected.planType === '12 month contract') {
+    cons = addPlanTypeToProsCons(props.resultSelected.planType, props.resultSelected.cons);
+    pros = props.resultSelected.pros !== undefined ? props.resultSelected.pros : null;
+  }
+  let mappedPros = pros !== null ? pros.map(prosCons => <li key={prosCons}>{prosCons}</li>) : null;
+  let mappedCons= cons !== null ? cons.map(prosCons => <li key={prosCons}>{prosCons}</li>) : null;
+  const mappedNotes = props.resultSelected.notes !== undefined ? props.resultSelected.notes.map(note => <li key={note}>{note}</li>) : null;
   const basePlan = props.resultSelected.basePlan !== undefined ? props.resultSelected.basePlan : props.resultSelected;
-  console.log(props.resultSelected.planName + basePlan.data);
   const addons = props.resultSelected.addons !== undefined ? props.resultSelected.addons : null;
   const addonTableRows = addons !== null && addons.map( addon => (
     <TableRow>
@@ -89,39 +109,51 @@ const ResultDetails = props => {
                 </TableRow>
               </TableBody>
               {
-                pros !== null && 
+                mappedPros !== null && 
                 <TableHead>
-                  <TableCell colSpan={5} className={classes.tableHeadCell}>Pros:</TableCell>
+                  <TableRow>
+                    <TableCell colSpan={5} className={classes.tableHeadCell}>Pros:</TableCell>
+                  </TableRow>
                 </TableHead>
               }
               {
-                pros !== null && 
+                mappedPros !== null && 
                 <TableBody>
-                  <TableCell colSpan={5}><ul>{pros}</ul></TableCell>
+                  <TableRow>
+                    <TableCell colSpan={5}><ul>{mappedPros}</ul></TableCell>
+                  </TableRow>
                 </TableBody>
               }
               {
-                cons !== null && 
+                mappedCons !== null && 
                 <TableHead>
-                  <TableCell colSpan={5} className={classes.tableHeadCell}>Cons:</TableCell>
+                  <TableRow>
+                    <TableCell colSpan={5} className={classes.tableHeadCell}>Cons:</TableCell>
+                  </TableRow>
                 </TableHead>
               }
               {
-                cons !== null && 
+                mappedCons !== null && 
                 <TableBody>
-                  <TableCell colSpan={5}><ul>{cons}</ul></TableCell>
+                  <TableRow>
+                    <TableCell colSpan={5}><ul>{mappedCons}</ul></TableCell>
+                  </TableRow>
                 </TableBody>
               }
               {
-                notes !== null && 
+                mappedNotes !== null && 
                 <TableHead>
-                  <TableCell colSpan={5} className={classes.tableHeadCell}>Things to Note:</TableCell>
+                  <TableRow>
+                    <TableCell colSpan={5} className={classes.tableHeadCell}>Things to Note:</TableCell>
+                  </TableRow>
                 </TableHead>
               }
               {
-                notes !== null && 
+                mappedNotes !== null && 
                 <TableBody>
-                  <TableCell colSpan={5}><ul>{notes}</ul></TableCell>
+                  <TableRow>
+                    <TableCell colSpan={5}><ul>{mappedNotes}</ul></TableCell>
+                  </TableRow>
                 </TableBody>
               }
             </Table>
