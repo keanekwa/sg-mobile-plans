@@ -24,9 +24,11 @@ const styles = theme => ({
     },
   },    
   ResultSelected: {
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.common.white,
-    borderBottom: '1px solid ' + theme.palette.primary.dark,
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.primary.dark,
+      color: theme.palette.common.white,
+      borderBottom: '1px solid ' + theme.palette.primary.dark,
+    },
   },
   ResultLeft: {
     maxWidth: '70%',
@@ -40,6 +42,7 @@ const Result = props => {
     <Button className={clsx(classes.Result, props.resultSelected === props.mobilePlan && classes.ResultSelected)} fullWidth={true} onClick={() => {props.setResultSelected(props.mobilePlan); props.setIsShowMobileResultDetails(true);}}>
       <Box className={classes.ResultLeft}>
         <Typography variant='h6'>{props.mobilePlan.telco} {props.mobilePlan.planName}</Typography>
+        <Box>{props.mobilePlan.planType}</Box>
         {
           (props.mobilePlan.addons !== undefined && props.mobilePlan.addons !== []) && 
           <Box>

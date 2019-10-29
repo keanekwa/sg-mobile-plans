@@ -117,7 +117,7 @@ const ResultsList = props => {
 
   return (
     <Box className={classes.ResultsList}>
-      <AppBar className={classes.AppBar} position='static'>
+      <AppBar className={classes.AppBar} position='sticky'>
         <Toolbar>
           <IconButton color='inherit' onClick={() => props.setIsShowResults(false)}>
             <ArrowBackIcon/>
@@ -135,7 +135,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setIsShowResults: isShowResults=> dispatch(setIsShowResults(isShowResults)),
+  setIsShowResults: isShowResults => dispatch(setIsShowResults(isShowResults)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ResultsList));

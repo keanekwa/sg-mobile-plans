@@ -10,12 +10,12 @@ import { setIsShowMobileResultDetails } from '../../redux/results/results-action
 import { blueGrey } from '@material-ui/core/colors';
 
 const styles = theme => ({
+  fullHeight: {
+    height: '100%',
+  },
   contentBox: {
     maxWidth: '100%',
-    overflowX: 'auto',
-  },
-  Table: {
-    marginBottom: '1.5rem',
+    overflow: 'auto',
   },
   tableHeadCell: {
     backgroundColor: blueGrey[100],
@@ -69,8 +69,8 @@ const ResultDetails = props => {
   ));
 
   return (
-    <Box>
-      <AppBar className={classes.AppBar} position='static'>
+    <Box className={classes.fullHeight}>
+      <AppBar className={classes.AppBar} position='sticky'>
         <Toolbar>
           <IconButton color='inherit' onClick={() => props.setIsShowMobileResultDetails(false)}>
             <ArrowBackIcon/>
@@ -78,9 +78,9 @@ const ResultDetails = props => {
           <Box>{props.resultSelected.telco} {props.resultSelected.planName} - ${props.resultSelected.price.toFixed(2)}</Box>
         </Toolbar>
       </AppBar>
-      <Fade in={true} timeout={500} mountOnEnter unmountOnExit>
-        <Box>
-          <Box className={classes.contentBox}>
+      <Fade className={classes.fullHeight} in={true} timeout={500} mountOnEnter unmountOnExit>
+        <Box className={classes.fullHeight}>
+          <Box className={`${classes.contentBox} ${classes.fullHeight}`}>
             <Table className={classes.Table}>
               <TableHead>
                 <TableRow>
