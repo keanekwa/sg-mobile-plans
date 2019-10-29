@@ -1,6 +1,6 @@
 import React from 'react';
 //import components
-import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography } from '@material-ui/core'
+import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography, FormGroup, FormControlLabel, Checkbox } from '@material-ui/core'
 //import styles
 import { withStyles } from '@material-ui/core/styles';
 //import redux
@@ -28,7 +28,10 @@ const styles = theme => ({
   },
   Button: {
     padding: '14px 24px',
-  }
+  },
+  FormGroupGrid: {
+    paddingTop: '0 !important',
+  },
 });
 
 class SelectSelfOptions extends React.Component {
@@ -129,6 +132,94 @@ class SelectSelfOptions extends React.Component {
                   }}
                   variant='outlined' fullWidth={true} onChange={(event) => this.handleChange(event, 'price')}
                 />
+              </Grid>
+              <Grid item className={classes.question} xs={12}>Length of contract:</Grid>
+              <Grid className={classes.FormGroupGrid} item xs={12}>
+                <FormGroup row>
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'planTypes')} value='No contract' />
+                    }
+                    label='No contract'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'planTypes')} value='12 month contract' />
+                    }
+                    label='12 month contract'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'planTypes')} value='24 month contract' />
+                    }
+                    label='24 month contract'
+                  />
+                </FormGroup>
+              </Grid>
+              <Grid item className={classes.question} xs={12}>Preferred service providers:</Grid>
+              <Grid className={classes.FormGroupGrid} item xs={12}>
+                <FormGroup row>
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Singtel' />
+                    }
+                    label='Singtel'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Starhub' />
+                    }
+                    label='Starhub'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='M1' />
+                    }
+                    label='M1'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Starhub' />
+                    }
+                    label='Starhub'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Circles.Life' />
+                    }
+                    label='Circles.Life'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Gomo' />
+                    }
+                    label='Gomo'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Zero1' />
+                    }
+                    label='Zero1'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Zero Mobile' />
+                    }
+                    label='Zero Moblie'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='MyRepublic' />
+                    }
+                    label='MyRepublic'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='TPG' />
+                    }
+                    label='TPG'
+                  />
+                </FormGroup>
               </Grid>
               <Grid item xs={12}>
                 <Button className={classes.Button} onClick={() => this.props.setIsShowResults(true)} variant='contained' size='large' color='primary'>Confirm</Button>
