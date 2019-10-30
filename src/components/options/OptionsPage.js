@@ -1,6 +1,6 @@
 import React from 'react';
 //import components
-import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography, FormGroup, FormControlLabel, Checkbox } from '@material-ui/core'
+import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography, FormGroup, FormControlLabel, Checkbox, Box } from '@material-ui/core'
 //import styles
 import { withStyles } from '@material-ui/core/styles';
 //import redux
@@ -29,207 +29,161 @@ const styles = theme => ({
   Button: {
     padding: '14px 24px',
   },
-  FormGroupGrid: {
-    paddingTop: '0 !important',
+  planTypeGrid: {
+    padding: '8px 8px 0 8px !important',
   },
 });
 
-class SelectSelfOptions extends React.Component {
-  componentDidMount () {
-    this.props.setOptions({
-        minData: 0,
-        minTalktime: 0,
-        minSMS: 0,
-        price: 0,
-      }
-    );
+const SelectSelfOptions = props => {
+  const { classes } = props;
+
+  const handleChange = (event, option) => {
+    const newOptions = props.options;
+    if (option === 'planTypes' || option === 'telcos') {
+      newOptions[`${option}`].forEach((planType) => {
+        if (planType.planType === event.target.value) {
+          planType.isChecked = event.target.checked;
+        }
+      });
+    }
+    else {
+      newOptions[`${option}`] = event.target.value;
+    }
+    props.setOptions(newOptions);
   }
 
-  handleChange = (event, option) => {
-    const newOptions = this.props.options;
-    newOptions[`${option}`] = event.target.value;
-    this.props.setOptions(newOptions);
-  }
-
-  render () {
-    const { classes } = this.props;
-    return (
-      <Container className={classes.outerContainer} maxWidth={false}>
-        <Container maxWidth='lg'>
-          <Paper className={classes.Paper}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}><Typography variant='h4' gutterBottom={true}>Find the best mobile plan for your needs.</Typography></Grid>
-              <Grid item className={classes.question} xs={12}>I need at least:</Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.TextFieldLabel,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.TextField,
-                      notchedOutline: classes.TextFieldNotchedOutline,
-                    },
-                    inputMode: 'numeric',
-                    endAdornment:
-                      <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>GB</InputAdornment>,
-                  }}
-                  variant='outlined' label='Data' fullWidth={true} onChange={(event) => this.handleChange(event, 'minData')}
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.TextFieldLabel,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.TextField,
-                      notchedOutline: classes.TextFieldNotchedOutline,
-                    },
-                    inputMode: 'numeric',
-                    endAdornment: <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>min</InputAdornment>,
-                  }}
-                  variant='outlined' label='Talktime' fullWidth={true} onChange={(event) => this.handleChange(event, 'minTalktime')}
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.TextFieldLabel,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.TextField,
-                      notchedOutline: classes.TextFieldNotchedOutline,
-                    },
-                    inputMode: 'numeric',
-                  }}
-                  variant='outlined' label='SMS' fullWidth={true} onChange={(event) => this.handleChange(event, 'minSMS')}
-                />
-              </Grid>
-              <Grid item className={classes.question} xs={12}>My monthly budget is:</Grid>
-              <Grid item xs={12}>
-                <TextField
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.TextFieldLabel,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.TextField,
-                      notchedOutline: classes.TextFieldNotchedOutline,
-                    },
-                    inputMode: 'numeric',
-                    startAdornment: <InputAdornment className={classes.InputAdornment} position='start' disableTypography={true}>$</InputAdornment>,
-                  }}
-                  variant='outlined' fullWidth={true} onChange={(event) => this.handleChange(event, 'price')}
-                />
-              </Grid>
-              <Grid item className={classes.question} xs={12}>Length of contract:</Grid>
-              <Grid className={classes.FormGroupGrid} item xs={12}>
-                <FormGroup row>
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'planTypes')} value='No contract' />
-                    }
-                    label='No contract'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'planTypes')} value='12 month contract' />
-                    }
-                    label='12 month contract'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'planTypes')} value='24 month contract' />
-                    }
-                    label='24 month contract'
-                  />
-                </FormGroup>
-              </Grid>
-              <Grid item className={classes.question} xs={12}>Preferred service providers:</Grid>
-              <Grid className={classes.FormGroupGrid} item xs={12}>
-                <FormGroup row>
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Singtel' />
-                    }
-                    label='Singtel'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Starhub' />
-                    }
-                    label='Starhub'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='M1' />
-                    }
-                    label='M1'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Starhub' />
-                    }
-                    label='Starhub'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Circles.Life' />
-                    }
-                    label='Circles.Life'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Gomo' />
-                    }
-                    label='Gomo'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Zero1' />
-                    }
-                    label='Zero1'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='Zero Mobile' />
-                    }
-                    label='Zero Moblie'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='MyRepublic' />
-                    }
-                    label='MyRepublic'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked onChange={(event) => this.handleChange(event, 'preferredTelcos')} value='TPG' />
-                    }
-                    label='TPG'
-                  />
-                </FormGroup>
-              </Grid>
-              <Grid item xs={12}>
-                <Button className={classes.Button} onClick={() => this.props.setIsShowResults(true)} variant='contained' size='large' color='primary'>Confirm</Button>
-              </Grid>
+  return (
+    <Container className={classes.outerContainer} maxWidth={false}>
+      <Container maxWidth='lg'>
+        <Paper className={classes.Paper}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}><Typography variant='h4' gutterBottom={true}>Find the best mobile plan for your needs.</Typography></Grid>
+            <Grid item className={classes.question} xs={12}>I need at least:</Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                InputLabelProps={{
+                  classes: {
+                    root: classes.TextFieldLabel,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.TextField,
+                    notchedOutline: classes.TextFieldNotchedOutline,
+                  },
+                  inputMode: 'numeric',
+                  endAdornment:
+                    <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>GB</InputAdornment>,
+                }}
+                type='number' variant='outlined' label='Data' fullWidth={true} onChange={(event) => handleChange(event, 'minData')}
+              />
             </Grid>
-          </Paper>
-        </Container>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                InputLabelProps={{
+                  classes: {
+                    root: classes.TextFieldLabel,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.TextField,
+                    notchedOutline: classes.TextFieldNotchedOutline,
+                  },
+                  inputMode: 'numeric',
+                  endAdornment: <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>min</InputAdornment>,
+                }}
+                type='number' variant='outlined' label='Talktime' fullWidth={true} onChange={(event) => handleChange(event, 'minTalktime')}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                InputLabelProps={{
+                  classes: {
+                    root: classes.TextFieldLabel,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.TextField,
+                    notchedOutline: classes.TextFieldNotchedOutline,
+                  },
+                  inputMode: 'numeric',
+                }}
+                type='number' variant='outlined' label='SMS' fullWidth={true} onChange={(event) => handleChange(event, 'minSMS')}
+              />
+            </Grid>
+            <Grid item className={classes.question} xs={12}>My monthly budget is:</Grid>
+            <Grid item xs={12}>
+              <TextField
+                InputLabelProps={{
+                  classes: {
+                    root: classes.TextFieldLabel,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.TextField,
+                    notchedOutline: classes.TextFieldNotchedOutline,
+                  },
+                  inputMode: 'numeric',
+                  startAdornment: <InputAdornment className={classes.InputAdornment} position='start' disableTypography={true}>$</InputAdornment>,
+                }}
+                type='number' variant='outlined' fullWidth={true} onChange={(event) => handleChange(event, 'price')}
+              />
+            </Grid>
+            {
+              props.options.planTypes !== undefined && (
+                <Grid item xs={12} className={classes.planTypeGrid}>
+                  <Box className={classes.question}>Length of contract:</Box>
+                  <FormGroup row>
+                    {
+                      props.options.planTypes.map((planType) => {
+                        return (
+                          <FormControlLabel
+                            key={planType.planType}
+                            control={
+                              <Checkbox defaultChecked={true} value={planType.planType} onChange={(event) => handleChange(event, 'planTypes')}/>
+                            }
+                            label={planType.planType}
+                          />
+                        );
+                      })
+                    }
+                  </FormGroup>
+                </Grid>
+              )
+            }
+            {
+              props.options.telcos !== undefined && (
+                <Grid item xs={12}>
+                  <Box className={classes.question}>Preferred telcos:</Box>
+                  <FormGroup row>
+                    {
+                      props.options.telcos.map((telco) => {
+                        return (
+                          <FormControlLabel
+                            key={telco.telco}
+                            control={
+                              <Checkbox defaultChecked={true} value={telco.telco} onChange={(event) => handleChange(event, 'telcos')}/>
+                            }
+                            label={telco.telco}
+                          />
+                        );
+                      })
+                    }
+                  </FormGroup>
+                </Grid>
+              )
+            }
+            <Grid item xs={12}>
+              <Button className={classes.Button} onClick={() => props.setIsShowResults(true)} variant='contained' size='large' color='primary'>Confirm</Button>
+            </Grid>
+          </Grid>
+        </Paper>
       </Container>
-    );
-  }
+    </Container>
+  );
 }
 
 const mapStateToProps = state => ({
