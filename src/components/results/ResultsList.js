@@ -32,12 +32,12 @@ const ResultsList = props => {
   const options = props.options;
   options.planTypesArray = [];
   options.telcosArray = [];
-  options.planTypes.map((planType) => {
+  options.planTypes.forEach((planType) => {
     if (planType.isChecked === true) {
       options.planTypesArray.push(planType.value);
     }
   });
-  options.telcos.map((telco) => {
+  options.telcos.forEach((telco) => {
     if (telco.isChecked === true) {
       options.telcosArray.push(telco.value);
     }
