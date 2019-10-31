@@ -42,7 +42,7 @@ const ResultsPage = props => {
           <IconButton color='inherit' onClick={() => props.setIsShowResults(false)}>
             <ArrowBackIcon/>
           </IconButton>
-          <Box>Suitable Plans</Box>
+          <Box>Suitable Mobile Plans</Box>
         </Toolbar>
       </AppBar>
       <Grid container className={classes.fullHeight}>

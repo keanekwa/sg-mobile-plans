@@ -30,19 +30,39 @@ const styles = theme => ({
 const ResultsList = props => {
   const { classes } = props;
   const options = props.options;
+  options.planTypesArray = [];
+  options.telcosArray = [];
+  options.planTypes.map((planType) => {
+    if (planType.isChecked === true) {
+      options.planTypesArray.push(planType.value);
+    }
+  });
+  options.telcos.map((telco) => {
+    if (telco.isChecked === true) {
+      options.telcosArray.push(telco.value);
+    }
+  });
+
+  //filter out the mobile plans
   const filteredMobilePlans = mobilePlanData.filter((mobilePlan) =>
     mobilePlan.data >= options.minData &&
     mobilePlan.talktime >=  options.minTalktime &&
     mobilePlan.sms >=  options.minSMS &&
-    mobilePlan.price <= options.price
+    mobilePlan.price <= options.price &&
+    options.planTypesArray.includes(mobilePlan.planType) &&
+    options.telcosArray.includes(mobilePlan.telco)
   );
 
-  //see if addding addons can make plans that meet requirements
-  const unfilteredMobilePlans = mobilePlanData.filter((mobilePlan) =>
-    mobilePlan.data < options.minData ||
-    mobilePlan.talktime < options.minTalktime ||
-    mobilePlan.sms < options.minSMS ||
-    mobilePlan.price > options.price
+  //see if adding addons can make plans that meet requirements (but must still make sure they are within contract duration and preferred telcos selected)
+  const unfilteredMobilePlans = mobilePlanData.filter((mobilePlan) => 
+    (
+      mobilePlan.data < options.minData ||
+      mobilePlan.talktime < options.minTalktime ||
+      mobilePlan.sms < options.minSMS ||
+      mobilePlan.price > options.price
+    ) &&
+    options.planTypesArray.includes(mobilePlan.telco) &&
+    options.telcosArray.includes(mobilePlan.telco)
   );
 
   for (const mobilePlan of unfilteredMobilePlans) { //go through all the plans that fail the criteria
@@ -122,7 +142,7 @@ const ResultsList = props => {
           <IconButton color='inherit' onClick={() => props.setIsShowResults(false)}>
             <ArrowBackIcon/>
           </IconButton>
-          <Box>Suitable Plans</Box>
+          <Box>Suitable Mobile Plans</Box>
         </Toolbar>
       </AppBar>
       {filteredMobilePlans[0] !== undefined ? mobilePlansMapped : 'Sorry but there are no suitable plans for you. Please adjust your selection criteria.'}

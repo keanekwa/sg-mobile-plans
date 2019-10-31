@@ -40,9 +40,9 @@ const SelectSelfOptions = props => {
   const handleChange = (event, option) => {
     const newOptions = props.options;
     if (option === 'planTypes' || option === 'telcos') {
-      newOptions[`${option}`].forEach((planType) => {
-        if (planType.planType === event.target.value) {
-          planType.isChecked = event.target.checked;
+      newOptions[`${option}`].forEach((subOption) => {
+        if (subOption.value === event.target.value) {
+          subOption.isChecked = event.target.checked;
         }
       });
     }
@@ -141,11 +141,11 @@ const SelectSelfOptions = props => {
                       props.options.planTypes.map((planType) => {
                         return (
                           <FormControlLabel
-                            key={planType.planType}
+                            key={planType.value}
                             control={
-                              <Checkbox defaultChecked={true} value={planType.planType} onChange={(event) => handleChange(event, 'planTypes')}/>
+                              <Checkbox defaultChecked={true} value={planType.value} onChange={(event) => handleChange(event, 'planTypes')}/>
                             }
-                            label={planType.planType}
+                            label={planType.value}
                           />
                         );
                       })
@@ -163,11 +163,11 @@ const SelectSelfOptions = props => {
                       props.options.telcos.map((telco) => {
                         return (
                           <FormControlLabel
-                            key={telco.telco}
+                            key={telco.value}
                             control={
-                              <Checkbox defaultChecked={true} value={telco.telco} onChange={(event) => handleChange(event, 'telcos')}/>
+                              <Checkbox defaultChecked={true} value={telco.value} onChange={(event) => handleChange(event, 'telcos')}/>
                             }
-                            label={telco.telco}
+                            label={telco.value}
                           />
                         );
                       })

@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//import components
+import App from './App';
+//import styles
 import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { blueGrey } from '@material-ui/core/colors';
+//import redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import App from './App';
-import { blueGrey } from '@material-ui/core/colors';
+//imports for IE11 compatibility
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 
 const theme = createMuiTheme({
   palette: {

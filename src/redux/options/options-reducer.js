@@ -6,53 +6,52 @@ const INITIAL_STATE = {
     price: 0,
     planTypes: [
       {
-        planType: 'No contract',
+        value: 'No contract',
         isChecked: true,
       },
       {
-        planType: '12 month contract',
+        value: '12 month contract',
         isChecked: true,
       },
       {
-        planType: '24 month contract',
+        value: '24 month contract',
         isChecked: true,
       },
     ],
     telcos: [
       {
-        telco: 'Singtel',
+        value: 'Singtel',
         isChecked: true,
       },
       {
-        telco: 'Starhub',
+        value: 'Starhub',
         isChecked: true,
       },
       {
-        telco: 'M1',
+        value: 'M1',
         isChecked: true,
       },
       {
-        telco: 'Circles.Life',
+        value: 'Circles.Life',
         isChecked: true,
       },
       {
-        telco: 'Gomo',
+        value: 'Gomo',
         isChecked: true,
       },
       {
-        telco: 'Giga!',
+        value: 'Giga!',
         isChecked: true,
       },
       {
-        telco: 'MyRepublic',
+        value: 'MyRepublic',
         isChecked: true,
       },
       {
-        telco: 'TPG',
+        value: 'TPG',
         isChecked: true,
       },
     ],
-    //todo: add preferredTelcos
   }
 }
 
