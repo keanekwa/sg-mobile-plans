@@ -31,17 +31,19 @@ const styles = theme => ({
     color: 'white',
   },
   '@global': {
-    '*::-webkit-scrollbar': {
-      width: '7px',
+    [theme.breakpoints.up('md')]: {
+      '*::-webkit-scrollbar': {
+        width: '7px',
+      },
+      '*::-webkit-scrollbar-track': {
+        '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)',
+        backgroundColor: '#eee',
+      },
+      '*::-webkit-scrollbar-thumb': {
+        backgroundColor: theme.palette.secondary.main,
+        outline: '1px solid slategrey',
+      },
     },
-    '*::-webkit-scrollbar-track': {
-      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)',
-      backgroundColor: '#eee',
-    },
-    '*::-webkit-scrollbar-thumb': {
-      backgroundColor: theme.palette.secondary.main,
-      outline: '1px solid slategrey',
-    }
   }
 });
 
