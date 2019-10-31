@@ -18,7 +18,7 @@ const styles = theme => ({
     overflow: 'auto',
   },
   tableHeadCell: {
-    backgroundColor: blueGrey[100],
+    backgroundColor: blueGrey[50],
     fontWeight: '700',
   },
   AppBar: {

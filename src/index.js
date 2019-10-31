@@ -16,7 +16,11 @@ import 'react-app-polyfill/stable';
 const theme = createMuiTheme({
   palette: {
     type: 'light',
-    secondary: blueGrey,
+    secondary: {
+      light: blueGrey[100],
+      main: blueGrey[500],
+      dark: blueGrey[700],
+    },
   },
   typography: {
     fontFamily: 'Noto Sans, Helvetica, Arial, sans-serif',
@@ -51,7 +55,7 @@ const theme = createMuiTheme({
       h6: {
         fontWeight: 700,
       },
-    }
+    },
   },
 });
 

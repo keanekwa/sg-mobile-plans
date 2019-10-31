@@ -75,7 +75,7 @@ const SelectSelfOptions = props => {
                   endAdornment:
                     <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>GB</InputAdornment>,
                 }}
-                type='number' variant='outlined' label='Data' fullWidth={true} onChange={(event) => handleChange(event, 'minData')}
+                type='number' variant='outlined' label='Data' defaultValue={props.options.minData !== 0 && props.options.minData} fullWidth={true} onChange={(event) => handleChange(event, 'minData')}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -93,7 +93,7 @@ const SelectSelfOptions = props => {
                   inputMode: 'numeric',
                   endAdornment: <InputAdornment className={classes.InputAdornment} position='end' disableTypography={true}>min</InputAdornment>,
                 }}
-                type='number' variant='outlined' label='Talktime' fullWidth={true} onChange={(event) => handleChange(event, 'minTalktime')}
+                type='number' variant='outlined' label='Talktime' defaultValue={props.options.minTalktime !== 0 && props.options.minTalktime} fullWidth={true} onChange={(event) => handleChange(event, 'minTalktime')}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -110,7 +110,7 @@ const SelectSelfOptions = props => {
                   },
                   inputMode: 'numeric',
                 }}
-                type='number' variant='outlined' label='SMS' fullWidth={true} onChange={(event) => handleChange(event, 'minSMS')}
+                type='number' variant='outlined' label='SMS' defaultValue={props.options.minSMS !== 0 && props.options.minSMS} fullWidth={true} onChange={(event) => handleChange(event, 'minSMS')}
               />
             </Grid>
             <Grid item className={classes.question} xs={12}>My monthly budget is:</Grid>
@@ -129,7 +129,7 @@ const SelectSelfOptions = props => {
                   inputMode: 'numeric',
                   startAdornment: <InputAdornment className={classes.InputAdornment} position='start' disableTypography={true}>$</InputAdornment>,
                 }}
-                type='number' variant='outlined' fullWidth={true} onChange={(event) => handleChange(event, 'price')}
+                type='number' variant='outlined' defaultValue={props.options.price !== 0 && props.options.price} fullWidth={true} onChange={(event) => handleChange(event, 'price')}
               />
             </Grid>
             {
@@ -143,7 +143,7 @@ const SelectSelfOptions = props => {
                           <FormControlLabel
                             key={planType.value}
                             control={
-                              <Checkbox defaultChecked={true} value={planType.value} onChange={(event) => handleChange(event, 'planTypes')}/>
+                              <Checkbox defaultChecked={planType.isChecked} value={planType.value} onChange={(event) => handleChange(event, 'planTypes')}/>
                             }
                             label={planType.value}
                           />
@@ -165,7 +165,7 @@ const SelectSelfOptions = props => {
                           <FormControlLabel
                             key={telco.value}
                             control={
-                              <Checkbox defaultChecked={true} value={telco.value} onChange={(event) => handleChange(event, 'telcos')}/>
+                              <Checkbox defaultChecked={telco.isChecked} value={telco.value} onChange={(event) => handleChange(event, 'telcos')}/>
                             }
                             label={telco.value}
                           />

@@ -42,14 +42,13 @@ const Result = props => {
     <Button className={clsx(classes.Result, props.resultSelected === props.mobilePlan && classes.ResultSelected)} fullWidth={true} onClick={() => {props.setResultSelected(props.mobilePlan); props.setIsShowMobileResultDetails(true);}}>
       <Box className={classes.ResultLeft}>
         <Typography variant='h6'>{props.mobilePlan.telco} {props.mobilePlan.planName}</Typography>
-        <Box>{props.mobilePlan.planType}</Box>
         {
           (props.mobilePlan.addons !== undefined && props.mobilePlan.addons !== []) && 
           <Box>
             Combine with addons: {props.mobilePlan.addons.map((addon) => <Box key={addon.addonName}>{addon.addonName} Addon (x{addon.addonMultiple}) </Box>)}
           </Box>
         }
-        <Box>{props.mobilePlan.data} GB | {props.mobilePlan.talktime} min | {props.mobilePlan.sms} SMS</Box>
+        <Box>{props.mobilePlan.data} GB | {props.mobilePlan.talktime} min | {props.mobilePlan.sms} SMS | {props.mobilePlan.planType}</Box>
       </Box>
       <Box>${props.mobilePlan.price.toFixed(2)}</Box>
     </Button>

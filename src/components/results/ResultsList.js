@@ -4,7 +4,7 @@ import mobilePlanData from '../../data/mobilePlanData';
 import addonsData from '../../data/addonsData';
 //import styles
 import { withStyles } from '@material-ui/styles';
-import { indigo } from '@material-ui/core/colors/';
+import { blueGrey } from '@material-ui/core/colors/';
 //import components
 import { Box, AppBar, Toolbar, IconButton } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -17,7 +17,7 @@ const styles = theme => ({
   ResultsList: {
     height: '100%',
     overflowY: 'auto',
-    borderRight: '1px solid ' + indigo[100],
+    borderRight: '1px solid ' + theme.palette.secondary.light,
   },
   AppBar: {
     [theme.breakpoints.up('md')]: {
