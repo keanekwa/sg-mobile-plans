@@ -40,17 +40,21 @@ const SINGTEL_24MTHS_HOOQ = '24 mth HOOQ';
 const SINGTEL_500_YEARLY_HANDSET_VOUCHER = '$500 yearly handset upgrade voucher';
 const SINGTEL_FREE_AUTOROAM = 'Free AutoRoam';
 
+const CIRCLES_NO_ADDONS_FOR_5_PLAN = 'Phones, roaming, and unlimited data addons are not available with this plan (only available with 20GB Base Plan)';
+const CIRCLES_PRICE_RETURNS_28 = 'Price returns to $28/mth after 1 year';
+const CIRCLES_ONE_DAY_UNLIMITED_DATA = 'Get unlimited data on demand for $3/day (capped at 100 GB/mth as per Circles.Life fair usage policy)';
+
 const STARHUB_FREE_WEEKEND_DATA = 'Online exclusive: Free weekend data (10 GB/day on Sat and Sun)';
 const STARHUB_FREE_INTERNATIONAL_ROAMING = 'Free International Roaming (opt-in is required)';
 const STARHUB_ONLINE_120_REBATE = 'Online exclusive: $120 bill rebate';
-
-const CIRCLES_NO_ADDONS_FOR_5_PLAN = 'Phones, roaming, and unlimited data addons are not available with this plan (only available with 20GB Base Plan)';
-const CIRCLES_PRICE_RETURNS_28 = 'Price returns to $28/mth after 1 year';
+const STARHUB_THREE_DAY_UNLIMITED_DATA = 'Get 1 GB data for 3 days for $3';
+const STARHUB_DATA_FREE_APPS = 'Get unlimted data on your favourite apps like Whatsapp, Netflix, or Instagram from $6/mth';
 
 const M1_FREE_M1_CALLS = 'Unlimited Free Calls to 3 M1 Numbers';
 const M1_UNLIMITED_SPOTIFY = 'Unlimited Streaming of Music on Spotify';
 const M1_FREE_WEEKEND_DATA = 'Free 3/6 month unlimited weekend data for new sign ups for existing/new M1 customers respectively';
 const M1_FREE_CALLER_ID = 'Free 3/6 month Caller ID for new sign ups for existing/new M1 customers respectively';
+const M1_THREE_DAY_BUNDLE = 'Get 2GB data and unlimited talktime for 3 days for $5';
 
 const ZERO1_FREE_UMESPACE = 'Free umeSpace (64 GB Cloud Storage)'
 
@@ -252,6 +256,7 @@ const mobilePlanData = [
     sms: 25,
     price: 28,
     pros: [FREE_CALLER_ID],
+    notes: [CIRCLES_ONE_DAY_UNLIMITED_DATA],
   },
   {
     telco: 'Circles.Life',
@@ -262,7 +267,7 @@ const mobilePlanData = [
     sms: 25,
     price: 18,
     pros: [FREE_CALLER_ID],
-    notes: [CIRCLES_PRICE_RETURNS_28],
+    notes: [CIRCLES_PRICE_RETURNS_28, CIRCLES_ONE_DAY_UNLIMITED_DATA],
   },
   {
     telco: 'Circles.Life',
@@ -294,6 +299,7 @@ const mobilePlanData = [
     sms: 0,
     price: 50,
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
   },
   {
     telco: 'Starhub',
@@ -304,6 +310,7 @@ const mobilePlanData = [
     sms: 0,
     price: 75,
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
   },
   {
     telco: 'Starhub',
@@ -314,6 +321,7 @@ const mobilePlanData = [
     sms: 0,
     price: 105,
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
   },
   {
     telco: 'Starhub',
@@ -324,6 +332,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 238,
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
   },
   {
     telco: 'Starhub',
@@ -334,6 +343,7 @@ const mobilePlanData = [
     sms: 0,
     price: 25,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, STARHUB_FREE_INTERNATIONAL_ROAMING, STARHUB_FREE_WEEKEND_DATA, STARHUB_ONLINE_120_REBATE],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
   },
   {
     telco: 'Starhub',
@@ -344,6 +354,7 @@ const mobilePlanData = [
     sms: 0,
     price: 50,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, STARHUB_FREE_INTERNATIONAL_ROAMING, STARHUB_FREE_WEEKEND_DATA, STARHUB_ONLINE_120_REBATE],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
   },
   {
     telco: 'Starhub',
@@ -354,6 +365,7 @@ const mobilePlanData = [
     sms: 0,
     price: 80,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, STARHUB_FREE_INTERNATIONAL_ROAMING, STARHUB_FREE_WEEKEND_DATA, STARHUB_ONLINE_120_REBATE],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
   },
   {
     telco: 'M1',
@@ -364,6 +376,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 25,
     pros: [FREE_INCOMING_CALLS, FREE_VOICEMAIL, M1_FREE_M1_CALLS, M1_UNLIMITED_SPOTIFY, M1_FREE_WEEKEND_DATA, M1_FREE_CALLER_ID, FREE_REGISTRATION_DELIVERY],
+    notes: [M1_THREE_DAY_BUNDLE],
   },
   {
     telco: 'M1',
@@ -374,6 +387,7 @@ const mobilePlanData = [
     sms: 100,
     price: 30,
     pros: [FREE_INCOMING_CALLS, FREE_VOICEMAIL, M1_FREE_M1_CALLS, M1_UNLIMITED_SPOTIFY, M1_FREE_WEEKEND_DATA, M1_FREE_CALLER_ID, FREE_REGISTRATION_DELIVERY],
+    notes: [M1_THREE_DAY_BUNDLE],
   },
   {
     telco: 'Zero1',

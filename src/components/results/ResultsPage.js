@@ -40,7 +40,7 @@ const styles = theme => ({
     },
     '*::-webkit-scrollbar-thumb': {
       backgroundColor: theme.palette.secondary.main,
-      outline: '1px solid slategrey'
+      outline: '1px solid slategrey',
     }
   }
 });
