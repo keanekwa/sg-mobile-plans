@@ -1,6 +1,6 @@
 import React from 'react';
 //import components
-import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography, FormGroup, FormControlLabel, Checkbox, Box } from '@material-ui/core'
+import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography, FormGroup, FormControlLabel, Checkbox, Box, Link } from '@material-ui/core'
 //import styles
 import { withStyles } from '@material-ui/core/styles';
 //import redux
@@ -32,6 +32,15 @@ const styles = theme => ({
   planTypeGrid: {
     padding: '8px 8px 0 8px !important',
   },
+  footnote: {
+    position: 'absolute',
+    bottom: '10px',
+    right: '10px',
+    color: theme.palette.common.white,
+  },
+  footnoteLink: {
+    color: theme.palette.common.white,
+  }
 });
 
 const SelectSelfOptions = props => {
@@ -182,6 +191,7 @@ const SelectSelfOptions = props => {
           </Grid>
         </Paper>
       </Container>
+      <Box className={classes.footnote}>Last updated on 31 Oct 2019. Designed by <Link target='_blank' className={classes.footnoteLink} href='https://keanekwa.com'>Keane Kwa</Link>.</Box>
     </Container>
   );
 }
