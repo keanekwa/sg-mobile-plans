@@ -1,3 +1,5 @@
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 //import components
@@ -9,9 +11,6 @@ import { blueGrey } from '@material-ui/core/colors';
 //import redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
-//imports for IE11 compatibility
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
 
 const theme = createMuiTheme({
   palette: {
@@ -19,44 +18,44 @@ const theme = createMuiTheme({
     secondary: {
       light: blueGrey[100],
       main: blueGrey[500],
-      dark: blueGrey[700],
-    },
+      dark: blueGrey[700]
+    }
   },
   typography: {
-    fontFamily: 'Noto Sans, Helvetica, Arial, sans-serif',
+    fontFamily: 'Noto Sans, Helvetica, Arial, sans-serif'
   },
   overrides: {
     MuiInputBase: {
       root: {
-        fontSize: '0.9rem',
-      },
+        fontSize: '0.9rem'
+      }
     },
     MuiFormLabel: {
       root: {
-        fontSize: '0.9rem',
-      },
+        fontSize: '0.9rem'
+      }
     },
     MuiTypography: {
       h1: {
-        fontWeight: 700,
+        fontWeight: 700
       },
       h2: {
-        fontWeight: 700,
+        fontWeight: 700
       },
       h3: {
-        fontWeight: 700,
+        fontWeight: 700
       },
       h4: {
-        fontWeight: 700,
+        fontWeight: 700
       },
       h5: {
-        fontWeight: 700,
+        fontWeight: 700
       },
       h6: {
-        fontWeight: 700,
-      },
-    },
-  },
+        fontWeight: 700
+      }
+    }
+  }
 });
 
 ReactDOM.render(
@@ -66,5 +65,5 @@ ReactDOM.render(
       <App />
     </MuiThemeProvider>
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
