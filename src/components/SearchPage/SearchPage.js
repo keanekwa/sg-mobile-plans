@@ -1,7 +1,7 @@
 import React from 'react'
 //import components
 import { Button, Container, TextField, InputAdornment, Grid, Paper, Typography, FormGroup, FormControlLabel, Checkbox, Box, Link, Fade } from '@material-ui/core'
-import SearchResultsPage from './SearchResultsPage/SearchResultsPage'
+import ResultsPage from './ResultsPage/ResultsPage'
 //import styles
 import { withStyles } from '@material-ui/core/styles'
 //import redux
@@ -216,7 +216,7 @@ const SearchPage = props => {
           </Link>
           .
         </Box>
-        <SearchResultsPage />
+        <ResultsPage />
       </Container>
     </Fade>
   )
