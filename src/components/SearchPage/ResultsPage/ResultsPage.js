@@ -13,6 +13,8 @@ import { setIsShowResults } from '../../../redux/results/results-actions'
 const styles = theme => ({
   outerContainer: {
     position: 'fixed',
+    display: 'flex',
+    flexFlow: 'column',
     top: 0,
     left: 0,
     width: '100%',
@@ -29,6 +31,7 @@ const styles = theme => ({
     }
   },
   AppBar: {
+    flex: 0,
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }

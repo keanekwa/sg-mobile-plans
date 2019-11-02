@@ -11,7 +11,10 @@ import { blueGrey } from '@material-ui/core/colors'
 
 const styles = theme => ({
   fullHeight: {
-    height: '100%'
+    height: '100%',
+    flex: 1,
+    display: 'flex',
+    flexFlow: 'column'
   },
   contentBox: {
     maxWidth: '100%',

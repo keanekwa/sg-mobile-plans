@@ -22,6 +22,11 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }
+  },
+  errorMessage: {
+    textAlign: 'center',
+    fontSize: '1.2rem',
+    padding: '2rem 1.5rem'
   }
 })
 
@@ -132,7 +137,7 @@ const ResultsList = props => {
           <Box>Suitable Mobile Plans</Box>
         </Toolbar>
       </AppBar>
-      {filteredMobilePlans[0] !== undefined ? mobilePlansMapped : 'Sorry but there are no suitable plans for you. Please adjust your selection criteria.'}
+      {filteredMobilePlans[0] !== undefined ? mobilePlansMapped : <Box className={classes.errorMessage}>Sorry but there are no suitable plans for you. Please adjust your selection criteria.</Box>}
     </Box>
   )
 }
