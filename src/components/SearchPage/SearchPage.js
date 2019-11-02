@@ -210,7 +210,7 @@ const SearchPage = props => {
           </Paper>
         </Container>
         <Box className={classes.footnote}>
-          Last updated on 31 Oct 2019. Designed by{' '}
+          Data last updated on 31 Oct 2019. Designed by{' '}
           <Link target="_blank" className={classes.footnoteLink} href="https://keanekwa.com">
             Keane Kwa
           </Link>
