@@ -1,73 +1,75 @@
-const NO_CONTRACT = 'No contract';
-const PLAN_12_MTH = '12 month contract';
-const PLAN_24_MTH = '24 month contract';
+const NO_CONTRACT = 'No contract'
+const PLAN_12_MTH = '12 month contract'
+const PLAN_24_MTH = '24 month contract'
 
-const FREE_CALLER_ID = 'Free Caller ID';
-const FREE_VOICEMAIL = 'Free voicemail';
-const FREE_INCOMING_CALLS = 'Free incoming calls';
-const FREE_REGISTRATION_DELIVERY = 'Free registration and delivery (for online sign-up only)';
-const FREE_REGISTRATION_DELIVERY_SIM = 'Free registration, delivery and SIM card';
-const FREE_REGISTRATION_SIM = 'Free registration and SIM card';
-const FREE_NUMBER_PORTING = 'Free number porting';
-const FREE_MALAYSIA_INDO_DATA_ROAMING = 'Free data roaming in Malaysia and Indonesia';
-const FREE_WEEKEND_DATA = 'Free weekend data';
+const FREE_CALLER_ID = 'Free Caller ID'
+const FREE_VOICEMAIL = 'Free voicemail'
+const FREE_INCOMING_CALLS = 'Free incoming calls'
+const FREE_REGISTRATION_DELIVERY = 'Free registration and delivery (for online sign-up only)'
+const FREE_REGISTRATION_DELIVERY_SIM = 'Free registration, delivery and SIM card'
+const FREE_REGISTRATION_SIM = 'Free registration and SIM card'
+const FREE_NUMBER_PORTING = 'Free number porting'
+const FREE_MALAYSIA_INDO_DATA_ROAMING = 'Free data roaming in Malaysia and Indonesia'
+const FREE_WEEKEND_DATA = 'Free weekend data'
 
-const UNLIMITED_DATA_2_DAY = 'Data marketed as unlimited, but usage in excess of 2 GB/day may be at controlled speeds';
-const UNLIMITED_DATA_3_DAY = 'Data marketed as unlimited, but usage in excess of 3 GB/day may be at controlled speeds';
-const UNLIMITED_DATA_45 = 'Data marketed as unlimited, but usage in excess of 45 GB/mth may be at controlled speeds';
-const UNLIMITED_TALKTIME_5000 = 'Talktime marketed as unlimited, but is capped at 5,000 min';
-const UNLIMITED_TALKTIME_8000 = 'Talktime marketed as unlimited, but is capped at 8,000 min';
-const UNLIMITED_TALKTIME_10000 = 'Talktime marketed as unlimited, but is capped at 10,000 min';
-const UNLIMITED_SMS_8000 = 'SMS marketed as unlimited, but is capped at 8,000 SMS';
-const UNLIMITED_SMS_10000 = 'SMS marketed as unlimited, but is capped at 10,000 SMS';
+const UNLIMITED_DATA_2_DAY = 'Data marketed as unlimited, but usage in excess of 2 GB/day may be at controlled speeds'
+const UNLIMITED_DATA_3_DAY = 'Data marketed as unlimited, but usage in excess of 3 GB/day may be at controlled speeds'
+const UNLIMITED_DATA_45 = 'Data marketed as unlimited, but usage in excess of 45 GB/mth may be at controlled speeds'
+const UNLIMITED_TALKTIME_5000 = 'Talktime marketed as unlimited, but is capped at 5,000 min'
+const UNLIMITED_TALKTIME_8000 = 'Talktime marketed as unlimited, but is capped at 8,000 min'
+const UNLIMITED_TALKTIME_10000 = 'Talktime marketed as unlimited, but is capped at 10,000 min'
+const UNLIMITED_SMS_8000 = 'SMS marketed as unlimited, but is capped at 8,000 SMS'
+const UNLIMITED_SMS_10000 = 'SMS marketed as unlimited, but is capped at 10,000 SMS'
 
-const MANAGED_SPEEDS_1GB = 'First 1 GB at 4G speeds; managed network speeds thereafter';
-const MANAGED_SPEEDS_12GB = 'First 12 GB at 4G speeds; managed network speeds thereafter';
-const MANAGED_SPEEDS_15GB = 'First 15 GB at 4G speeds; managed network speeds thereafter';
-const MANAGED_SPEEDS_18GB = 'First 18 GB at 4G speeds; managed network speeds thereafter';
-const MANAGED_SPEEDS_26GB = 'First 26 GB at 4G speeds; managed network speeds thereafter';
-const MANAGED_SPEEDS_27GB = 'First 27 GB at 4G speeds; managed network speeds thereafter';
-const MANAGED_SPEEDS_30GB = 'First 30 GB at 4G speeds; managed network speeds thereafter';
-const MANAGED_SPEEDS_38GB = 'First 38 GB at 4G speeds; managed network speeds thereafter';
-const MANAGED_SPEEDS_80GB = 'First 80 GB at 4G speeds; managed network speeds thereafter';
+const MANAGED_SPEEDS_1GB = 'First 1 GB at 4G speeds; managed network speeds thereafter'
+const MANAGED_SPEEDS_12GB = 'First 12 GB at 4G speeds; managed network speeds thereafter'
+const MANAGED_SPEEDS_15GB = 'First 15 GB at 4G speeds; managed network speeds thereafter'
+const MANAGED_SPEEDS_18GB = 'First 18 GB at 4G speeds; managed network speeds thereafter'
+const MANAGED_SPEEDS_26GB = 'First 26 GB at 4G speeds; managed network speeds thereafter'
+const MANAGED_SPEEDS_27GB = 'First 27 GB at 4G speeds; managed network speeds thereafter'
+const MANAGED_SPEEDS_30GB = 'First 30 GB at 4G speeds; managed network speeds thereafter'
+const MANAGED_SPEEDS_38GB = 'First 38 GB at 4G speeds; managed network speeds thereafter'
+const MANAGED_SPEEDS_80GB = 'First 80 GB at 4G speeds; managed network speeds thereafter'
 
-const SINGTEL_2GB_SINGTEL_WIFI = '2 GB Singtel Wifi';
-const SINGTEL_UNLIMITED_SINGTEL_WIFI = 'Unlimited Singtel Wifi';
-const SINGTEL_12MTHS_ENTERTAINMENT_PLUS = '12 mth Entertainment Plus';
-const SINGTEL_24MTHS_ENTERTAINMENT_PLUS = '24 mth Entertainment Plus';
-const SINGTEL_24MTHS_HBO_GO = '24 mth HBO GO';
-const SINGTEL_24MTHS_HOOQ = '24 mth HOOQ';
-const SINGTEL_500_YEARLY_HANDSET_VOUCHER = '$500 yearly handset upgrade voucher';
-const SINGTEL_FREE_AUTOROAM = 'Free AutoRoam';
+const SINGTEL_2GB_SINGTEL_WIFI = '2 GB Singtel Wifi'
+const SINGTEL_UNLIMITED_SINGTEL_WIFI = 'Unlimited Singtel Wifi'
+const SINGTEL_12MTHS_ENTERTAINMENT_PLUS = '12 mth Entertainment Plus'
+const SINGTEL_24MTHS_ENTERTAINMENT_PLUS = '24 mth Entertainment Plus'
+const SINGTEL_24MTHS_HBO_GO = '24 mth HBO GO'
+const SINGTEL_24MTHS_HOOQ = '24 mth HOOQ'
+const SINGTEL_500_YEARLY_HANDSET_VOUCHER = '$500 yearly handset upgrade voucher'
+const SINGTEL_FREE_AUTOROAM = 'Free AutoRoam'
+const SINGTEL_YOUTH = 'Only available for students 25 years old and below'
+const SINGTEL_SILVER = 'Only available for customers 60 years old and above'
 
-const CIRCLES_NO_ADDONS_FOR_5_PLAN = 'Phones, roaming, and unlimited data addons are not available with this plan (only available with 20GB Base Plan)';
-const CIRCLES_PRICE_RETURNS_28 = 'Price returns to $28/mth after 1 year';
-const CIRCLES_ONE_DAY_UNLIMITED_DATA = 'Get unlimited data on demand for $3/day (capped at 100 GB/mth as per Circles.Life fair usage policy)';
+const CIRCLES_NO_ADDONS_FOR_5_PLAN = 'Phones, roaming, and unlimited data addons are not available with this plan (only available with 20GB Base Plan)'
+const CIRCLES_PRICE_RETURNS_28 = 'Price returns to $28/mth after 1 year'
+const CIRCLES_ONE_DAY_UNLIMITED_DATA = 'Get unlimited data on demand for $3/day (capped at 100 GB/mth as per Circles.Life fair usage policy)'
 
-const STARHUB_FREE_WEEKEND_DATA = 'Online exclusive: Free weekend data (10 GB/day on Sat and Sun)';
-const STARHUB_FREE_INTERNATIONAL_ROAMING = 'Free International Roaming (opt-in is required)';
-const STARHUB_ONLINE_120_REBATE = 'Online exclusive: $120 bill rebate';
-const STARHUB_THREE_DAY_UNLIMITED_DATA = 'Get 1 GB data for 3 days for $3';
-const STARHUB_DATA_FREE_APPS = 'Get unlimted data on your favourite apps like Whatsapp, Netflix, or Instagram from $6/mth';
+const STARHUB_FREE_WEEKEND_DATA = 'Online exclusive: Free weekend data (10 GB/day on Sat and Sun)'
+const STARHUB_FREE_INTERNATIONAL_ROAMING = 'Free International Roaming (opt-in is required)'
+const STARHUB_ONLINE_120_REBATE = 'Online exclusive: $120 bill rebate'
+const STARHUB_THREE_DAY_UNLIMITED_DATA = 'Get 1 GB data for 3 days for $3'
+const STARHUB_DATA_FREE_APPS = 'Get unlimted data on your favourite apps like Whatsapp, Netflix, or Instagram from $6/mth'
 
-const M1_FREE_M1_CALLS = 'Unlimited Free Calls to 3 M1 Numbers';
-const M1_UNLIMITED_SPOTIFY = 'Unlimited Streaming of Music on Spotify';
-const M1_FREE_WEEKEND_DATA = 'Free 3/6 month unlimited weekend data for new sign ups for existing/new M1 customers respectively';
-const M1_FREE_CALLER_ID = 'Free 3/6 month Caller ID for new sign ups for existing/new M1 customers respectively';
-const M1_THREE_DAY_BUNDLE = 'Get 2GB data and unlimited talktime for 3 days for $5';
+const M1_FREE_M1_CALLS = 'Unlimited Free Calls to 3 M1 Numbers'
+const M1_UNLIMITED_SPOTIFY = 'Unlimited Streaming of Music on Spotify'
+const M1_FREE_WEEKEND_DATA = 'Free 3/6 month unlimited weekend data for new sign ups for existing/new M1 customers respectively'
+const M1_FREE_CALLER_ID = 'Free 3/6 month Caller ID for new sign ups for existing/new M1 customers respectively'
+const M1_THREE_DAY_BUNDLE = 'Get 2GB data and unlimited talktime for 3 days for $5'
 
 const ZERO1_FREE_UMESPACE = 'Free umeSpace (64 GB Cloud Storage)'
 
-const ZERO_MOBILE_UNLIMITED_SMS = 'SMS marketed as unlimited, but is capped by the Zero Mobile fair use policy. While the policy does not state the exact cap, we can assume the cap is 5,000 SMS/mth as the talktime is capped at 5,000 min/mth';
-const ZERO_MOBILE_PRICE_RETURNS_59_95 = 'Price returns to $59.95/mth after 1 year';
-const ZERO_MOBILE_PRICE_RETURNS_49_95 = 'Price returns to $49.95/mth after 1 year';
+const ZERO_MOBILE_UNLIMITED_SMS = 'SMS marketed as unlimited, but is capped by the Zero Mobile fair use policy. While the policy does not state the exact cap, we can assume the cap is 5,000 SMS/mth as the talktime is capped at 5,000 min/mth'
+const ZERO_MOBILE_PRICE_RETURNS_59_95 = 'Price returns to $59.95/mth after 1 year'
+const ZERO_MOBILE_PRICE_RETURNS_49_95 = 'Price returns to $49.95/mth after 1 year'
 
-const MY_REPUBLIC_ROAM_LIKE_HOME = '2 GB Roam Like Home - Essential (2GB data for Malaysia, Indonesia, Thailand, Philippines, Taiwan, Hong Kong)';
+const MY_REPUBLIC_ROAM_LIKE_HOME = '2 GB Roam Like Home - Essential (2GB data for Malaysia, Indonesia, Thailand, Philippines, Taiwan, Hong Kong)'
 
-const GIGA_ROLLOVER = 'Unused data can be rolled-over for up to 2 months';
+const GIGA_ROLLOVER = 'Unused data can be rolled-over for up to 2 months'
 
 const TPG_4G_VOLTE = 'A 4G VoLTE compatible device is required for making and receiving calls'
-const TPG_PRICE_RETURN = '$0 for the first 6 months; monthly charge after 6 months to be confirmed';
+const TPG_PRICE_RETURN = '$0 for the first 6 months; monthly charge after 6 months to be confirmed'
 
 const mobilePlanData = [
   {
@@ -78,7 +80,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 100,
     price: 48,
-    pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
+    pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_ENTERTAINMENT_PLUS]
   },
   {
     telco: 'Singtel',
@@ -88,7 +90,7 @@ const mobilePlanData = [
     talktime: 300,
     sms: 300,
     price: 78,
-    pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ],
+    pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ]
   },
   {
     telco: 'Singtel',
@@ -98,7 +100,7 @@ const mobilePlanData = [
     talktime: 500,
     sms: 500,
     price: 108,
-    pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ],
+    pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ]
   },
   {
     telco: 'Singtel',
@@ -107,7 +109,7 @@ const mobilePlanData = [
     data: 0.1,
     talktime: 100,
     sms: 500,
-    price: 27.9,
+    price: 27.9
   },
   {
     telco: 'Singtel',
@@ -117,7 +119,7 @@ const mobilePlanData = [
     talktime: 200,
     sms: 1000,
     price: 42.9,
-    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
+    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS]
   },
   {
     telco: 'Singtel',
@@ -128,7 +130,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 68.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000],
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000]
   },
   {
     telco: 'Singtel',
@@ -139,7 +141,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 95.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000],
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000]
   },
   {
     telco: 'Singtel',
@@ -150,7 +152,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 239.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ, SINGTEL_500_YEARLY_HANDSET_VOUCHER, FREE_CALLER_ID, SINGTEL_FREE_AUTOROAM],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000],
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000]
   },
   {
     telco: 'Singtel',
@@ -160,7 +162,7 @@ const mobilePlanData = [
     talktime: 0,
     sms: 0,
     price: 20,
-    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS],
+    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS]
   },
   {
     telco: 'Singtel',
@@ -170,7 +172,7 @@ const mobilePlanData = [
     talktime: 150,
     sms: 500,
     price: 25.35,
-    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_UNLIMITED_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS],
+    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_UNLIMITED_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS]
   },
   {
     telco: 'Singtel',
@@ -180,7 +182,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 500,
     price: 22.32,
-    pros: [FREE_VOICEMAIL],
+    pros: [FREE_VOICEMAIL, SINGTEL_SILVER]
   },
   {
     telco: 'Singtel',
@@ -190,7 +192,7 @@ const mobilePlanData = [
     talktime: 200,
     sms: 1000,
     price: 34.32,
-    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
+    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_SILVER]
   },
   {
     telco: 'Singtel',
@@ -201,7 +203,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 55.12,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000],
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_SILVER]
   },
   {
     telco: 'Singtel',
@@ -212,7 +214,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 27.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI],
-    notes: [UNLIMITED_SMS_10000],
+    notes: [UNLIMITED_SMS_10000, SINGTEL_YOUTH]
   },
   {
     telco: 'Singtel',
@@ -223,7 +225,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 42.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000],
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH]
   },
   {
     telco: 'Singtel',
@@ -234,7 +236,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 68.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000],
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH]
   },
   {
     telco: 'Singtel',
@@ -245,7 +247,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 95.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HBO_GO],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000],
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH]
   },
   {
     telco: 'Circles.Life',
@@ -256,7 +258,7 @@ const mobilePlanData = [
     sms: 25,
     price: 28,
     pros: [FREE_CALLER_ID],
-    notes: [CIRCLES_ONE_DAY_UNLIMITED_DATA],
+    notes: [CIRCLES_ONE_DAY_UNLIMITED_DATA]
   },
   {
     telco: 'Circles.Life',
@@ -267,7 +269,7 @@ const mobilePlanData = [
     sms: 25,
     price: 18,
     pros: [FREE_CALLER_ID],
-    notes: [CIRCLES_PRICE_RETURNS_28, CIRCLES_ONE_DAY_UNLIMITED_DATA],
+    notes: [CIRCLES_PRICE_RETURNS_28, CIRCLES_ONE_DAY_UNLIMITED_DATA]
   },
   {
     telco: 'Circles.Life',
@@ -278,7 +280,7 @@ const mobilePlanData = [
     sms: 25,
     price: 5,
     cons: [CIRCLES_NO_ADDONS_FOR_5_PLAN],
-    pros: [FREE_CALLER_ID],
+    pros: [FREE_CALLER_ID]
   },
   {
     telco: 'Gomo',
@@ -287,8 +289,8 @@ const mobilePlanData = [
     data: 20,
     talktime: 200,
     sms: 200,
-    price: 20,  
-    pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, FREE_REGISTRATION_DELIVERY_SIM],
+    price: 20,
+    pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, FREE_REGISTRATION_DELIVERY_SIM]
   },
   {
     telco: 'Starhub',
@@ -299,7 +301,7 @@ const mobilePlanData = [
     sms: 0,
     price: 50,
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
-    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
   {
     telco: 'Starhub',
@@ -310,7 +312,7 @@ const mobilePlanData = [
     sms: 0,
     price: 75,
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
-    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
   {
     telco: 'Starhub',
@@ -321,7 +323,7 @@ const mobilePlanData = [
     sms: 0,
     price: 105,
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
-    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
   {
     telco: 'Starhub',
@@ -332,7 +334,7 @@ const mobilePlanData = [
     sms: 10000,
     price: 238,
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
-    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
   {
     telco: 'Starhub',
@@ -343,7 +345,7 @@ const mobilePlanData = [
     sms: 0,
     price: 25,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, STARHUB_FREE_INTERNATIONAL_ROAMING, STARHUB_FREE_WEEKEND_DATA, STARHUB_ONLINE_120_REBATE],
-    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
   {
     telco: 'Starhub',
@@ -354,7 +356,7 @@ const mobilePlanData = [
     sms: 0,
     price: 50,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, STARHUB_FREE_INTERNATIONAL_ROAMING, STARHUB_FREE_WEEKEND_DATA, STARHUB_ONLINE_120_REBATE],
-    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
   {
     telco: 'Starhub',
@@ -365,7 +367,7 @@ const mobilePlanData = [
     sms: 0,
     price: 80,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, STARHUB_FREE_INTERNATIONAL_ROAMING, STARHUB_FREE_WEEKEND_DATA, STARHUB_ONLINE_120_REBATE],
-    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS],
+    notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
   {
     telco: 'M1',
@@ -376,7 +378,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 25,
     pros: [FREE_INCOMING_CALLS, FREE_VOICEMAIL, M1_FREE_M1_CALLS, M1_UNLIMITED_SPOTIFY, M1_FREE_WEEKEND_DATA, M1_FREE_CALLER_ID, FREE_REGISTRATION_DELIVERY],
-    notes: [M1_THREE_DAY_BUNDLE],
+    notes: [M1_THREE_DAY_BUNDLE]
   },
   {
     telco: 'M1',
@@ -387,7 +389,7 @@ const mobilePlanData = [
     sms: 100,
     price: 30,
     pros: [FREE_INCOMING_CALLS, FREE_VOICEMAIL, M1_FREE_M1_CALLS, M1_UNLIMITED_SPOTIFY, M1_FREE_WEEKEND_DATA, M1_FREE_CALLER_ID, FREE_REGISTRATION_DELIVERY],
-    notes: [M1_THREE_DAY_BUNDLE],
+    notes: [M1_THREE_DAY_BUNDLE]
   },
   {
     telco: 'Zero1',
@@ -396,9 +398,9 @@ const mobilePlanData = [
     data: 1,
     talktime: 200,
     sms: 200,
-    price: 13.90,
+    price: 13.9,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [MANAGED_SPEEDS_1GB],
+    notes: [MANAGED_SPEEDS_1GB]
   },
   {
     telco: 'Zero1',
@@ -409,7 +411,7 @@ const mobilePlanData = [
     sms: 200,
     price: 29.99,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, ZERO1_FREE_UMESPACE, FREE_REGISTRATION_DELIVERY_SIM],
-    notes: [MANAGED_SPEEDS_15GB],
+    notes: [MANAGED_SPEEDS_15GB]
   },
   {
     telco: 'Zero1',
@@ -418,9 +420,9 @@ const mobilePlanData = [
     data: 27,
     talktime: 450,
     sms: 450,
-    price: 39.90,
+    price: 39.9,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, ZERO1_FREE_UMESPACE, FREE_REGISTRATION_DELIVERY_SIM],
-    notes: [MANAGED_SPEEDS_27GB],
+    notes: [MANAGED_SPEEDS_27GB]
   },
   {
     telco: 'Zero Mobile',
@@ -431,7 +433,7 @@ const mobilePlanData = [
     sms: 5000,
     price: 59.95,
     pros: [FREE_CALLER_ID, FREE_REGISTRATION_SIM],
-    notes: [UNLIMITED_DATA_45, UNLIMITED_TALKTIME_5000, ZERO_MOBILE_UNLIMITED_SMS],
+    notes: [UNLIMITED_DATA_45, UNLIMITED_TALKTIME_5000, ZERO_MOBILE_UNLIMITED_SMS]
   },
   {
     telco: 'Zero Mobile',
@@ -442,7 +444,7 @@ const mobilePlanData = [
     sms: 5000,
     price: 49.95,
     pros: [FREE_CALLER_ID, FREE_REGISTRATION_SIM, FREE_NUMBER_PORTING],
-    notes: [ZERO_MOBILE_PRICE_RETURNS_59_95, UNLIMITED_DATA_45, UNLIMITED_TALKTIME_5000, ZERO_MOBILE_UNLIMITED_SMS],
+    notes: [ZERO_MOBILE_PRICE_RETURNS_59_95, UNLIMITED_DATA_45, UNLIMITED_TALKTIME_5000, ZERO_MOBILE_UNLIMITED_SMS]
   },
   {
     telco: 'Zero Mobile',
@@ -453,7 +455,7 @@ const mobilePlanData = [
     sms: 100,
     price: 49.95,
     pros: [FREE_CALLER_ID, FREE_REGISTRATION_SIM, FREE_NUMBER_PORTING],
-    cons: [UNLIMITED_DATA_45],
+    cons: [UNLIMITED_DATA_45]
   },
   {
     telco: 'Zero Mobile',
@@ -464,7 +466,7 @@ const mobilePlanData = [
     sms: 100,
     price: 39.95,
     pros: [FREE_CALLER_ID, FREE_REGISTRATION_SIM, FREE_NUMBER_PORTING],
-    notes: [ZERO_MOBILE_PRICE_RETURNS_49_95, UNLIMITED_DATA_45, UNLIMITED_TALKTIME_5000, ZERO_MOBILE_UNLIMITED_SMS],
+    notes: [ZERO_MOBILE_PRICE_RETURNS_49_95, UNLIMITED_DATA_45, UNLIMITED_TALKTIME_5000, ZERO_MOBILE_UNLIMITED_SMS]
   },
   {
     telco: 'MyRepublic',
@@ -475,7 +477,7 @@ const mobilePlanData = [
     sms: 8000,
     price: 48,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [UNLIMITED_DATA_3_DAY, UNLIMITED_TALKTIME_8000, UNLIMITED_SMS_8000],
+    notes: [UNLIMITED_DATA_3_DAY, UNLIMITED_TALKTIME_8000, UNLIMITED_SMS_8000]
   },
   {
     telco: 'MyRepublic',
@@ -486,7 +488,7 @@ const mobilePlanData = [
     sms: 8000,
     price: 38,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [UNLIMITED_DATA_3_DAY, UNLIMITED_TALKTIME_8000, UNLIMITED_SMS_8000],
+    notes: [UNLIMITED_DATA_3_DAY, UNLIMITED_TALKTIME_8000, UNLIMITED_SMS_8000]
   },
   {
     telco: 'MyRepublic',
@@ -497,7 +499,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 18,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [MANAGED_SPEEDS_1GB],
+    notes: [MANAGED_SPEEDS_1GB]
   },
   {
     telco: 'MyRepublic',
@@ -508,7 +510,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 35,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [MANAGED_SPEEDS_12GB],
+    notes: [MANAGED_SPEEDS_12GB]
   },
   {
     telco: 'MyRepublic',
@@ -519,7 +521,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 35,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [MANAGED_SPEEDS_15GB],
+    notes: [MANAGED_SPEEDS_15GB]
   },
   {
     telco: 'MyRepublic',
@@ -530,7 +532,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 80,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [MANAGED_SPEEDS_80GB],
+    notes: [MANAGED_SPEEDS_80GB]
   },
   {
     telco: 'MyRepublic',
@@ -541,7 +543,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 55,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [MANAGED_SPEEDS_18GB],
+    notes: [MANAGED_SPEEDS_18GB]
   },
   {
     telco: 'MyRepublic',
@@ -552,7 +554,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 55,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [MANAGED_SPEEDS_26GB],
+    notes: [MANAGED_SPEEDS_26GB]
   },
   {
     telco: 'MyRepublic',
@@ -563,7 +565,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 85,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, MY_REPUBLIC_ROAM_LIKE_HOME],
-    notes: [MANAGED_SPEEDS_30GB],
+    notes: [MANAGED_SPEEDS_30GB]
   },
   {
     telco: 'MyRepublic',
@@ -574,7 +576,7 @@ const mobilePlanData = [
     sms: 1000,
     price: 85,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, MY_REPUBLIC_ROAM_LIKE_HOME],
-    notes: [MANAGED_SPEEDS_38GB],
+    notes: [MANAGED_SPEEDS_38GB]
   },
   {
     telco: 'Giga!',
@@ -584,7 +586,7 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 25,
-    pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, GIGA_ROLLOVER],
+    pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, GIGA_ROLLOVER]
   },
   {
     telco: 'TPG',
@@ -595,8 +597,8 @@ const mobilePlanData = [
     sms: 20,
     price: 0,
     pros: [FREE_INCOMING_CALLS, FREE_MALAYSIA_INDO_DATA_ROAMING],
-    notes: [UNLIMITED_DATA_2_DAY, TPG_4G_VOLTE, TPG_PRICE_RETURN],
-  },
-];
+    notes: [UNLIMITED_DATA_2_DAY, TPG_4G_VOLTE, TPG_PRICE_RETURN]
+  }
+]
 
-export default mobilePlanData;
+export default mobilePlanData

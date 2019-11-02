@@ -1,16 +1,9 @@
-import React from 'react';
+import React from 'react'
 //import components
-import OptionsPage from './components/options/OptionsPage';
-import ResultsPage from './components/results/ResultsPage';
-//import redux
-import { connect } from 'react-redux';
+import SearchPage from './components/SearchPage/SearchPage'
 
 const App = props => {
-  return <div>{!props.isShowResults ? <OptionsPage /> : <ResultsPage />}</div>;
-};
+  return <SearchPage />
+}
 
-const mapStateToProps = state => ({
-  isShowResults: state.results.isShowResults
-});
-
-export default connect(mapStateToProps)(App);
+export default App

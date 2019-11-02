@@ -1,16 +1,16 @@
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import 'react-app-polyfill/ie11'
+import 'react-app-polyfill/stable'
+import React from 'react'
+import ReactDOM from 'react-dom'
 //import components
-import App from './App';
+import App from './App'
 //import styles
-import { CssBaseline } from '@material-ui/core';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { blueGrey } from '@material-ui/core/colors';
+import { CssBaseline } from '@material-ui/core'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { blueGrey } from '@material-ui/core/colors'
 //import redux
-import { Provider } from 'react-redux';
-import store from './redux/store';
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 const theme = createMuiTheme({
   palette: {
@@ -56,7 +56,7 @@ const theme = createMuiTheme({
       }
     }
   }
-});
+})
 
 ReactDOM.render(
   <Provider store={store}>
@@ -66,4 +66,4 @@ ReactDOM.render(
     </MuiThemeProvider>
   </Provider>,
   document.getElementById('root')
-);
+)
