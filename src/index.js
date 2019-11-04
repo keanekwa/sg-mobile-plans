@@ -22,7 +22,27 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: 'Noto Sans, Helvetica, Arial, sans-serif'
+    fontFamily: 'Noto Sans, Helvetica, Arial, sans-serif',
+    h1: {
+      fontWeight: 700,
+      fontFamily: 'Noto Serif'
+    },
+    h2: {
+      fontWeight: 700,
+      fontFamily: 'Noto Serif'
+    },
+    h3: {
+      fontWeight: 700
+    },
+    h4: {
+      fontWeight: 700
+    },
+    h5: {
+      fontWeight: 700
+    },
+    h6: {
+      fontWeight: 700
+    }
   },
   overrides: {
     MuiInputBase: {
@@ -33,26 +53,6 @@ const theme = createMuiTheme({
     MuiFormLabel: {
       root: {
         fontSize: '0.9rem'
-      }
-    },
-    MuiTypography: {
-      h1: {
-        fontWeight: 700
-      },
-      h2: {
-        fontWeight: 700
-      },
-      h3: {
-        fontWeight: 700
-      },
-      h4: {
-        fontWeight: 700
-      },
-      h5: {
-        fontWeight: 700
-      },
-      h6: {
-        fontWeight: 700
       }
     }
   }

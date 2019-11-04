@@ -20,7 +20,7 @@ const styles = theme => ({
     width: '100%',
     height: '100%',
     backgroundColor: theme.palette.common.white,
-    zIndex: 2
+    zIndex: 3
   },
   fullHeight: {
     height: '100%'

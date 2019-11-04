@@ -143,7 +143,7 @@ const ResultsList = props => {
 }
 
 const mapStateToProps = state => ({
-  options: state.options.options
+  options: state.search.options
 })
 
 const mapDispatchToProps = dispatch => ({

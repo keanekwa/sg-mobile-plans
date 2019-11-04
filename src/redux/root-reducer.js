@@ -1,9 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import optionsReducer from './options/options-reducer'
-import resultsReducer from './results/results-reducer';
+import searchReducer from './search/search-reducer'
+import resultsReducer from './results/results-reducer'
+import compareReducer from './compare/compare-reducer'
 
 export default combineReducers({
-  options: optionsReducer,
+  search: searchReducer,
   results: resultsReducer,
+  compare: compareReducer
 })
