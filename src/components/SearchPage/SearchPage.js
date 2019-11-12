@@ -26,10 +26,6 @@ const styles = theme => ({
     overflow: 'auto',
     height: '100%'
   },
-  Paper: {
-    padding: '32px 24px',
-    backgroundColor: 'rgba(255,255,255,0.8)'
-  },
   question: {
     textTransform: 'uppercase',
     fontWeight: 'bold'
@@ -39,15 +35,6 @@ const styles = theme => ({
   },
   planTypeGrid: {
     padding: '8px 8px 0 8px !important'
-  },
-  footnote: {
-    position: 'absolute',
-    bottom: '10px',
-    right: '10px',
-    color: theme.palette.common.white
-  },
-  footnoteLink: {
-    color: theme.palette.common.white
   }
 })
 
