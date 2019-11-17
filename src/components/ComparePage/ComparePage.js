@@ -38,6 +38,10 @@ const styles = theme => ({
 const ComparePage = props => {
   const { classes } = props
 
+  const handleChange = (event, planNumber, option) => {
+    alert(event.target.value + planNumber + option)
+  }
+
   //get unique telcos from mobilePlanData. good for auto update of MenuItems when the data changes
   const uniqueTelcos = []
   mobilePlanData.forEach(mobilePlan => {
@@ -65,7 +69,7 @@ const ComparePage = props => {
                 <Typography variant="h6">Plan 1</Typography>
                 <FormControl className={classes.FormControl}>
                   <InputLabel>Contract Length</InputLabel>
-                  <Select autoWidth>
+                  <Select onChange={event => handleChange(event, 1, 'planType')} autoWidth>
                     <MenuItem value={'No contract'}>No contract</MenuItem>
                     <MenuItem value={'12 month contract'}>12 month contract</MenuItem>
                     <MenuItem value={'24 month contract'}>24 month contract</MenuItem>
@@ -120,7 +124,4 @@ const mapDispatchToProps = dispatch => ({
   setIsShowCompare: isShowCompare => dispatch(setIsShowCompare(isShowCompare))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(ComparePage))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ComparePage))

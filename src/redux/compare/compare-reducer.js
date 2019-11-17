@@ -1,5 +1,10 @@
 const INITIAL_STATE = {
-  isShowCompare: false
+  isShowCompare: false,
+  planOne: {
+    planType: null,
+    telco: null,
+    planName: null
+  }
 }
 
 const compareReducer = (state = INITIAL_STATE, action) => {
