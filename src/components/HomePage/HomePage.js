@@ -91,9 +91,6 @@ const HomePage = props => {
                 <Button className={clsx(classes.Button, classes.buttonLeft)} onClick={() => props.setIsShowSearch(true)} variant="contained" size="large" color="primary">
                   Search for a suitable plan
                 </Button>
-                <Button className={clsx(classes.Button, classes.buttonRight)} onClick={() => props.setIsShowCompare(true)} variant="outlined" size="large">
-                  Compare between plans
-                </Button>
               </Grid>
             </Grid>
           </Container>
@@ -119,7 +116,4 @@ const mapDispatchToProps = dispatch => ({
   setIsShowCompare: isShowCompare => dispatch(setIsShowCompare(isShowCompare))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(HomePage))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(HomePage))
