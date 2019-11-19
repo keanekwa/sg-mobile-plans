@@ -54,15 +54,15 @@ const ComparePage = props => {
 
     if (newComparePlans[`${planNumber}`]['planType'] !== '' && newComparePlans[`${planNumber}`]['telco'] !== '') {
       const filteredPlans = mobilePlanData.filter(mobilePlan => mobilePlan.telco === newComparePlans[`${planNumber}`]['telco'] && mobilePlan.planType === newComparePlans[`${planNumber}`]['planType'])
-      const newPlanOptions = props.planOptions
-      newPlanOptions[`${planNumber}`] = filteredPlans.map(mobilePlan => (
-        <MenuItem id="menuItem" value={mobilePlan.planName}>
-          {mobilePlan.planName}
-        </MenuItem>
-      ))
+      const newPlanOptions = {
+        ...props.planOptions,
+        [`${planNumber}`]: filteredPlans.map(mobilePlan => (
+          <MenuItem id="menuItem" value={mobilePlan.planName}>
+            {mobilePlan.planName}
+          </MenuItem>
+        ))
+      }
       props.setPlanOptions(newPlanOptions)
-      console.log('new options ' + newPlanOptions.planOne)
-      console.log('props options ' + props.planOptions.planOne)
     }
   }
 
@@ -111,7 +111,6 @@ const ComparePage = props => {
                     ))}
                   </Select>
                 </FormControl>
-                {console.log(props.planOptions.planOne.length)}
                 {props.planOptions.planOne.length !== 0 ? (
                   <FormControl className={classes.FormControl}>
                     <InputLabel>Plans</InputLabel>
@@ -129,6 +128,43 @@ const ComparePage = props => {
 
               <Grid item xs={6}>
                 <Typography variant="h6">Plan 2</Typography>
+                <FormControl className={classes.FormControl}>
+                  <InputLabel>Contract Length</InputLabel>
+                  <Select defaultValue={props.comparePlans.planTwo.planType} onChange={event => handleChange(event, 'planTwo', 'planType')}>
+                    <MenuItem id="menuItem" value={'No contract'}>
+                      No contract
+                    </MenuItem>
+                    <MenuItem id="menuItem" value={'12 month contract'}>
+                      12 month contract
+                    </MenuItem>
+                    <MenuItem id="menuItem" value={'24 month contract'}>
+                      24 month contract
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+                <FormControl className={classes.FormControl}>
+                  <InputLabel>Telcos</InputLabel>
+                  <Select defaultValue={props.comparePlans.planTwo.telco} onChange={event => handleChange(event, 'planTwo', 'telco')}>
+                    {uniqueTelcos.map(telco => (
+                      <MenuItem id="menuItem" key={telco} value={telco}>
+                        {telco}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                {props.planOptions.planTwo.length !== 0 ? (
+                  <FormControl className={classes.FormControl}>
+                    <InputLabel>Plans</InputLabel>
+                    <Select defaultValue={props.comparePlans.planTwo.planName} onChange={event => handleChange(event, 'planTwo', 'planName')}>
+                      {props.planOptions.planTwo}
+                    </Select>
+                  </FormControl>
+                ) : (
+                  <FormControl className={classes.FormControl} disabled>
+                    <InputLabel>No Suitable Plans</InputLabel>
+                    <Select defaultValue=""></Select>
+                  </FormControl>
+                )}
               </Grid>
             </Grid>
           </Container>
