@@ -8,7 +8,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import { withStyles } from '@material-ui/core/styles'
 //import redux
 import { connect } from 'react-redux'
-import { setIsShowCompare } from '../../redux/compare/compare-actions'
+import { setIsShowCompare, setComparePlans, setPlanOptions } from '../../redux/compare/compare-actions'
 
 const styles = theme => ({
   outermostBox: {
@@ -31,30 +31,50 @@ const styles = theme => ({
     borderRight: '1px solid ' + theme.palette.secondary.light
   },
   FormControl: {
-    minWidth: 150
+    minWidth: '150px',
+    width: '100%'
   }
 })
 
 const ComparePage = props => {
   const { classes } = props
 
-  const handleChange = (event, planNumber, option) => {
-    alert(event.target.value + planNumber + option)
-  }
-
-  //get unique telcos from mobilePlanData. good for auto update of MenuItems when the data changes
+  //get unique telcos from mobilePlanData. good for auto update of MenuItems when the mobilePlanData changes
   const uniqueTelcos = []
   mobilePlanData.forEach(mobilePlan => {
     if (uniqueTelcos.indexOf(mobilePlan.telco) === -1) {
       uniqueTelcos.push(mobilePlan.telco)
     }
   })
-  const filteredMobilePlans = []
-  const mobilePlansMapped = []
+
+  const handleChange = (event, planNumber, option) => {
+    const newComparePlans = props.comparePlans
+    newComparePlans[`${planNumber}`][`${option}`] = event.target.value
+    props.setComparePlans(newComparePlans)
+
+    if (newComparePlans[`${planNumber}`]['planType'] !== '' && newComparePlans[`${planNumber}`]['telco'] !== '') {
+      const filteredPlans = mobilePlanData.filter(mobilePlan => mobilePlan.telco === newComparePlans[`${planNumber}`]['telco'] && mobilePlan.planType === newComparePlans[`${planNumber}`]['planType'])
+      const newPlanOptions = props.planOptions
+      newPlanOptions[`${planNumber}`] = filteredPlans.map(mobilePlan => (
+        <MenuItem id="menuItem" value={mobilePlan.planName}>
+          {mobilePlan.planName}
+        </MenuItem>
+      ))
+      props.setPlanOptions(newPlanOptions)
+      console.log('new options ' + newPlanOptions.planOne)
+      console.log('props options ' + props.planOptions.planOne)
+    }
+  }
+
+  const handleClickAway = event => {
+    if (event.target.id !== 'menuItem') {
+      props.setIsShowCompare(false)
+    }
+  }
 
   return (
     <Slide direction="left" in={props.isShowCompare} timeout={500} mountOnEnter unmountOnExit>
-      <ClickAwayListener onClickAway={() => props.setIsShowCompare(false)}>
+      <ClickAwayListener onClickAway={event => handleClickAway(event)}>
         <Box className={classes.outermostBox}>
           <AppBar className={classes.AppBar} position="sticky">
             <Toolbar>
@@ -65,48 +85,50 @@ const ComparePage = props => {
           </AppBar>
           <Container className={classes.outerContainer} maxWidth="md">
             <Grid container spacing={10}>
-              <Grid item xs={6} className={classes.planOneGrid}>
+              <Grid item sm={6} className={classes.planOneGrid}>
                 <Typography variant="h6">Plan 1</Typography>
                 <FormControl className={classes.FormControl}>
                   <InputLabel>Contract Length</InputLabel>
-                  <Select onChange={event => handleChange(event, 1, 'planType')} autoWidth>
-                    <MenuItem value={'No contract'}>No contract</MenuItem>
-                    <MenuItem value={'12 month contract'}>12 month contract</MenuItem>
-                    <MenuItem value={'24 month contract'}>24 month contract</MenuItem>
+                  <Select defaultValue={props.comparePlans.planOne.planType} onChange={event => handleChange(event, 'planOne', 'planType')}>
+                    <MenuItem id="menuItem" value={'No contract'}>
+                      No contract
+                    </MenuItem>
+                    <MenuItem id="menuItem" value={'12 month contract'}>
+                      12 month contract
+                    </MenuItem>
+                    <MenuItem id="menuItem" value={'24 month contract'}>
+                      24 month contract
+                    </MenuItem>
                   </Select>
                 </FormControl>
                 <FormControl className={classes.FormControl}>
                   <InputLabel>Telcos</InputLabel>
-                  <Select autoWidth>
+                  <Select defaultValue={props.comparePlans.planOne.telco} onChange={event => handleChange(event, 'planOne', 'telco')}>
                     {uniqueTelcos.map(telco => (
-                      <MenuItem key={telco} value={telco}>
+                      <MenuItem id="menuItem" key={telco} value={telco}>
                         {telco}
                       </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
-                {filteredMobilePlans[0] !== undefined ? (
-                  <FormControl className={classes.FormControl} disabled>
+                {console.log(props.planOptions.planOne.length)}
+                {props.planOptions.planOne.length !== 0 ? (
+                  <FormControl className={classes.FormControl}>
                     <InputLabel>Plans</InputLabel>
-                    <Select>{mobilePlansMapped}</Select>
+                    <Select defaultValue={props.comparePlans.planOne.planName} onChange={event => handleChange(event, 'planOne', 'planName')}>
+                      {props.planOptions.planOne}
+                    </Select>
                   </FormControl>
                 ) : (
                   <FormControl className={classes.FormControl} disabled>
                     <InputLabel>No Suitable Plans</InputLabel>
-                    <Select></Select>
+                    <Select defaultValue=""></Select>
                   </FormControl>
                 )}
               </Grid>
+
               <Grid item xs={6}>
                 <Typography variant="h6">Plan 2</Typography>
-                <FormControl className={classes.FormControl}>
-                  <InputLabel>Contract length</InputLabel>
-                  <Select autoWidth>
-                    <MenuItem value={'No contract'}>No contract</MenuItem>
-                    <MenuItem value={'12 month contract'}>12 month contract</MenuItem>
-                    <MenuItem value={'24 month contract'}>24 month contract</MenuItem>
-                  </Select>
-                </FormControl>
               </Grid>
             </Grid>
           </Container>
@@ -117,11 +139,15 @@ const ComparePage = props => {
 }
 
 const mapStateToProps = state => ({
-  isShowCompare: state.compare.isShowCompare
+  isShowCompare: state.compare.isShowCompare,
+  comparePlans: state.compare.comparePlans,
+  planOptions: state.compare.planOptions
 })
 
 const mapDispatchToProps = dispatch => ({
-  setIsShowCompare: isShowCompare => dispatch(setIsShowCompare(isShowCompare))
+  setIsShowCompare: isShowCompare => dispatch(setIsShowCompare(isShowCompare)),
+  setComparePlans: comparePlans => dispatch(setComparePlans(comparePlans)),
+  setPlanOptions: planOptions => dispatch(setPlanOptions(planOptions))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ComparePage))
