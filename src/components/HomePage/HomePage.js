@@ -30,8 +30,6 @@ const styles = theme => ({
     justifyContent: 'center',
     padding: '40px 10px',
     position: 'relative',
-    background: '-moz-linear-gradient(left,  rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%)', //FF3.6-15
-    background: '-webkit-linear-gradient(left,  rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.2) 60%,rgba(0,0,0,0) 100%)', //Chrome10-25,Safari5.1-6
     background: 'linear-gradient(to right,  rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.2) 60%,rgba(0,0,0,0) 100%)', //W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
     [theme.breakpoints.only('sm')]: {
       padding: '40px 30px'
@@ -76,11 +74,10 @@ const styles = theme => ({
 
 const HomePage = props => {
   const { classes } = props
-  console.log(props.isShowSearch)
 
   return (
     <Fade in={!props.isShowResults} timeout={500} style={{ transitionDelay: !props.isShowResults ? '0s' : '0.5s' }} mountOnEnter unmountOnExit>
-      <Box className={clsx(classes.outerBox, props.isShowSearch && classes.hideHomePage)}>
+      <Box className={clsx(classes.outerBox, props.isShowSearch && classes.hideHomePage, props.isShowCompare && classes.hideHomePage)}>
         <Container className={classes.outerContainer} maxWidth={false}>
           <Container maxWidth="xl">
             <Grid container spacing={2}>
@@ -108,7 +105,8 @@ const HomePage = props => {
 }
 
 const mapStateToProps = state => ({
-  isShowSearch: state.search.isShowSearch
+  isShowSearch: state.search.isShowSearch,
+  isShowCompare: state.compare.isShowCompare
 })
 
 const mapDispatchToProps = dispatch => ({

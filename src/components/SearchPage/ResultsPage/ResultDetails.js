@@ -105,16 +105,16 @@ const ResultDetails = props => {
               <TableBody>
                 <TableRow>
                   <TableCell>Base Plan</TableCell>
-                  <TableCell>{basePlan.data}GB</TableCell>
-                  <TableCell>{basePlan.talktime}min</TableCell>
+                  <TableCell>{basePlan.data} GB</TableCell>
+                  <TableCell>{basePlan.talktime} min</TableCell>
                   <TableCell>{basePlan.sms}</TableCell>
                   <TableCell>${basePlan.price.toFixed(2)}</TableCell>
                 </TableRow>
                 {addonTableRows !== undefined && addonTableRows}
                 <TableRow>
                   <TableCell>Total</TableCell>
-                  <TableCell>{props.resultSelected.data}GB</TableCell>
-                  <TableCell>{props.resultSelected.talktime}min</TableCell>
+                  <TableCell>{props.resultSelected.data} GB</TableCell>
+                  <TableCell>{props.resultSelected.talktime} min</TableCell>
                   <TableCell>{props.resultSelected.sms}</TableCell>
                   <TableCell>${props.resultSelected.price.toFixed(2)}</TableCell>
                 </TableRow>
@@ -189,7 +189,4 @@ const mapDispatchToProps = dispatch => ({
   setIsShowMobileResultDetails: isShowMobileResultDetails => dispatch(setIsShowMobileResultDetails(isShowMobileResultDetails))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(ResultDetails))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ResultDetails))

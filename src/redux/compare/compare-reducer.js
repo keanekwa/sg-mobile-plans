@@ -1,5 +1,25 @@
 const INITIAL_STATE = {
-  isShowCompare: false
+  isShowCompare: false,
+  comparePlans: {
+    planOne: {
+      planType: '',
+      telco: '',
+      mobilePlan: {
+        planName: ''
+      }
+    },
+    planTwo: {
+      planType: '',
+      telco: '',
+      mobilePlan: {
+        planName: ''
+      }
+    }
+  },
+  planOptions: {
+    planOne: [],
+    planTwo: []
+  }
 }
 
 const compareReducer = (state = INITIAL_STATE, action) => {
@@ -9,6 +29,18 @@ const compareReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isShowCompare: action.payload
       }
+    case 'SET_COMPARE_PLANS': {
+      return {
+        ...state,
+        comparePlans: action.payload
+      }
+    }
+    case 'SET_PLAN_OPTIONS': {
+      return {
+        ...state,
+        planOptions: action.payload
+      }
+    }
     default:
       return state
   }
