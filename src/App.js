@@ -12,6 +12,7 @@ const App = props => {
       <HomePage />
       <SearchPage />
       <ResultsPage />
+      <ComparePage />
     </Box>
   )
 }
