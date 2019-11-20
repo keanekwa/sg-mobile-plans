@@ -4,12 +4,16 @@ const INITIAL_STATE = {
     planOne: {
       planType: '',
       telco: '',
-      planName: ''
+      mobilePlan: {
+        planName: ''
+      }
     },
     planTwo: {
       planType: '',
       telco: '',
-      planName: ''
+      mobilePlan: {
+        planName: ''
+      }
     }
   },
   planOptions: {

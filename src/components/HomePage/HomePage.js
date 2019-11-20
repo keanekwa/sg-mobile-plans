@@ -77,7 +77,7 @@ const HomePage = props => {
 
   return (
     <Fade in={!props.isShowResults} timeout={500} style={{ transitionDelay: !props.isShowResults ? '0s' : '0.5s' }} mountOnEnter unmountOnExit>
-      <Box className={clsx(classes.outerBox, props.isShowSearch && classes.hideHomePage)}>
+      <Box className={clsx(classes.outerBox, props.isShowSearch && classes.hideHomePage, props.isShowCompare && classes.hideHomePage)}>
         <Container className={classes.outerContainer} maxWidth={false}>
           <Container maxWidth="xl">
             <Grid container spacing={2}>
@@ -108,7 +108,8 @@ const HomePage = props => {
 }
 
 const mapStateToProps = state => ({
-  isShowSearch: state.search.isShowSearch
+  isShowSearch: state.search.isShowSearch,
+  isShowCompare: state.compare.isShowCompare
 })
 
 const mapDispatchToProps = dispatch => ({
