@@ -139,7 +139,7 @@ const ComparePage = props => {
                   </Select>
                 </FormControl>
                 <FormControl className={classes.formControl}>
-                  <InputLabel>Telcos</InputLabel>
+                  <InputLabel>Telco</InputLabel>
                   <Select defaultValue={props.comparePlans.planOne.telco} onChange={event => handleChange(event, 'planOne', 'telco')}>
                     {uniqueTelcos.map(telco => (
                       <MenuItem key={telco} value={telco}>
@@ -150,7 +150,7 @@ const ComparePage = props => {
                 </FormControl>
                 {props.planOptions.planOne.length !== 0 ? (
                   <FormControl className={classes.formControl}>
-                    <InputLabel>Plans</InputLabel>
+                    <InputLabel>Plan</InputLabel>
                     <Select defaultValue={props.comparePlans.planOne.mobilePlan.planName} onChange={event => handleChange(event, 'planOne', 'mobilePlan')}>
                       {props.planOptions.planOne}
                     </Select>
@@ -179,7 +179,7 @@ const ComparePage = props => {
                   </Select>
                 </FormControl>
                 <FormControl className={classes.formControl}>
-                  <InputLabel>Telcos</InputLabel>
+                  <InputLabel>Telco</InputLabel>
                   <Select defaultValue={props.comparePlans.planTwo.telco} onChange={event => handleChange(event, 'planTwo', 'telco')}>
                     {uniqueTelcos.map(telco => (
                       <MenuItem key={telco} value={telco}>
@@ -190,7 +190,7 @@ const ComparePage = props => {
                 </FormControl>
                 {props.planOptions.planTwo.length !== 0 ? (
                   <FormControl className={classes.formControl}>
-                    <InputLabel>Plans</InputLabel>
+                    <InputLabel>Plan</InputLabel>
                     <Select defaultValue={props.comparePlans.planTwo.mobilePlan.planName} onChange={event => handleChange(event, 'planTwo', 'mobilePlan')}>
                       {props.planOptions.planTwo}
                     </Select>
