@@ -51,6 +51,20 @@ const INITIAL_STATE = {
         value: 'TPG',
         isChecked: true
       }
+    ],
+    specialOptions: [
+      {
+        value: 'Students & NSFs',
+        isChecked: false
+      },
+      {
+        value: '60 years and above',
+        isChecked: false
+      },
+      {
+        value: 'Existing MyRepublic broadband customers',
+        isChecked: false
+      }
     ]
   },
   isShowSearch: false

@@ -182,7 +182,8 @@ const mobilePlanData = [
     talktime: 100,
     sms: 500,
     price: 22.32,
-    pros: [FREE_VOICEMAIL, SINGTEL_SILVER]
+    pros: [FREE_VOICEMAIL, SINGTEL_SILVER],
+    specialOption: '60 years and above'
   },
   {
     telco: 'Singtel',
@@ -192,7 +193,8 @@ const mobilePlanData = [
     talktime: 200,
     sms: 1000,
     price: 34.32,
-    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_SILVER]
+    pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_SILVER],
+    specialOption: '60 years and above'
   },
   {
     telco: 'Singtel',
@@ -203,7 +205,8 @@ const mobilePlanData = [
     sms: 10000,
     price: 55.12,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_SILVER]
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_SILVER],
+    specialOption: '60 years and above'
   },
   {
     telco: 'Singtel',
@@ -214,7 +217,8 @@ const mobilePlanData = [
     sms: 10000,
     price: 27.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI],
-    notes: [UNLIMITED_SMS_10000, SINGTEL_YOUTH]
+    notes: [UNLIMITED_SMS_10000, SINGTEL_YOUTH],
+    specialOption: 'Students & NSFs'
   },
   {
     telco: 'Singtel',
@@ -225,7 +229,8 @@ const mobilePlanData = [
     sms: 10000,
     price: 42.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH]
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH],
+    specialOption: 'Students & NSFs'
   },
   {
     telco: 'Singtel',
@@ -236,7 +241,8 @@ const mobilePlanData = [
     sms: 10000,
     price: 68.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH]
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH],
+    specialOption: 'Students & NSFs'
   },
   {
     telco: 'Singtel',
@@ -247,7 +253,8 @@ const mobilePlanData = [
     sms: 10000,
     price: 95.9,
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HBO_GO],
-    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH]
+    notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH],
+    specialOption: 'Students & NSFs'
   },
   {
     telco: 'Circles.Life',
@@ -488,7 +495,8 @@ const mobilePlanData = [
     sms: 8000,
     price: 38,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [UNLIMITED_DATA_3_DAY, UNLIMITED_TALKTIME_8000, UNLIMITED_SMS_8000]
+    notes: [UNLIMITED_DATA_3_DAY, UNLIMITED_TALKTIME_8000, UNLIMITED_SMS_8000],
+    specialOption: 'Existing MyRepublic broadband customers'
   },
   {
     telco: 'MyRepublic',
@@ -521,7 +529,8 @@ const mobilePlanData = [
     sms: 1000,
     price: 35,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [MANAGED_SPEEDS_15GB]
+    notes: [MANAGED_SPEEDS_15GB],
+    specialOption: 'Existing MyRepublic broadband customers'
   },
   {
     telco: 'MyRepublic',
@@ -554,7 +563,8 @@ const mobilePlanData = [
     sms: 1000,
     price: 55,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
-    notes: [MANAGED_SPEEDS_26GB]
+    notes: [MANAGED_SPEEDS_26GB],
+    specialOption: 'Existing MyRepublic broadband customers'
   },
   {
     telco: 'MyRepublic',
@@ -576,7 +586,8 @@ const mobilePlanData = [
     sms: 1000,
     price: 85,
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, MY_REPUBLIC_ROAM_LIKE_HOME],
-    notes: [MANAGED_SPEEDS_38GB]
+    notes: [MANAGED_SPEEDS_38GB],
+    specialOption: 'Existing MyRepublic broadband customers'
   },
   {
     telco: 'Giga!',

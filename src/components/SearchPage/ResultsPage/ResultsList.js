@@ -35,6 +35,7 @@ const ResultsList = props => {
   const options = props.options
   options.planTypesArray = []
   options.telcosArray = []
+  options.specialOptionsArray = []
   options.planTypes.forEach(planType => {
     if (planType.isChecked === true) {
       options.planTypesArray.push(planType.value)
@@ -45,9 +46,21 @@ const ResultsList = props => {
       options.telcosArray.push(telco.value)
     }
   })
+  options.specialOptions.forEach(specialOption => {
+    if (specialOption.isChecked === true) {
+      options.specialOptionsArray.push(specialOption.value)
+    }
+  })
 
-  //filter out the mobile plans
-  const filteredMobilePlans = mobilePlanData.filter(mobilePlan => mobilePlan.data >= options.minData && mobilePlan.talktime >= options.minTalktime && mobilePlan.sms >= options.minSMS && mobilePlan.price <= options.price && options.planTypesArray.includes(mobilePlan.planType) && options.telcosArray.includes(mobilePlan.telco))
+  //filter out the mobile plans. all plans with special options are also filtered out
+  let preFilteredMobilePlans = mobilePlanData.filter(mobilePlan => mobilePlan.data >= options.minData && mobilePlan.talktime >= options.minTalktime && mobilePlan.sms >= options.minSMS && mobilePlan.price <= options.price && options.planTypesArray.includes(mobilePlan.planType) && options.telcosArray.includes(mobilePlan.telco) && mobilePlan.specialOption === undefined)
+
+  //plans with special options are added back in if applicable
+  const plansWithSpecialOptions = mobilePlanData.filter(mobilePlan => mobilePlan.data >= options.minData && mobilePlan.talktime >= options.minTalktime && mobilePlan.sms >= options.minSMS && mobilePlan.price <= options.price && options.planTypesArray.includes(mobilePlan.planType) && options.telcosArray.includes(mobilePlan.telco) && options.specialOptionsArray.includes(mobilePlan.specialOption))
+  console.log(preFilteredMobilePlans)
+  console.log(options.specialOptionsArray)
+  const filteredMobilePlans = plansWithSpecialOptions.length !== 0 ? preFilteredMobilePlans.concat(plansWithSpecialOptions) : preFilteredMobilePlans
+  console.log(filteredMobilePlans)
 
   //see if adding addons can make plans that meet requirements (but must still make sure they are within contract duration and preferred telcos selected)
   const unfilteredMobilePlans = mobilePlanData.filter(mobilePlan => (mobilePlan.data < options.minData || mobilePlan.talktime < options.minTalktime || mobilePlan.sms < options.minSMS || mobilePlan.price > options.price) && options.planTypesArray.includes(mobilePlan.telco) && options.telcosArray.includes(mobilePlan.telco))
@@ -150,7 +163,4 @@ const mapDispatchToProps = dispatch => ({
   setIsShowResults: isShowResults => dispatch(setIsShowResults(isShowResults))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(ResultsList))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ResultsList))

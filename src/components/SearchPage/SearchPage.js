@@ -43,7 +43,7 @@ const SearchPage = props => {
 
   const handleChange = (event, option) => {
     const newOptions = props.options
-    if (option === 'planTypes' || option === 'telcos') {
+    if (option === 'planTypes' || option === 'telcos' || option === 'specialOptions') {
       newOptions[`${option}`].forEach(subOption => {
         if (subOption.value === event.target.value) {
           subOption.isChecked = event.target.checked
@@ -201,7 +201,16 @@ const SearchPage = props => {
                   </FormGroup>
                 </Grid>
               )}
-
+              {props.options.specialOptions !== undefined && (
+                <Grid item xs={12}>
+                  <Box className={classes.question}>Include plans applicable for:</Box>
+                  <FormGroup row>
+                    {props.options.specialOptions.map(specialOption => {
+                      return <FormControlLabel key={specialOption.value} control={<Checkbox defaultChecked={specialOption.isChecked} value={specialOption.value} onChange={event => handleChange(event, 'specialOptions')} />} label={specialOption.value} />
+                    })}
+                  </FormGroup>
+                </Grid>
+              )}
               <Grid item xs={12}>
                 <Button className={classes.Button} onClick={() => props.setIsShowResults(true)} variant="contained" size="large" color="primary">
                   Search
@@ -227,7 +236,4 @@ const mapDispatchToProps = dispatch => ({
   setIsShowResults: isShowResults => dispatch(setIsShowResults(isShowResults))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(SearchPage))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SearchPage))
