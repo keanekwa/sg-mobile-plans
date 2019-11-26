@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 //import components
-import { Button, Container, TextField, InputAdornment, Grid, Typography, FormGroup, FormControlLabel, Checkbox, Box, ClickAwayListener, Slide, AppBar, Toolbar, IconButton } from '@material-ui/core'
+import { Button, Container, TextField, InputAdornment, Grid, Typography, FormGroup, FormControlLabel, Tooptip, Checkbox, Box, ClickAwayListener, Slide, AppBar, Toolbar, IconButton, Tooltip } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 //import styles
 import { withStyles } from '@material-ui/core/styles'
@@ -55,6 +55,21 @@ const SearchPage = props => {
     props.setOptions(newOptions)
   }
 
+  const [isMinDataError, setIsMinDataError] = useState(false)
+  const [isMinTalktimeError, setIsMinTalktimeError] = useState(false)
+  const [isMinSMSError, setIsMinSMSError] = useState(false)
+  const [isPriceError, setIsPriceError] = useState(false)
+
+  const handleSearchButtonClick = () => {
+    //check if any of the fields have not been filled in
+    props.options.minData === '' ? setIsMinDataError(true) : isMinDataError && setIsMinDataError(false)
+    props.options.minTalktime === '' ? setIsMinTalktimeError(true) : isMinTalktimeError && setIsMinTalktimeError(false)
+    props.options.minSMS === '' ? setIsMinSMSError(true) : isMinSMSError && setIsMinSMSError(false)
+    props.options.price === '' ? setIsPriceError(true) : isPriceError && setIsPriceError(false)
+
+    props.options.minData !== '' && props.options.minTalktime !== '' && props.options.minSMS !== '' && props.options.price !== '' && props.setIsShowResults(true)
+  }
+
   return (
     <Slide direction="left" in={props.isShowSearch && !props.isShowResults} timeout={500} mountOnEnter unmountOnExit>
       <ClickAwayListener onClickAway={() => props.setIsShowSearch(false)}>
@@ -78,16 +93,9 @@ const SearchPage = props => {
               </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.TextFieldLabel
-                    }
-                  }}
+                  error={isMinDataError}
+                  helperText={isMinDataError && 'Please enter a valid number.'}
                   InputProps={{
-                    classes: {
-                      root: classes.TextField,
-                      notchedOutline: classes.TextFieldNotchedOutline
-                    },
                     inputMode: 'numeric',
                     endAdornment: (
                       <InputAdornment className={classes.InputAdornment} position="end" disableTypography={true}>
@@ -98,75 +106,58 @@ const SearchPage = props => {
                   type="number"
                   variant="outlined"
                   label="Data"
-                  defaultValue={props.options.minData !== 0 && props.options.minData}
+                  defaultValue={props.options.minData !== null && props.options.minData}
                   fullWidth={true}
                   onChange={event => handleChange(event, 'minData')}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
-                <TextField
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.TextFieldLabel
-                    }
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.TextField,
-                      notchedOutline: classes.TextFieldNotchedOutline
-                    },
-                    inputMode: 'numeric',
-                    endAdornment: (
-                      <InputAdornment className={classes.InputAdornment} position="end" disableTypography={true}>
-                        min
-                      </InputAdornment>
-                    )
-                  }}
-                  type="number"
-                  variant="outlined"
-                  label="Talktime"
-                  defaultValue={props.options.minTalktime !== 0 && props.options.minTalktime}
-                  fullWidth={true}
-                  onChange={event => handleChange(event, 'minTalktime')}
-                />
+                <Tooltip placement="top" title="You can set this as 0 if you don't require talktime.">
+                  <TextField
+                    error={isMinTalktimeError}
+                    helperText={isMinTalktimeError && 'Please enter a valid number.'}
+                    InputProps={{
+                      inputMode: 'numeric',
+                      endAdornment: (
+                        <InputAdornment className={classes.InputAdornment} position="end" disableTypography={true}>
+                          min
+                        </InputAdornment>
+                      )
+                    }}
+                    type="number"
+                    variant="outlined"
+                    label="Talktime"
+                    defaultValue={props.options.minTalktime !== null && props.options.minTalktime}
+                    fullWidth={true}
+                    onChange={event => handleChange(event, 'minTalktime')}
+                  />
+                </Tooltip>
               </Grid>
               <Grid item xs={12} sm={4}>
-                <TextField
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.TextFieldLabel
-                    }
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.TextField,
-                      notchedOutline: classes.TextFieldNotchedOutline
-                    },
-                    inputMode: 'numeric'
-                  }}
-                  type="number"
-                  variant="outlined"
-                  label="SMS"
-                  defaultValue={props.options.minSMS !== 0 && props.options.minSMS}
-                  fullWidth={true}
-                  onChange={event => handleChange(event, 'minSMS')}
-                />
+                <Tooltip placement="top" title="You can set this as 0 if you don't require SMS.">
+                  <TextField
+                    error={isMinSMSError}
+                    helperText={isMinSMSError && 'Please enter a valid number.'}
+                    InputProps={{
+                      inputMode: 'numeric'
+                    }}
+                    type="number"
+                    variant="outlined"
+                    label="SMS"
+                    defaultValue={props.options.minSMS !== null && props.options.minSMS}
+                    fullWidth={true}
+                    onChange={event => handleChange(event, 'minSMS')}
+                  />
+                </Tooltip>
               </Grid>
               <Grid item className={classes.question} xs={12}>
                 My monthly budget is:
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.TextFieldLabel
-                    }
-                  }}
+                  error={isPriceError}
+                  helperText={isPriceError && 'Please enter a valid budget.'}
                   InputProps={{
-                    classes: {
-                      root: classes.TextField,
-                      notchedOutline: classes.TextFieldNotchedOutline
-                    },
                     inputMode: 'numeric',
                     startAdornment: (
                       <InputAdornment className={classes.InputAdornment} position="start" disableTypography={true}>
@@ -176,7 +167,7 @@ const SearchPage = props => {
                   }}
                   type="number"
                   variant="outlined"
-                  defaultValue={props.options.price !== 0 && props.options.price}
+                  defaultValue={props.options.price !== null && props.options.price}
                   fullWidth={true}
                   onChange={event => handleChange(event, 'price')}
                 />
@@ -212,7 +203,7 @@ const SearchPage = props => {
                 </Grid>
               )}
               <Grid item xs={12}>
-                <Button className={classes.Button} onClick={() => props.setIsShowResults(true)} variant="contained" size="large" color="primary">
+                <Button className={classes.Button} onClick={() => handleSearchButtonClick()} variant="contained" size="large" color="primary">
                   Search
                 </Button>
               </Grid>

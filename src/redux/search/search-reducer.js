@@ -1,9 +1,9 @@
 const INITIAL_STATE = {
   options: {
-    minData: 0,
-    minTalktime: 0,
-    minSMS: 0,
-    price: 0,
+    minData: '',
+    minTalktime: '',
+    minSMS: '',
+    price: '',
     planTypes: [
       {
         value: 'No contract',
