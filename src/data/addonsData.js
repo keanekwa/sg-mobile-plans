@@ -1,9 +1,9 @@
-const FREE_INCOMING_CALLS = 'Free incoming calls';
-const UNLIMITED_DATA_20 = 'Data addon is marketed as unlimited, but usage in excess of the extra 20 GB/mth may be at controlled speeds';
-const UNLIMITED_DATA_50 = 'Data addon is marketed as unlimited, but usage in excess of the extra 50 GB/mth may be at controlled speeds';
-const UNLIMITED_TALKTIME = 'Talktime addon is marketed as unlimited, but is capped at 10,000 min';
+const FREE_INCOMING_CALLS = 'Free incoming calls'
+const UNLIMITED_DATA_20 = 'Data addon is marketed as unlimited, but usage in excess of the extra 20 GB/mth may be at controlled speeds'
+const UNLIMITED_DATA_50 = 'Data addon is marketed as unlimited, but usage in excess of the extra 50 GB/mth may be at controlled speeds'
+const UNLIMITED_TALKTIME = 'Talktime addon is marketed as unlimited, but is capped at 10,000 min'
 
-const SINGTEL_SIGNUP_FEE = 'One-time sign up fee of $10.70';
+const SINGTEL_SIGNUP_FEE = 'One-time sign up fee of $10.70'
 
 const CIRCLES_UNLIMITED_TALKTIME = 'Talktime addon is marketed as unlimited, but is capped by the Circles.life Fair Usage Policy. While the policy does not state the exact cap, most other telcos set the cap at 10,000 min of talktime'
 
@@ -16,7 +16,7 @@ const addonsData = [
     talktime: 0,
     sms: 0,
     price: 2,
-    keepAdding: true,
+    keepAdding: true
   },
   {
     appliesToTelco: 'Circles.Life',
@@ -26,7 +26,7 @@ const addonsData = [
     talktime: 0,
     sms: 0,
     price: 20,
-    notes: [UNLIMITED_DATA_20],
+    notes: [UNLIMITED_DATA_20]
   },
   {
     appliesToTelco: 'Circles.Life',
@@ -36,17 +36,17 @@ const addonsData = [
     talktime: 0,
     sms: 0,
     price: 2,
-    pros: [FREE_INCOMING_CALLS],
+    pros: [FREE_INCOMING_CALLS]
   },
   {
     appliesToTelco: 'Circles.Life',
     appliesToPlans: ['Base Plan (New number)', 'Base Plan (Transfer number)'],
     addonName: 'Unlimited Outgoing Calls',
-    data: 10000,
-    talktime: 0,
+    data: 0,
+    talktime: 10000,
     sms: 0,
     price: 8,
-    notes: [CIRCLES_UNLIMITED_TALKTIME],
+    notes: [CIRCLES_UNLIMITED_TALKTIME]
   },
   {
     appliesToTelco: 'Circles.Life',
@@ -56,7 +56,7 @@ const addonsData = [
     talktime: 0,
     sms: 0,
     price: 6,
-    keepAdding: true,
+    keepAdding: true
   },
   {
     appliesToTelco: 'Circles.Life',
@@ -66,7 +66,7 @@ const addonsData = [
     talktime: 100,
     sms: 0,
     price: 4,
-    keepAdding: true,
+    keepAdding: true
   },
   {
     appliesToTelco: 'Circles.Life',
@@ -76,7 +76,7 @@ const addonsData = [
     talktime: 0,
     sms: 25,
     price: 1,
-    keepAdding: true,
+    keepAdding: true
   },
   {
     appliesToTelco: 'Circles.Life',
@@ -86,7 +86,7 @@ const addonsData = [
     talktime: 0,
     sms: 0,
     price: 8,
-    keepAdding: true,
+    keepAdding: true
   },
   {
     appliesToTelco: 'Circles.Life',
@@ -96,7 +96,7 @@ const addonsData = [
     talktime: 0,
     sms: 0,
     price: 12,
-    keepAdding: true,
+    keepAdding: true
   },
   {
     appliesToTelco: 'Circles.Life',
@@ -106,7 +106,7 @@ const addonsData = [
     talktime: 30,
     sms: 0,
     price: 5,
-    keepAdding: true,
+    keepAdding: true
   },
   {
     appliesToTelco: 'Circles.Life',
@@ -117,7 +117,7 @@ const addonsData = [
     sms: 0,
     price: 10,
     pros: [FREE_INCOMING_CALLS],
-    keepAdding: true,
+    keepAdding: true
   },
   {
     appliesToTelco: 'Singtel',
@@ -129,7 +129,7 @@ const addonsData = [
     talktime: 1,
     sms: 1,
     price: 5.9,
-    cons: [SINGTEL_SIGNUP_FEE],
+    cons: [SINGTEL_SIGNUP_FEE]
   },
   {
     appliesToTelco: 'Singtel',
@@ -141,7 +141,7 @@ const addonsData = [
     talktime: 1,
     sms: 1,
     price: 9.9,
-    cons: [SINGTEL_SIGNUP_FEE],
+    cons: [SINGTEL_SIGNUP_FEE]
   },
   {
     appliesToTelco: 'Singtel',
@@ -153,20 +153,69 @@ const addonsData = [
     talktime: 1,
     sms: 1,
     price: 19.9,
-    cons: [SINGTEL_SIGNUP_FEE],
+    cons: [SINGTEL_SIGNUP_FEE]
   },
   {
     appliesToTelco: 'Singtel',
     appliesToPlans: ['Combo 3', 'Combo 6', 'Combo 12'],
     addonName: 'Data X INFINITY',
-    multiplier: true,
     mutuallyExclusive: true,
     data: 10000,
-    talktime: 1,
-    sms: 1,
+    talktime: 0,
+    sms: 0,
     price: 39.9,
     cons: [SINGTEL_SIGNUP_FEE],
-    notes: [UNLIMITED_DATA_50],
+    notes: [UNLIMITED_DATA_50]
+  },
+  {
+    appliesToTelco: 'Singtel',
+    appliesToPlans: ['SIM Only 20 GB Plan', 'SIM Only 40 GB Plan', 'SIM Only 70 GB Plan'],
+    addonName: '1GB Data',
+    keepAdding: true,
+    data: 1,
+    talktime: 0,
+    sms: 0,
+    price: 5.35
+  },
+  {
+    appliesToTelco: 'Singtel',
+    appliesToPlans: ['SIM Only 20 GB Plan', 'SIM Only 40 GB Plan', 'SIM Only 70 GB Plan'],
+    addonName: '200min Talktime',
+    keepAdding: true,
+    data: 0,
+    talktime: 200,
+    sms: 0,
+    price: 5.35
+  },
+  {
+    appliesToTelco: 'Singtel',
+    appliesToPlans: ['SIM Only 20 GB Plan', 'SIM Only 40 GB Plan', 'SIM Only 70 GB Plan'],
+    addonName: '800min Talktime',
+    keepAdding: true,
+    data: 0,
+    talktime: 800,
+    sms: 0,
+    price: 10.7
+  },
+  {
+    appliesToTelco: 'Singtel',
+    appliesToPlans: ['SIM Only 20 GB Plan', 'SIM Only 40 GB Plan', 'SIM Only 70 GB Plan'],
+    addonName: 'Unlimited Talktime',
+    keepAdding: true,
+    data: 0,
+    talktime: 10000,
+    sms: 0,
+    price: 16.05
+  },
+  {
+    appliesToTelco: 'Singtel',
+    appliesToPlans: ['SIM Only 20 GB Plan', 'SIM Only 40 GB Plan', 'SIM Only 70 GB Plan'],
+    addonName: '1200 SMS',
+    keepAdding: true,
+    data: 0,
+    talktime: 0,
+    sms: 1200,
+    price: 5.35
   },
   {
     appliesToTelco: 'Starhub',
@@ -175,7 +224,7 @@ const addonsData = [
     data: 50,
     talktime: 0,
     sms: 0,
-    price: 20,
+    price: 20
   },
   {
     appliesToTelco: 'Starhub',
@@ -184,7 +233,7 @@ const addonsData = [
     data: 10,
     talktime: 0,
     sms: 0,
-    price: 10,
+    price: 10
   },
   {
     appliesToTelco: 'M1',
@@ -194,7 +243,7 @@ const addonsData = [
     data: 10,
     talktime: 100,
     sms: 0,
-    price: 10,
+    price: 10
   },
   {
     appliesToTelco: 'M1',
@@ -204,7 +253,7 @@ const addonsData = [
     data: 50,
     talktime: 100,
     sms: 0,
-    price: 20,
+    price: 20
   },
   {
     appliesToTelco: 'M1',
@@ -214,7 +263,7 @@ const addonsData = [
     data: 150,
     talktime: 10000,
     sms: 0,
-    price: 50,
+    price: 50
   },
   {
     appliesToTelco: 'M1',
@@ -224,7 +273,7 @@ const addonsData = [
     data: 150,
     talktime: 10000,
     sms: 0,
-    price: 50,
+    price: 50
   },
   {
     appliesToTelco: 'M1',
@@ -234,7 +283,7 @@ const addonsData = [
     data: 0,
     talktime: 200,
     sms: 0,
-    price: 2.5,
+    price: 2.5
   },
   {
     appliesToTelco: 'M1',
@@ -244,7 +293,7 @@ const addonsData = [
     data: 0,
     talktime: 800,
     sms: 0,
-    price: 5,
+    price: 5
   },
   {
     appliesToTelco: 'M1',
@@ -255,7 +304,7 @@ const addonsData = [
     talktime: 10000,
     sms: 0,
     price: 7.5,
-    notes: [UNLIMITED_TALKTIME],
+    notes: [UNLIMITED_TALKTIME]
   },
   {
     appliesToTelco: 'MyRepublic',
@@ -265,7 +314,7 @@ const addonsData = [
     data: 1,
     talktime: 0,
     sms: 0,
-    price: 5,
+    price: 5
   },
   {
     appliesToTelco: 'MyRepublic',
@@ -275,7 +324,7 @@ const addonsData = [
     data: 3,
     talktime: 0,
     sms: 0,
-    price: 12,
+    price: 12
   },
   {
     appliesToTelco: 'MyRepublic',
@@ -285,8 +334,8 @@ const addonsData = [
     data: 8,
     talktime: 0,
     sms: 0,
-    price: 30,
-  },
-];
+    price: 30
+  }
+]
 
-export default addonsData;
+export default addonsData

@@ -30,6 +30,9 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }
+  },
+  bold: {
+    fontWeight: 'bold'
   }
 })
 
@@ -70,11 +73,11 @@ const ResultDetails = props => {
         <TableCell>
           {addon.multiplier === true && 'x'}
           {addon.data * addon.addonMultiple}
-          {addon.multiplier !== true && 'GB'}
+          {addon.multiplier !== true && ' GB'}
         </TableCell>
-        <TableCell>{addon.multiplier === true ? addon.talktime === 1 && '-' : addon.talktime * addon.addonMultiple + ' min'}</TableCell>
-        <TableCell>{addon.multiplier === true ? addon.sms === 1 && '-' : addon.sms * addon.addonMultiple}</TableCell>
-        <TableCell>${addon.price.toFixed(2)}</TableCell>
+        <TableCell>{(addon.multiplier === true && addon.talktime === 1) || addon.talktime === 0 ? '-' : addon.talktime * addon.addonMultiple + ' min'}</TableCell>
+        <TableCell>{(addon.multiplier === true && addon.sms === 1) || addon.sms === 0 ? '-' : addon.sms * addon.addonMultiple}</TableCell>
+        <TableCell>${(addon.price * addon.addonMultiple).toFixed(2)}</TableCell>
       </TableRow>
     ))
 
@@ -113,11 +116,11 @@ const ResultDetails = props => {
                 </TableRow>
                 {addonTableRows !== undefined && addonTableRows}
                 <TableRow>
-                  <TableCell>Total</TableCell>
-                  <TableCell>{props.resultSelected.data} GB</TableCell>
-                  <TableCell>{props.resultSelected.talktime} min</TableCell>
-                  <TableCell>{props.resultSelected.sms}</TableCell>
-                  <TableCell>${props.resultSelected.price.toFixed(2)}</TableCell>
+                  <TableCell className={classes.bold}>Total</TableCell>
+                  <TableCell className={classes.bold}>{props.resultSelected.data} GB</TableCell>
+                  <TableCell className={classes.bold}>{props.resultSelected.talktime} min</TableCell>
+                  <TableCell className={classes.bold}>{props.resultSelected.sms}</TableCell>
+                  <TableCell className={classes.bold}>${props.resultSelected.price.toFixed(2)}</TableCell>
                 </TableRow>
               </TableBody>
               {mappedPros !== null && (
