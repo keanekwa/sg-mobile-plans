@@ -1,9 +1,10 @@
 import React from 'react'
 //import components
-import { Box, IconButton, Fade, Table, TableBody, TableCell, TableHead, TableRow, AppBar, Toolbar } from '@material-ui/core'
+import { Box, IconButton, Fade, Table, TableBody, TableCell, TableHead, TableRow, AppBar, Toolbar, Button } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 //import styles
 import { withStyles } from '@material-ui/core/styles'
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'
 //import redux
 import { connect } from 'react-redux'
 import { setIsShowMobileResultDetails } from '../../../redux/results/results-actions'
@@ -71,8 +72,8 @@ const ResultDetails = props => {
           {addon.data * addon.addonMultiple}
           {addon.multiplier !== true && 'GB'}
         </TableCell>
-        <TableCell>{addon.talktime * addon.addonMultiple}min</TableCell>
-        <TableCell>{addon.sms * addon.addonMultiple}</TableCell>
+        <TableCell>{addon.multiplier === true ? addon.talktime === 1 && '-' : addon.talktime * addon.addonMultiple + ' min'}</TableCell>
+        <TableCell>{addon.multiplier === true ? addon.sms === 1 && '-' : addon.sms * addon.addonMultiple}</TableCell>
         <TableCell>${addon.price.toFixed(2)}</TableCell>
       </TableRow>
     ))
@@ -173,6 +174,15 @@ const ResultDetails = props => {
                   </TableRow>
                 </TableBody>
               )}
+              <TableBody>
+                <TableRow>
+                  <TableCell colSpan={5}>
+                    <Button href={props.resultSelected.link} target="_blank" variant="contained" color="primary" endIcon={<OpenInNewIcon />}>
+                      Open telco website
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
             </Table>
           </Box>
         </Box>

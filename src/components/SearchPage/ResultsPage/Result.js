@@ -99,7 +99,4 @@ const mapDispatchToProps = dispatch => ({
   setIsShowMobileResultDetails: isShowMobileResultDetails => dispatch(setIsShowMobileResultDetails(isShowMobileResultDetails))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(Result))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Result))

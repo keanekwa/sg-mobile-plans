@@ -39,8 +39,11 @@ const SINGTEL_24MTHS_HBO_GO = '24 mth HBO GO'
 const SINGTEL_24MTHS_HOOQ = '24 mth HOOQ'
 const SINGTEL_500_YEARLY_HANDSET_VOUCHER = '$500 yearly handset upgrade voucher'
 const SINGTEL_FREE_AUTOROAM = 'Free AutoRoam'
-const SINGTEL_YOUTH = 'Only available for students 25 years old and below'
+const SINGTEL_YOUTH = 'Only available for students or NSFs 25 years old and below'
 const SINGTEL_SILVER = 'Only available for customers 60 years old and above'
+const SINGTEL_DROP_TO_6GB = 'Data drops to 6 GB/mth after 12 months'
+const SINGTEL_DROP_TO_8GB = 'Data drops to 8 GB/mth after 12 months'
+const SINGTEL_DROP_TO_13GB = 'Data drops to 13 GB/mth after 12 months'
 
 const CIRCLES_NO_ADDONS_FOR_5_PLAN = 'Phones, roaming, and unlimited data addons are not available with this plan (only available with 20GB Base Plan)'
 const CIRCLES_PRICE_RETURNS_28 = 'Price returns to $28/mth after 1 year'
@@ -80,6 +83,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 100,
     price: 48,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/comboxo',
     pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_ENTERTAINMENT_PLUS]
   },
   {
@@ -90,6 +94,7 @@ const mobilePlanData = [
     talktime: 300,
     sms: 300,
     price: 78,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/comboxo',
     pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ]
   },
   {
@@ -100,6 +105,7 @@ const mobilePlanData = [
     talktime: 500,
     sms: 500,
     price: 108,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/comboxo',
     pros: [FREE_WEEKEND_DATA, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ]
   },
   {
@@ -109,7 +115,8 @@ const mobilePlanData = [
     data: 0.1,
     talktime: 100,
     sms: 500,
-    price: 27.9
+    price: 27.9,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/combo'
   },
   {
     telco: 'Singtel',
@@ -119,6 +126,7 @@ const mobilePlanData = [
     talktime: 200,
     sms: 1000,
     price: 42.9,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/combo',
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS]
   },
   {
@@ -129,6 +137,7 @@ const mobilePlanData = [
     talktime: 10000,
     sms: 10000,
     price: 68.9,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/combo',
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
     notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000]
   },
@@ -140,6 +149,7 @@ const mobilePlanData = [
     talktime: 10000,
     sms: 10000,
     price: 95.9,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/combo',
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ],
     notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000]
   },
@@ -151,6 +161,7 @@ const mobilePlanData = [
     talktime: 10000,
     sms: 10000,
     price: 239.9,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/combo',
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_HBO_GO, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HOOQ, SINGTEL_500_YEARLY_HANDSET_VOUCHER, FREE_CALLER_ID, SINGTEL_FREE_AUTOROAM],
     notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000]
   },
@@ -162,6 +173,7 @@ const mobilePlanData = [
     talktime: 0,
     sms: 0,
     price: 20,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans',
     pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS]
   },
   {
@@ -172,7 +184,33 @@ const mobilePlanData = [
     talktime: 150,
     sms: 500,
     price: 25.35,
-    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_UNLIMITED_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS]
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/simonly',
+    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_UNLIMITED_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS],
+    notes: [SINGTEL_DROP_TO_6GB]
+  },
+  {
+    telco: 'Singtel',
+    planName: 'SIM Only 40 GB Plan',
+    planType: PLAN_12_MTH,
+    data: 40,
+    talktime: 150,
+    sms: 500,
+    price: 46.75,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/simonly',
+    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_UNLIMITED_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS],
+    notes: [SINGTEL_DROP_TO_8GB]
+  },
+  {
+    telco: 'Singtel',
+    planName: 'SIM Only 70 GB Plan',
+    planType: PLAN_12_MTH,
+    data: 70,
+    talktime: 150,
+    sms: 500,
+    price: 73.5,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/simonly',
+    pros: [FREE_INCOMING_CALLS, FREE_REGISTRATION_SIM, SINGTEL_UNLIMITED_SINGTEL_WIFI, SINGTEL_12MTHS_ENTERTAINMENT_PLUS],
+    notes: [SINGTEL_DROP_TO_13GB]
   },
   {
     telco: 'Singtel',
@@ -182,6 +220,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 500,
     price: 22.32,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/silver',
     pros: [FREE_VOICEMAIL, SINGTEL_SILVER],
     specialOption: '60 years and above'
   },
@@ -193,6 +232,7 @@ const mobilePlanData = [
     talktime: 200,
     sms: 1000,
     price: 34.32,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/silver',
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_SILVER],
     specialOption: '60 years and above'
   },
@@ -204,6 +244,7 @@ const mobilePlanData = [
     talktime: 10000,
     sms: 10000,
     price: 55.12,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/silver',
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
     notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_SILVER],
     specialOption: '60 years and above'
@@ -216,6 +257,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 10000,
     price: 27.9,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/youth',
     pros: [SINGTEL_2GB_SINGTEL_WIFI],
     notes: [UNLIMITED_SMS_10000, SINGTEL_YOUTH],
     specialOption: 'Students & NSFs'
@@ -228,6 +270,7 @@ const mobilePlanData = [
     talktime: 10000,
     sms: 10000,
     price: 42.9,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/youth',
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
     notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH],
     specialOption: 'Students & NSFs'
@@ -240,6 +283,7 @@ const mobilePlanData = [
     talktime: 10000,
     sms: 10000,
     price: 68.9,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/youth',
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS],
     notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH],
     specialOption: 'Students & NSFs'
@@ -252,6 +296,7 @@ const mobilePlanData = [
     talktime: 10000,
     sms: 10000,
     price: 95.9,
+    link: 'https://www.singtel.com/personal/products-services/mobile/postpaid-plans/youth',
     pros: [SINGTEL_2GB_SINGTEL_WIFI, SINGTEL_24MTHS_ENTERTAINMENT_PLUS, SINGTEL_24MTHS_HBO_GO],
     notes: [UNLIMITED_TALKTIME_10000, UNLIMITED_SMS_10000, SINGTEL_YOUTH],
     specialOption: 'Students & NSFs'
@@ -264,6 +309,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 25,
     price: 28,
+    link: 'https://www.circles.life/sg/no-contract-plan/',
     pros: [FREE_CALLER_ID],
     notes: [CIRCLES_ONE_DAY_UNLIMITED_DATA]
   },
@@ -275,6 +321,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 25,
     price: 18,
+    link: 'https://www.circles.life/sg/no-contract-plan/',
     pros: [FREE_CALLER_ID],
     notes: [CIRCLES_PRICE_RETURNS_28, CIRCLES_ONE_DAY_UNLIMITED_DATA]
   },
@@ -286,6 +333,7 @@ const mobilePlanData = [
     talktime: 50,
     sms: 25,
     price: 5,
+    link: 'https://www.circles.life/sg/5dollarplan/',
     cons: [CIRCLES_NO_ADDONS_FOR_5_PLAN],
     pros: [FREE_CALLER_ID]
   },
@@ -297,6 +345,7 @@ const mobilePlanData = [
     talktime: 200,
     sms: 200,
     price: 20,
+    link: 'https://www.gomo.sg/mobile',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, FREE_REGISTRATION_DELIVERY_SIM]
   },
   {
@@ -307,6 +356,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 0,
     price: 50,
+    link: 'https://www.starhub.com/personal/mobile.html#2year',
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
     notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
@@ -318,6 +368,7 @@ const mobilePlanData = [
     talktime: 300,
     sms: 0,
     price: 75,
+    link: 'https://www.starhub.com/personal/mobile.html#2year',
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
     notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
@@ -329,6 +380,7 @@ const mobilePlanData = [
     talktime: 500,
     sms: 0,
     price: 105,
+    link: 'https://www.starhub.com/personal/mobile.html#2year',
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
     notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
@@ -340,6 +392,7 @@ const mobilePlanData = [
     talktime: 10000,
     sms: 10000,
     price: 238,
+    link: 'https://www.starhub.com/personal/mobile.html#2year',
     pros: [FREE_CALLER_ID, STARHUB_FREE_INTERNATIONAL_ROAMING, FREE_INCOMING_CALLS, STARHUB_FREE_WEEKEND_DATA],
     notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
@@ -351,6 +404,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 0,
     price: 25,
+    link: 'https://www.starhub.com/personal/mobile.html#simonly',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, STARHUB_FREE_INTERNATIONAL_ROAMING, STARHUB_FREE_WEEKEND_DATA, STARHUB_ONLINE_120_REBATE],
     notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
@@ -362,6 +416,7 @@ const mobilePlanData = [
     talktime: 300,
     sms: 0,
     price: 50,
+    link: 'https://www.starhub.com/personal/mobile.html#simonly',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, STARHUB_FREE_INTERNATIONAL_ROAMING, STARHUB_FREE_WEEKEND_DATA, STARHUB_ONLINE_120_REBATE],
     notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
@@ -373,6 +428,7 @@ const mobilePlanData = [
     talktime: 500,
     sms: 0,
     price: 80,
+    link: 'https://www.starhub.com/personal/mobile.html#simonly',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, STARHUB_FREE_INTERNATIONAL_ROAMING, STARHUB_FREE_WEEKEND_DATA, STARHUB_ONLINE_120_REBATE],
     notes: [STARHUB_THREE_DAY_UNLIMITED_DATA, STARHUB_DATA_FREE_APPS]
   },
@@ -384,6 +440,7 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 25,
+    link: 'https://www.m1.com.sg/mobile/sim-only-plan',
     pros: [FREE_INCOMING_CALLS, FREE_VOICEMAIL, M1_FREE_M1_CALLS, M1_UNLIMITED_SPOTIFY, M1_FREE_WEEKEND_DATA, M1_FREE_CALLER_ID, FREE_REGISTRATION_DELIVERY],
     notes: [M1_THREE_DAY_BUNDLE]
   },
@@ -395,6 +452,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 100,
     price: 30,
+    link: 'https://www.m1.com.sg/Mobile/plan-with-device',
     pros: [FREE_INCOMING_CALLS, FREE_VOICEMAIL, M1_FREE_M1_CALLS, M1_UNLIMITED_SPOTIFY, M1_FREE_WEEKEND_DATA, M1_FREE_CALLER_ID, FREE_REGISTRATION_DELIVERY],
     notes: [M1_THREE_DAY_BUNDLE]
   },
@@ -406,6 +464,7 @@ const mobilePlanData = [
     talktime: 200,
     sms: 200,
     price: 13.9,
+    link: 'https://zero1.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
     notes: [MANAGED_SPEEDS_1GB]
   },
@@ -417,6 +476,7 @@ const mobilePlanData = [
     talktime: 200,
     sms: 200,
     price: 29.99,
+    link: 'https://zero1.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, ZERO1_FREE_UMESPACE, FREE_REGISTRATION_DELIVERY_SIM],
     notes: [MANAGED_SPEEDS_15GB]
   },
@@ -428,6 +488,7 @@ const mobilePlanData = [
     talktime: 450,
     sms: 450,
     price: 39.9,
+    link: 'https://zero1.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, ZERO1_FREE_UMESPACE, FREE_REGISTRATION_DELIVERY_SIM],
     notes: [MANAGED_SPEEDS_27GB]
   },
@@ -439,6 +500,7 @@ const mobilePlanData = [
     talktime: 5000,
     sms: 5000,
     price: 59.95,
+    link: 'https://www.zeromobile.com.sg/zero-x',
     pros: [FREE_CALLER_ID, FREE_REGISTRATION_SIM],
     notes: [UNLIMITED_DATA_45, UNLIMITED_TALKTIME_5000, ZERO_MOBILE_UNLIMITED_SMS]
   },
@@ -450,6 +512,7 @@ const mobilePlanData = [
     talktime: 5000,
     sms: 5000,
     price: 49.95,
+    link: 'https://www.zeromobile.com.sg/zero-x',
     pros: [FREE_CALLER_ID, FREE_REGISTRATION_SIM, FREE_NUMBER_PORTING],
     notes: [ZERO_MOBILE_PRICE_RETURNS_59_95, UNLIMITED_DATA_45, UNLIMITED_TALKTIME_5000, ZERO_MOBILE_UNLIMITED_SMS]
   },
@@ -461,6 +524,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 100,
     price: 49.95,
+    link: 'https://www.zeromobile.com.sg/zero-xs',
     pros: [FREE_CALLER_ID, FREE_REGISTRATION_SIM, FREE_NUMBER_PORTING],
     cons: [UNLIMITED_DATA_45]
   },
@@ -472,6 +536,7 @@ const mobilePlanData = [
     talktime: 100,
     sms: 100,
     price: 39.95,
+    link: 'https://www.zeromobile.com.sg/zero-xs',
     pros: [FREE_CALLER_ID, FREE_REGISTRATION_SIM, FREE_NUMBER_PORTING],
     notes: [ZERO_MOBILE_PRICE_RETURNS_49_95, UNLIMITED_DATA_45, UNLIMITED_TALKTIME_5000, ZERO_MOBILE_UNLIMITED_SMS]
   },
@@ -483,6 +548,7 @@ const mobilePlanData = [
     talktime: 8000,
     sms: 8000,
     price: 48,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
     notes: [UNLIMITED_DATA_3_DAY, UNLIMITED_TALKTIME_8000, UNLIMITED_SMS_8000]
   },
@@ -494,6 +560,7 @@ const mobilePlanData = [
     talktime: 8000,
     sms: 8000,
     price: 38,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
     notes: [UNLIMITED_DATA_3_DAY, UNLIMITED_TALKTIME_8000, UNLIMITED_SMS_8000],
     specialOption: 'Existing MyRepublic broadband customers'
@@ -506,6 +573,7 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 18,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
     notes: [MANAGED_SPEEDS_1GB]
   },
@@ -517,6 +585,7 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 35,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
     notes: [MANAGED_SPEEDS_12GB]
   },
@@ -528,6 +597,7 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 35,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
     notes: [MANAGED_SPEEDS_15GB],
     specialOption: 'Existing MyRepublic broadband customers'
@@ -540,6 +610,7 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 80,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
     notes: [MANAGED_SPEEDS_80GB]
   },
@@ -551,6 +622,7 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 55,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
     notes: [MANAGED_SPEEDS_18GB]
   },
@@ -562,6 +634,7 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 55,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS],
     notes: [MANAGED_SPEEDS_26GB],
     specialOption: 'Existing MyRepublic broadband customers'
@@ -574,6 +647,7 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 85,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, MY_REPUBLIC_ROAM_LIKE_HOME],
     notes: [MANAGED_SPEEDS_30GB]
   },
@@ -585,18 +659,42 @@ const mobilePlanData = [
     talktime: 1000,
     sms: 1000,
     price: 85,
+    link: 'https://mobile.myrepublic.com.sg/plans',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, MY_REPUBLIC_ROAM_LIKE_HOME],
     notes: [MANAGED_SPEEDS_38GB],
     specialOption: 'Existing MyRepublic broadband customers'
   },
   {
     telco: 'Giga!',
-    planName: 'Base Plan',
+    planName: '5GB Plan',
+    planType: NO_CONTRACT,
+    data: 5,
+    talktime: 100,
+    sms: 100,
+    price: 10,
+    link: 'https://giga.com.sg/',
+    pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, GIGA_ROLLOVER]
+  },
+  {
+    telco: 'Giga!',
+    planName: '25GB Plan',
     planType: NO_CONTRACT,
     data: 25,
     talktime: 1000,
     sms: 1000,
     price: 25,
+    link: 'https://giga.com.sg/',
+    pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, GIGA_ROLLOVER]
+  },
+  {
+    telco: 'Giga!',
+    planName: '50GB Plan',
+    planType: NO_CONTRACT,
+    data: 50,
+    talktime: 10000,
+    sms: 10000,
+    price: 50,
+    link: 'https://giga.com.sg/',
     pros: [FREE_CALLER_ID, FREE_INCOMING_CALLS, GIGA_ROLLOVER]
   },
   {
@@ -607,6 +705,7 @@ const mobilePlanData = [
     talktime: 20,
     sms: 20,
     price: 0,
+    link: 'https://www.tpgmobile.sg/',
     pros: [FREE_INCOMING_CALLS, FREE_MALAYSIA_INDO_DATA_ROAMING],
     notes: [UNLIMITED_DATA_2_DAY, TPG_4G_VOLTE, TPG_PRICE_RETURN]
   }

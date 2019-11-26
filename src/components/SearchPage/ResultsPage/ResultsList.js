@@ -57,13 +57,11 @@ const ResultsList = props => {
 
   //plans with special options are added back in if applicable
   const plansWithSpecialOptions = mobilePlanData.filter(mobilePlan => mobilePlan.data >= options.minData && mobilePlan.talktime >= options.minTalktime && mobilePlan.sms >= options.minSMS && mobilePlan.price <= options.price && options.planTypesArray.includes(mobilePlan.planType) && options.telcosArray.includes(mobilePlan.telco) && options.specialOptionsArray.includes(mobilePlan.specialOption))
-  console.log(preFilteredMobilePlans)
-  console.log(options.specialOptionsArray)
   const filteredMobilePlans = plansWithSpecialOptions.length !== 0 ? preFilteredMobilePlans.concat(plansWithSpecialOptions) : preFilteredMobilePlans
-  console.log(filteredMobilePlans)
 
   //see if adding addons can make plans that meet requirements (but must still make sure they are within contract duration and preferred telcos selected)
-  const unfilteredMobilePlans = mobilePlanData.filter(mobilePlan => (mobilePlan.data < options.minData || mobilePlan.talktime < options.minTalktime || mobilePlan.sms < options.minSMS || mobilePlan.price > options.price) && options.planTypesArray.includes(mobilePlan.telco) && options.telcosArray.includes(mobilePlan.telco))
+  const unfilteredMobilePlans = mobilePlanData.filter(mobilePlan => (mobilePlan.data < options.minData || mobilePlan.talktime < options.minTalktime || mobilePlan.sms < options.minSMS || mobilePlan.price > options.price) && options.planTypesArray.includes(mobilePlan.planType) && options.telcosArray.includes(mobilePlan.telco))
+  console.log(unfilteredMobilePlans)
 
   for (const mobilePlan of unfilteredMobilePlans) {
     //go through all the plans that fail the criteria
