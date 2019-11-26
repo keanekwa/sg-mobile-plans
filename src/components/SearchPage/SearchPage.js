@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 //import components
-import { Button, Container, TextField, InputAdornment, Grid, Typography, FormGroup, FormControlLabel, Tooptip, Checkbox, Box, ClickAwayListener, Slide, AppBar, Toolbar, IconButton, Tooltip } from '@material-ui/core'
+import { Button, Container, TextField, InputAdornment, Grid, Typography, FormGroup, FormControlLabel, Tooltip, Checkbox, Box, ClickAwayListener, Slide, AppBar, Toolbar, IconButton } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 //import styles
 import { withStyles } from '@material-ui/core/styles'
@@ -42,7 +42,7 @@ const SearchPage = props => {
   const { classes } = props
 
   const handleChange = (event, option) => {
-    const newOptions = props.options
+    let newOptions = props.options
     if (option === 'planTypes' || option === 'telcos' || option === 'specialOptions') {
       newOptions[`${option}`].forEach(subOption => {
         if (subOption.value === event.target.value) {
@@ -50,7 +50,10 @@ const SearchPage = props => {
         }
       })
     } else {
-      newOptions[`${option}`] = event.target.value
+      newOptions = {
+        ...newOptions,
+        [`${option}`]: event.target.value
+      }
     }
     props.setOptions(newOptions)
   }
@@ -106,7 +109,7 @@ const SearchPage = props => {
                   type="number"
                   variant="outlined"
                   label="Data"
-                  defaultValue={props.options.minData !== null && props.options.minData}
+                  value={props.options.minData}
                   fullWidth={true}
                   onChange={event => handleChange(event, 'minData')}
                 />
@@ -127,7 +130,7 @@ const SearchPage = props => {
                     type="number"
                     variant="outlined"
                     label="Talktime"
-                    defaultValue={props.options.minTalktime !== null && props.options.minTalktime}
+                    value={props.options.minTalktime}
                     fullWidth={true}
                     onChange={event => handleChange(event, 'minTalktime')}
                   />
@@ -144,7 +147,7 @@ const SearchPage = props => {
                     type="number"
                     variant="outlined"
                     label="SMS"
-                    defaultValue={props.options.minSMS !== null && props.options.minSMS}
+                    value={props.options.minSMS}
                     fullWidth={true}
                     onChange={event => handleChange(event, 'minSMS')}
                   />
@@ -167,7 +170,7 @@ const SearchPage = props => {
                   }}
                   type="number"
                   variant="outlined"
-                  defaultValue={props.options.price !== null && props.options.price}
+                  value={props.options.price}
                   fullWidth={true}
                   onChange={event => handleChange(event, 'price')}
                 />

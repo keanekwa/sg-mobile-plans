@@ -75,7 +75,7 @@ const styles = theme => ({
 const ComparePage = props => {
   const { classes } = props
 
-  //get unique telcos from mobilePlanData. good for auto update of MenuItems when the mobilePlanData changes
+  //get unique telcos from mobilePlanData
   const uniqueTelcos = []
   mobilePlanData.forEach(mobilePlan => {
     if (uniqueTelcos.indexOf(mobilePlan.telco) === -1) {
@@ -86,13 +86,35 @@ const ComparePage = props => {
   const handleChange = (event, planNumber, option) => {
     let newComparePlans = props.comparePlans
 
-    //save the planType or telco to redux
-    if (option === 'planType' || option === 'telco') {
+    //save planType to redux, and reset telco, mobilePlan, and planOptions
+    if (option === 'planType') {
       newComparePlans = {
         ...props.comparePlans,
         [`${planNumber}`]: {
           ...props.comparePlans[`${planNumber}`],
-          [`${option}`]: event.target.value
+          ['planType']: event.target.value,
+          ['telco']: '',
+          ['mobilePlan']: {
+            planName: ''
+          }
+        }
+      }
+      props.setPlanOptions({
+        ...props.planOptions,
+        [`${planNumber}`]: []
+      })
+    }
+
+    //save telco to redux, and reset mobilePlan
+    if (option === 'telco') {
+      newComparePlans = {
+        ...props.comparePlans,
+        [`${planNumber}`]: {
+          ...props.comparePlans[`${planNumber}`],
+          ['telco']: event.target.value,
+          ['mobilePlan']: {
+            planName: ''
+          }
         }
       }
     }
@@ -156,7 +178,7 @@ const ComparePage = props => {
                   <Typography variant="h6">Plan 1</Typography>
                   <FormControl className={classes.formControl}>
                     <InputLabel>Contract Length</InputLabel>
-                    <Select defaultValue={props.comparePlans.planOne.planType} onChange={event => handleChange(event, 'planOne', 'planType')}>
+                    <Select value={props.comparePlans.planOne.planType} onChange={event => handleChange(event, 'planOne', 'planType')}>
                       <MenuItem value={'No contract'}>No contract</MenuItem>
                       <MenuItem value={'12 month contract'}>12 month contract</MenuItem>
                       <MenuItem value={'24 month contract'}>24 month contract</MenuItem>
@@ -164,7 +186,7 @@ const ComparePage = props => {
                   </FormControl>
                   <FormControl className={classes.formControl}>
                     <InputLabel>Telco</InputLabel>
-                    <Select defaultValue={props.comparePlans.planOne.telco} onChange={event => handleChange(event, 'planOne', 'telco')}>
+                    <Select value={props.comparePlans.planOne.telco} onChange={event => handleChange(event, 'planOne', 'telco')}>
                       {uniqueTelcos.map(telco => (
                         <MenuItem key={telco} value={telco}>
                           {telco}
@@ -175,14 +197,14 @@ const ComparePage = props => {
                   {props.planOptions.planOne.length !== 0 ? (
                     <FormControl className={classes.formControl}>
                       <InputLabel>Plan</InputLabel>
-                      <Select defaultValue={props.comparePlans.planOne.mobilePlan.planName} onChange={event => handleChange(event, 'planOne', 'mobilePlan')}>
+                      <Select value={props.comparePlans.planOne.mobilePlan.planName} onChange={event => handleChange(event, 'planOne', 'mobilePlan')}>
                         {props.planOptions.planOne}
                       </Select>
                     </FormControl>
                   ) : (
                     <FormControl className={classes.formControl} disabled>
                       <InputLabel>No Suitable Plans</InputLabel>
-                      <Select defaultValue=""></Select>
+                      <Select value=""></Select>
                     </FormControl>
                   )}
                 </Box>
@@ -199,7 +221,7 @@ const ComparePage = props => {
                   <Typography variant="h6">Plan 2</Typography>
                   <FormControl className={classes.formControl}>
                     <InputLabel>Contract Length</InputLabel>
-                    <Select defaultValue={props.comparePlans.planTwo.planType} onChange={event => handleChange(event, 'planTwo', 'planType')}>
+                    <Select value={props.comparePlans.planTwo.planType} onChange={event => handleChange(event, 'planTwo', 'planType')}>
                       <MenuItem value={'No contract'}>No contract</MenuItem>
                       <MenuItem value={'12 month contract'}>12 month contract</MenuItem>
                       <MenuItem value={'24 month contract'}>24 month contract</MenuItem>
@@ -207,7 +229,7 @@ const ComparePage = props => {
                   </FormControl>
                   <FormControl className={classes.formControl}>
                     <InputLabel>Telco</InputLabel>
-                    <Select defaultValue={props.comparePlans.planTwo.telco} onChange={event => handleChange(event, 'planTwo', 'telco')}>
+                    <Select value={props.comparePlans.planTwo.telco} onChange={event => handleChange(event, 'planTwo', 'telco')}>
                       {uniqueTelcos.map(telco => (
                         <MenuItem key={telco} value={telco}>
                           {telco}
@@ -218,14 +240,14 @@ const ComparePage = props => {
                   {props.planOptions.planTwo.length !== 0 ? (
                     <FormControl className={classes.formControl}>
                       <InputLabel>Plan</InputLabel>
-                      <Select defaultValue={props.comparePlans.planTwo.mobilePlan.planName} onChange={event => handleChange(event, 'planTwo', 'mobilePlan')}>
+                      <Select value={props.comparePlans.planTwo.mobilePlan.planName} onChange={event => handleChange(event, 'planTwo', 'mobilePlan')}>
                         {props.planOptions.planTwo}
                       </Select>
                     </FormControl>
                   ) : (
                     <FormControl className={classes.formControl} disabled>
                       <InputLabel>No Suitable Plans</InputLabel>
-                      <Select defaultValue=""></Select>
+                      <Select value=""></Select>
                     </FormControl>
                   )}
                 </Box>
