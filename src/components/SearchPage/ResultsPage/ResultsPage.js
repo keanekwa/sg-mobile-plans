@@ -12,18 +12,26 @@ import { setIsShowResults } from '../../../redux/results/results-actions'
 
 const styles = theme => ({
   outerContainer: {
-    position: 'fixed',
+    position: 'absolute',
+    minHeight: '100%',
+    [theme.breakpoints.up('md')]: {
+      height: '100%'
+    },
+    minWidth: '100%',
     display: 'flex',
     flexFlow: 'column',
     top: 0,
     left: 0,
-    width: '100%',
-    height: '100%',
     backgroundColor: theme.palette.common.white,
     zIndex: 3
   },
   fullHeight: {
-    height: '100%'
+    [theme.breakpoints.up('md')]: {
+      height: '100%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      flex: 1
+    }
   },
   ShowMobileResultDetails: {
     [theme.breakpoints.down('sm')]: {
@@ -92,7 +100,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setIsShowResults: isShowResults => dispatch(setIsShowResults(isShowResults))
 })
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(ResultsPage))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ResultsPage))

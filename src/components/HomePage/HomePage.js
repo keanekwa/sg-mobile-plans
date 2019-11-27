@@ -4,17 +4,14 @@ import { Button, Container, Grid, Typography, Box, Link, Fade } from '@material-
 //import styles
 import clsx from 'clsx'
 import { withStyles } from '@material-ui/core/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { useTheme } from '@material-ui/core/styles'
 //import redux
 import { connect } from 'react-redux'
 import { setIsShowSearch } from '../../redux/search/search-actions'
 import { setIsShowCompare } from '../../redux/compare/compare-actions'
 
 const styles = theme => ({
-  hideHomePage: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none !important'
-    }
-  },
   outerBox: {
     height: '100%',
     flex: 1,
@@ -74,10 +71,13 @@ const styles = theme => ({
 
 const HomePage = props => {
   const { classes } = props
+  const theme = useTheme()
+  const isScreenSm = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
-    <Fade in={!props.isShowResults} timeout={500} style={{ transitionDelay: !props.isShowResults ? '0s' : '0.5s' }} mountOnEnter unmountOnExit>
-      <Box className={clsx(classes.outerBox, props.isShowSearch && classes.hideHomePage, props.isShowCompare && classes.hideHomePage)}>
+    //todo: fade if under md
+    <Fade in={!((props.isShowSearch || props.isShowCompare || props.isShowResults) && isScreenSm)} timeout={500} style={{ transitionDelay: !(props.isShowSearch || props.isShowCompare || props.isShowResults) ? '0s' : '0.5s' }} mountOnEnter unmountOnExit>
+      <Box className={classes.outerBox}>
         <Container className={classes.outerContainer} maxWidth={false}>
           <Container maxWidth="xl">
             <Grid container spacing={2}>
@@ -108,7 +108,8 @@ const HomePage = props => {
 }
 const mapStateToProps = state => ({
   isShowSearch: state.search.isShowSearch,
-  isShowCompare: state.compare.isShowCompare
+  isShowCompare: state.compare.isShowCompare,
+  isShowResults: state.results.isShowResults
 })
 const mapDispatchToProps = dispatch => ({
   setIsShowSearch: isShowSearch => dispatch(setIsShowSearch(isShowSearch)),

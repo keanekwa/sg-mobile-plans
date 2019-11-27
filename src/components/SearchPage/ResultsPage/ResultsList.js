@@ -14,8 +14,11 @@ import { setIsShowResults } from '../../../redux/results/results-actions'
 
 const styles = theme => ({
   ResultsList: {
-    height: '100%',
-    overflowY: 'auto',
+    minHeight: '100%',
+    [theme.breakpoints.up('md')]: {
+      height: '100%',
+      overflow: 'auto'
+    },
     borderRight: '1px solid ' + theme.palette.secondary.light
   },
   AppBar: {

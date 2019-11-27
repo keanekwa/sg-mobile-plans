@@ -11,20 +11,19 @@ import { setIsShowResults } from '../../redux/results/results-actions'
 
 const styles = theme => ({
   outermostBox: {
-    position: 'fixed',
+    position: 'absolute',
+    minHeight: '100%',
     display: 'flex',
     flexFlow: 'column',
     top: 0,
     right: 0,
-    height: '100%',
     backgroundColor: theme.palette.common.white,
     zIndex: 2
   },
   outerContainer: {
     flex: 1,
     padding: '40px',
-    overflow: 'auto',
-    height: '100%'
+    overflow: 'auto'
   },
   question: {
     textTransform: 'uppercase',
