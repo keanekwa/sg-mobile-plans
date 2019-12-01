@@ -287,7 +287,7 @@ const ComparePage = props => {
                     .
                   </Box>
                 ) : (
-                  <Box>From the above dropdown boxes, choose a plan with a 24 month contract, and a plan with no contract to compare.</Box>
+                  <Box>From the above dropdown boxes, choose a plan with a <strong>24 month contract</strong>, and a plan with <strong>no contract</strong> to compare.</Box>
                 )}
               </Grid>
             </Grid>
