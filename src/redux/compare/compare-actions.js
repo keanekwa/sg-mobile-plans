@@ -12,3 +12,8 @@ export const setPlanOptions = planOptions => ({
   type: 'SET_PLAN_OPTIONS',
   payload: planOptions
 })
+
+export const setAddonOptions = addonOptions => ({
+  type: 'SET_ADDON_OPTIONS',
+  payload: addonOptions
+})

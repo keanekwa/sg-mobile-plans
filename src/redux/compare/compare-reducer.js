@@ -6,17 +6,23 @@ const INITIAL_STATE = {
       telco: '',
       mobilePlan: {
         planName: ''
-      }
+      },
+      addons: []
     },
     planTwo: {
       planType: '',
       telco: '',
       mobilePlan: {
         planName: ''
-      }
+      },
+      addons: []
     }
   },
   planOptions: {
+    planOne: [],
+    planTwo: []
+  },
+  addonOptions: {
     planOne: [],
     planTwo: []
   }
@@ -39,6 +45,12 @@ const compareReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         planOptions: action.payload
+      }
+    }
+    case 'SET_ADDON_OPTIONS': {
+      return {
+        ...state,
+        addonOptions: action.payload
       }
     }
     default:

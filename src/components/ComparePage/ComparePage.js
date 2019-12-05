@@ -4,6 +4,7 @@ import mobilePlanData from '../../data/mobilePlanData'
 //import components
 import { Container, Grid, FormControl, InputLabel, Select, MenuItem, Box, ClickAwayListener, Slide, AppBar, Toolbar, IconButton, Typography } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import SelectAddons from './SelectAddons'
 //import styles
 import { withStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
@@ -36,13 +37,18 @@ const styles = theme => ({
     minWidth: '900px',
     padding: 0
   },
+  planGrid: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexFlow: 'column',
+    borderBottom: '1px solid ' + theme.palette.secondary.light
+  },
   planOneGrid: {
     borderLeft: '1px solid ' + theme.palette.secondary.light,
     borderRight: '1px solid ' + theme.palette.secondary.light
   },
   formSection: {
-    padding: '30px',
-    borderBottom: '1px solid ' + theme.palette.secondary.light
+    padding: '30px'
   },
   formControl: {
     minWidth: '200px',
@@ -56,7 +62,7 @@ const styles = theme => ({
   },
   tableData: {
     padding: '1rem 30px',
-    borderBottom: '1px solid ' + theme.palette.secondary.light
+    borderTop: '1px solid ' + theme.palette.secondary.light
   },
   tableDataGood: {
     backgroundColor: teal[100],
@@ -164,7 +170,7 @@ const ComparePage = props => {
           </AppBar>
           <Container className={classes.outerContainer} maxWidth="md">
             <Grid container>
-              <Grid item xs={2} className={classes.tableHeaders}>
+              <Grid item xs={2} className={clsx(classes.planGrid, classes.tableHeaders)}>
                 <Box className={classes.formSection}></Box>
                 <Box className={classes.tableData}>Data</Box>
                 <Box className={classes.tableData}>Talktime</Box>
@@ -172,7 +178,7 @@ const ComparePage = props => {
                 <Box className={classes.tableData}>Price / mth</Box>
                 {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <Box className={classes.tableData}>Price / 2 yrs</Box>}
               </Grid>
-              <Grid item xs={5} className={classes.planOneGrid}>
+              <Grid item xs={5} className={clsx(classes.planGrid, classes.planOneGrid)}>
                 <Box className={classes.formSection}>
                   <Typography variant="h6">Plan 1</Typography>
                   <FormControl className={classes.formControl}>
@@ -206,6 +212,7 @@ const ComparePage = props => {
                       <Select value=""></Select>
                     </FormControl>
                   )}
+                  <SelectAddons planNumber="planOne" />
                 </Box>
                 <Box>
                   <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.data > props.comparePlans.planTwo.mobilePlan.data ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.data < props.comparePlans.planTwo.mobilePlan.data && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planOne.mobilePlan.data + ' GB'}&nbsp;</Box>
@@ -215,7 +222,7 @@ const ComparePage = props => {
                   {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.price < props.comparePlans.planTwo.mobilePlan.price ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.price > props.comparePlans.planTwo.mobilePlan.price && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && '$' + (props.comparePlans.planOne.mobilePlan.price * 24).toFixed(2)}&nbsp;</Box>}
                 </Box>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={5} className={classes.planGrid}>
                 <Box className={classes.formSection}>
                   <Typography variant="h6">Plan 2</Typography>
                   <FormControl className={classes.formControl}>
@@ -249,6 +256,7 @@ const ComparePage = props => {
                       <Select value=""></Select>
                     </FormControl>
                   )}
+                  <SelectAddons planNumber="planTwo" />
                 </Box>
                 <Box>
                   <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.data < props.comparePlans.planTwo.mobilePlan.data ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.data > props.comparePlans.planTwo.mobilePlan.data && classes.tableDataBad))}>{props.comparePlans.planTwo.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.data + ' GB'}&nbsp;</Box>
@@ -287,7 +295,9 @@ const ComparePage = props => {
                     .
                   </Box>
                 ) : (
-                  <Box>From the above dropdown boxes, choose a plan with a <strong>24 month contract</strong>, and a plan with <strong>no contract</strong> to compare.</Box>
+                  <Box>
+                    From the above dropdown boxes, choose a plan with a <strong>24 month contract</strong>, and a plan with <strong>no contract</strong> to compare.
+                  </Box>
                 )}
               </Grid>
             </Grid>
