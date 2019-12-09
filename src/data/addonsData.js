@@ -61,7 +61,7 @@ const addonsData = [
   {
     appliesToTelco: 'Circles.Life',
     appliesToPlans: ['Base Plan (New number)', 'Base Plan (Transfer number)'],
-    addonName: '$4 for 100min',
+    addonName: '$4 for 100 min',
     data: 0,
     talktime: 100,
     sms: 0,
@@ -170,7 +170,7 @@ const addonsData = [
   {
     appliesToTelco: 'Singtel',
     appliesToPlans: ['SIM Only 20 GB Plan', 'SIM Only 40 GB Plan', 'SIM Only 70 GB Plan'],
-    addonName: '1GB Data',
+    addonName: '1 GB Data',
     keepAdding: true,
     data: 1,
     talktime: 0,
@@ -180,7 +180,7 @@ const addonsData = [
   {
     appliesToTelco: 'Singtel',
     appliesToPlans: ['SIM Only 20 GB Plan', 'SIM Only 40 GB Plan', 'SIM Only 70 GB Plan'],
-    addonName: '200min Talktime',
+    addonName: '200 min Talktime',
     keepAdding: true,
     data: 0,
     talktime: 200,
@@ -190,7 +190,7 @@ const addonsData = [
   {
     appliesToTelco: 'Singtel',
     appliesToPlans: ['SIM Only 20 GB Plan', 'SIM Only 40 GB Plan', 'SIM Only 70 GB Plan'],
-    addonName: '800min Talktime',
+    addonName: '800 min Talktime',
     keepAdding: true,
     data: 0,
     talktime: 800,

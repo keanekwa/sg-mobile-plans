@@ -11,7 +11,7 @@ import clsx from 'clsx'
 import { teal, orange } from '@material-ui/core/colors'
 //import redux
 import { connect } from 'react-redux'
-import { setIsShowCompare, setComparePlans, setPlanOptions } from '../../redux/compare/compare-actions'
+import { setIsShowCompare, setComparePlans, setPlanOptions, setAddonOptions } from '../../redux/compare/compare-actions'
 
 const styles = theme => ({
   outermostBox: {
@@ -91,7 +91,7 @@ const ComparePage = props => {
   const handleChange = (event, planNumber, option) => {
     let newComparePlans = props.comparePlans
 
-    //save planType to redux, and reset telco, mobilePlan, and planOptions
+    //save planType to redux, and reset telco, mobilePlan, planOptions
     if (option === 'planType') {
       newComparePlans = {
         ...props.comparePlans,
@@ -124,7 +124,7 @@ const ComparePage = props => {
       }
     }
 
-    //update plan options if planType and telco have both been selected
+    //update plan options if planType and telco have both been selected. reset addonOptions as well
     if (newComparePlans[`${planNumber}`]['planType'] !== '' && newComparePlans[`${planNumber}`]['telco'] !== '') {
       const filteredPlans = mobilePlanData.filter(mobilePlan => mobilePlan.telco === newComparePlans[`${planNumber}`]['telco'] && mobilePlan.planType === newComparePlans[`${planNumber}`]['planType'])
       const newPlanOptions = {
@@ -149,6 +149,11 @@ const ComparePage = props => {
     }
 
     props.setComparePlans(newComparePlans)
+    //reset addonOptions as long as anything in comparePlans is changed
+    props.setAddonOptions({
+      ...props.addonOptions,
+      [`${planNumber}`]: []
+    })
   }
 
   const handleClickAway = event => {
@@ -311,13 +316,15 @@ const ComparePage = props => {
 const mapStateToProps = state => ({
   isShowCompare: state.compare.isShowCompare,
   comparePlans: state.compare.comparePlans,
-  planOptions: state.compare.planOptions
+  planOptions: state.compare.planOptions,
+  addonOptions: state.compare.addonOptions
 })
 
 const mapDispatchToProps = dispatch => ({
   setIsShowCompare: isShowCompare => dispatch(setIsShowCompare(isShowCompare)),
   setComparePlans: comparePlans => dispatch(setComparePlans(comparePlans)),
-  setPlanOptions: planOptions => dispatch(setPlanOptions(planOptions))
+  setPlanOptions: planOptions => dispatch(setPlanOptions(planOptions)),
+  setAddonOptions: addonOptions => dispatch(setAddonOptions(addonOptions)) //todo: delete addon options when plan resets
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ComparePage))
