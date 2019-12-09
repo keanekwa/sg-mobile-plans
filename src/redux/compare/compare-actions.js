@@ -17,3 +17,8 @@ export const setAddonOptions = addonOptions => ({
   type: 'SET_ADDON_OPTIONS',
   payload: addonOptions
 })
+
+export const setIsNoMoreAddons = isNoMoreAddons => ({
+  type: 'SET_IS_NO_MORE_ADDONS',
+  payload: isNoMoreAddons
+})

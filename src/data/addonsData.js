@@ -268,16 +268,6 @@ const addonsData = [
   {
     appliesToTelco: 'M1',
     appliesToPlans: 'All',
-    addonName: '$50 Bundle Pack',
-    mutuallyExclusive: true,
-    data: 150,
-    talktime: 10000,
-    sms: 0,
-    price: 50
-  },
-  {
-    appliesToTelco: 'M1',
-    appliesToPlans: 'All',
     addonName: '200 min at $2.50',
     mutuallyExclusive: true,
     data: 0,

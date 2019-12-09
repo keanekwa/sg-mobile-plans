@@ -25,6 +25,10 @@ const INITIAL_STATE = {
   addonOptions: {
     planOne: [],
     planTwo: []
+  },
+  isNoMoreAddons: {
+    planOne: false,
+    planTwo: false
   }
 }
 
@@ -51,6 +55,12 @@ const compareReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         addonOptions: action.payload
+      }
+    }
+    case 'SET_IS_NO_MORE_ADDONS': {
+      return {
+        ...state,
+        isNoMoreAddons: action.payload
       }
     }
     default:

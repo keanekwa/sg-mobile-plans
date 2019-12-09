@@ -64,7 +64,6 @@ const ResultsList = props => {
 
   //see if adding addons can make plans that meet requirements (but must still make sure they are within contract duration and preferred telcos selected)
   const unfilteredMobilePlans = mobilePlanData.filter(mobilePlan => (mobilePlan.data < options.minData || mobilePlan.talktime < options.minTalktime || mobilePlan.sms < options.minSMS || mobilePlan.price > options.price) && options.planTypesArray.includes(mobilePlan.planType) && options.telcosArray.includes(mobilePlan.telco))
-  console.log(unfilteredMobilePlans)
 
   for (const mobilePlan of unfilteredMobilePlans) {
     //go through all the plans that fail the criteria
