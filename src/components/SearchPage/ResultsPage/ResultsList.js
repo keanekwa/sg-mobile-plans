@@ -150,7 +150,19 @@ const ResultsList = props => {
           <Box>Suitable Mobile Plans</Box>
         </Toolbar>
       </AppBar>
-      {filteredMobilePlans[0] !== undefined ? mobilePlansMapped : <Box className={classes.errorMessage}>Sorry but there are no suitable plans for you. Please adjust your selection criteria.</Box>}
+      {filteredMobilePlans[0] !== undefined ? (
+        mobilePlansMapped
+      ) : (
+        <Box className={classes.errorMessage}>
+          Sorry but there are no suitable plans for you. Please adjust your selection criteria.
+          <br />
+          <br />
+          Maybe would you like to increase your budget, or reduce the amount of data/talktime/SMS that you need?
+          <br />
+          <br />
+          Tip: you can set your data/talktime/SMS to 0 if you do not require any one of them.
+        </Box>
+      )}
     </Box>
   )
 }
