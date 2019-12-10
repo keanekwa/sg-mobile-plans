@@ -27,9 +27,10 @@ const styles = theme => ({
 const SelectAddons = props => {
   const { classes } = props
 
+  //find suitable addons, i.e. those that apply to entire telco or those that only apply to the plan
+  const addonsForPlan = addonsData.filter(addon => addon.appliesToTelco === props.comparePlans[`${props.planNumber}`].mobilePlan.telco && (addon.appliesToPlans === 'All' || addon.appliesToPlans.includes(props.comparePlans[`${props.planNumber}`].mobilePlan.planName)))
+
   const handleAddAddon = planNumber => {
-    //find suitable addons, i.e. those that apply to entire telco or those that only apply to the plan
-    const addonsForPlan = addonsData.filter(addon => addon.appliesToTelco === props.comparePlans[`${planNumber}`].mobilePlan.telco && (addon.appliesToPlans === 'All' || addon.appliesToPlans.includes(props.comparePlans[`${planNumber}`].mobilePlan.planName)))
     //find addons that have already been selected in ComparePage
     const addonsAlreadySelected = props.comparePlans[`${planNumber}`].addons
     //suitable addons are those that are not already selected, unless they have the property keepAdding set to true
@@ -71,9 +72,8 @@ const SelectAddons = props => {
       <Typography className={classes.addonTypography} variant="body1" display="inline">
         With addons:
       </Typography>
-      <Button disabled={props.comparePlans[`${props.planNumber}`].mobilePlan.planName === '' || props.addonOptions[`${props.planNumber}`].length > props.comparePlans[`${props.planNumber}`].addons.length || props.setIsNoMoreAddons[`${props.planNumber}`] === true} size="small" color="primary" variant="outlined" onClick={() => handleAddAddon(props.planNumber)}>
-        {/*todo: fix this*/}
-        {/* todo: switch wording if no more suitable addons */ true ? <Box>Add</Box> : <Box>No more suitable addons</Box>}
+      <Button disabled={props.comparePlans[`${props.planNumber}`].mobilePlan.planName === '' || props.addonOptions[`${props.planNumber}`].length > props.comparePlans[`${props.planNumber}`].addons.length || props.isNoMoreAddons[`${props.planNumber}`] === true || addonsForPlan.length === 0} size="small" color="primary" variant="outlined" onClick={() => handleAddAddon(props.planNumber)}>
+        {props.isNoMoreAddons[`${props.planNumber}`] === true ? <Box>No more suitable addons</Box> : addonsForPlan.length === 0 ? <Box>No suitable addons</Box> : <Box>Add</Box>}
       </Button>
       {props.addonOptions[`${props.planNumber}`].length !== 0 &&
         props.addonOptions[`${props.planNumber}`][0].length !== 0 &&

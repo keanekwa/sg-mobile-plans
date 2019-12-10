@@ -11,7 +11,7 @@ import clsx from 'clsx'
 import { teal, orange } from '@material-ui/core/colors'
 //import redux
 import { connect } from 'react-redux'
-import { setIsShowCompare, setComparePlans, setPlanOptions, setAddonOptions } from '../../redux/compare/compare-actions'
+import { setIsShowCompare, setComparePlans, setPlanOptions, setAddonOptions, setIsNoMoreAddons } from '../../redux/compare/compare-actions'
 
 const styles = theme => ({
   outermostBox: {
@@ -91,7 +91,7 @@ const ComparePage = props => {
   const handleChange = (event, planNumber, option) => {
     let newComparePlans = props.comparePlans
 
-    //save planType to redux, and reset telco, mobilePlan, planOptions
+    //save planType to redux, and reset telco, mobilePlan, planOptions, isNoMoreAddons
     if (option === 'planType') {
       newComparePlans = {
         ...props.comparePlans,
@@ -107,6 +107,10 @@ const ComparePage = props => {
       props.setPlanOptions({
         ...props.planOptions,
         [`${planNumber}`]: []
+      })
+      props.setIsNoMoreAddons({
+        ...props.isNoMoreAddons,
+        [`${planNumber}`]: false
       })
     }
 
@@ -220,6 +224,7 @@ const ComparePage = props => {
                   <SelectAddons planNumber="planOne" />
                 </Box>
                 <Box>
+                  {/* todo calculate with addons */}
                   <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.data > props.comparePlans.planTwo.mobilePlan.data ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.data < props.comparePlans.planTwo.mobilePlan.data && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planOne.mobilePlan.data + ' GB'}&nbsp;</Box>
                   <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.talktime > props.comparePlans.planTwo.mobilePlan.talktime ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.talktime < props.comparePlans.planTwo.mobilePlan.talktime && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planOne.mobilePlan.talktime + ' min'}&nbsp;</Box>
                   <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.sms > props.comparePlans.planTwo.mobilePlan.sms ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.sms < props.comparePlans.planTwo.mobilePlan.sms && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planOne.mobilePlan.sms}&nbsp;</Box>
@@ -317,14 +322,16 @@ const mapStateToProps = state => ({
   isShowCompare: state.compare.isShowCompare,
   comparePlans: state.compare.comparePlans,
   planOptions: state.compare.planOptions,
-  addonOptions: state.compare.addonOptions
+  addonOptions: state.compare.addonOptions,
+  isNoMoreAddons: state.compare.isNoMoreAddons
 })
 
 const mapDispatchToProps = dispatch => ({
   setIsShowCompare: isShowCompare => dispatch(setIsShowCompare(isShowCompare)),
   setComparePlans: comparePlans => dispatch(setComparePlans(comparePlans)),
   setPlanOptions: planOptions => dispatch(setPlanOptions(planOptions)),
-  setAddonOptions: addonOptions => dispatch(setAddonOptions(addonOptions)) //todo: delete addon options when plan resets
+  setAddonOptions: addonOptions => dispatch(setAddonOptions(addonOptions)),
+  setIsNoMoreAddons: isNoMoreAddons => dispatch(setIsNoMoreAddons(isNoMoreAddons))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ComparePage))
