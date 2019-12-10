@@ -2,9 +2,10 @@ import React from 'react'
 //import data
 import addonsData from '../../data/addonsData'
 //import components
-import { Box, Button, Typography, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
+import { Box, IconButton, Button, Typography, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 //import styles
 import { withStyles } from '@material-ui/core/styles'
+import CancelIcon from '@material-ui/icons/Cancel'
 //import redux
 import { connect } from 'react-redux'
 import { setComparePlans, setPlanOptions, setAddonOptions, setIsNoMoreAddons } from '../../redux/compare/compare-actions'
@@ -18,9 +19,16 @@ const styles = theme => ({
     fontWeight: 700
   },
   formControl: {
-    minWidth: '200px',
     width: '100%',
-    margin: '4px 0'
+    margin: '4px 0',
+    flexDirection: 'row',
+    alignItems: 'flex-end'
+  },
+  select: {
+    flex: 1
+  },
+  cancelButton: {
+    marginLeft: '6px'
   }
 })
 
@@ -59,12 +67,35 @@ const SelectAddons = props => {
       }
     })
     //if the newAddon is mutually exclusive or there are no more addons to add, disallow additional addons
-    if (newAddon.mutuallyExclusive === true || (props.addonOptions[`${planNumber}`].slice(-1)[0].length === 1 && newAddon.keepAdding === false)) {
+    if (newAddon.mutuallyExclusive === true || (props.addonOptions[`${planNumber}`].slice(-1)[0].length === 1 && newAddon.keepAdding !== true)) {
       props.setIsNoMoreAddons({
         ...props.isNoMoreAddons,
         [`${planNumber}`]: true
       })
     }
+  }
+
+  const handleDeleteAddon = () => {
+    const newAddons = Array.from(props.comparePlans[`${props.planNumber}`].addons)
+    newAddons.splice(newAddons.length - 1, 1)
+    props.setComparePlans({
+      ...props.comparePlans,
+      [`${props.planNumber}`]: {
+        ...props.comparePlans[`${props.planNumber}`],
+        addons: newAddons
+      }
+    })
+    const newAddonOptions = Array.from(props.addonOptions[`${props.planNumber}`])
+    newAddonOptions.splice(newAddonOptions.length - 1, 1)
+    props.setAddonOptions({
+      ...props.addonOptions,
+      [`${props.planNumber}`]: newAddonOptions
+    })
+    props.isNoMoreAddons[`${props.planNumber}`] === true &&
+      props.setIsNoMoreAddons({
+        ...props.isNoMoreAddons,
+        [`${props.planNumber}`]: false
+      })
   }
 
   return (
@@ -80,15 +111,20 @@ const SelectAddons = props => {
         props.addonOptions[`${props.planNumber}`].map(addonOptions => {
           addonNumber += 1
           return (
-            <FormControl className={classes.formControl}>
+            <FormControl key={addonNumber} className={classes.formControl}>
               <InputLabel>Addon {addonNumber}</InputLabel>
-              <Select key={addonOptions} value={props.comparePlans[`${props.planNumber}`].addons[addonNumber]} onChange={event => handleSelectAddon(event, props.planNumber, addonNumber)}>
+              <Select className={classes.select} defaultValue="" onChange={event => handleSelectAddon(event, props.planNumber, addonNumber)}>
                 {addonOptions.map(addonOption => (
                   <MenuItem key={addonOption.addonName} value={addonOption.addonName}>
                     {addonOption.addonName}
                   </MenuItem>
                 ))}
               </Select>
+              {props.addonOptions[`${props.planNumber}`].length === addonNumber && (
+                <IconButton size="small" className={classes.cancelButton} aria-label="Delete Addon" value={addonNumber} onClick={() => handleDeleteAddon()}>
+                  <CancelIcon />
+                </IconButton>
+              )}
             </FormControl>
           )
         })}

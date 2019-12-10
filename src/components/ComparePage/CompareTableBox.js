@@ -24,7 +24,6 @@ const styles = theme => ({
 const calculatefinalPlan = plan => {
   let newMobilePlan = plan.mobilePlan
   const addons = plan.addons
-  console.log(newMobilePlan)
 
   addons.forEach(addon => {
     if (addon.multiplier === true) {

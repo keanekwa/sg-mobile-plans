@@ -10,3 +10,8 @@ body,
 #root > div {
   flex: 1;
 }
+svg,
+path,
+.MuiIconButton-label {
+  pointer-events: none;
+}
