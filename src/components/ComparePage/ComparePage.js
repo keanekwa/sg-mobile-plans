@@ -5,10 +5,10 @@ import mobilePlanData from '../../data/mobilePlanData'
 import { Container, Grid, FormControl, InputLabel, Select, MenuItem, Box, ClickAwayListener, Slide, AppBar, Toolbar, IconButton, Typography } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import SelectAddons from './SelectAddons'
+import CompareTableBox from './CompareTableBox'
 //import styles
 import { withStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
-import { teal, orange } from '@material-ui/core/colors'
 //import redux
 import { connect } from 'react-redux'
 import { setIsShowCompare, setComparePlans, setPlanOptions, setAddonOptions, setIsNoMoreAddons } from '../../redux/compare/compare-actions'
@@ -63,14 +63,6 @@ const styles = theme => ({
   tableData: {
     padding: '1rem 30px',
     borderTop: '1px solid ' + theme.palette.secondary.light
-  },
-  tableDataGood: {
-    backgroundColor: teal[100],
-    color: teal[900]
-  },
-  tableDataBad: {
-    backgroundColor: orange[100],
-    color: orange[900]
   },
   phoneInfo: {
     padding: '30px'
@@ -224,12 +216,11 @@ const ComparePage = props => {
                   <SelectAddons planNumber="planOne" />
                 </Box>
                 <Box>
-                  {/* todo calculate with addons */}
-                  <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.data > props.comparePlans.planTwo.mobilePlan.data ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.data < props.comparePlans.planTwo.mobilePlan.data && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planOne.mobilePlan.data + ' GB'}&nbsp;</Box>
-                  <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.talktime > props.comparePlans.planTwo.mobilePlan.talktime ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.talktime < props.comparePlans.planTwo.mobilePlan.talktime && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planOne.mobilePlan.talktime + ' min'}&nbsp;</Box>
-                  <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.sms > props.comparePlans.planTwo.mobilePlan.sms ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.sms < props.comparePlans.planTwo.mobilePlan.sms && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planOne.mobilePlan.sms}&nbsp;</Box>
-                  <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.price < props.comparePlans.planTwo.mobilePlan.price ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.price > props.comparePlans.planTwo.mobilePlan.price && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && '$' + props.comparePlans.planOne.mobilePlan.price.toFixed(2)}&nbsp;</Box>
-                  {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.price < props.comparePlans.planTwo.mobilePlan.price ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.price > props.comparePlans.planTwo.mobilePlan.price && classes.tableDataBad))}>{props.comparePlans.planOne.mobilePlan.planName !== '' && '$' + (props.comparePlans.planOne.mobilePlan.price * 24).toFixed(2)}&nbsp;</Box>}
+                  <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="data" />
+                  <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="talktime" />
+                  <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="sms" />
+                  <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="price" />
+                  {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="2yr_price" />}
                 </Box>
               </Grid>
               <Grid item xs={5} className={classes.planGrid}>
@@ -269,11 +260,11 @@ const ComparePage = props => {
                   <SelectAddons planNumber="planTwo" />
                 </Box>
                 <Box>
-                  <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.data < props.comparePlans.planTwo.mobilePlan.data ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.data > props.comparePlans.planTwo.mobilePlan.data && classes.tableDataBad))}>{props.comparePlans.planTwo.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.data + ' GB'}&nbsp;</Box>
-                  <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.talktime < props.comparePlans.planTwo.mobilePlan.talktime ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.talktime > props.comparePlans.planTwo.mobilePlan.talktime && classes.tableDataBad))}>{props.comparePlans.planTwo.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.talktime + ' min'}&nbsp;</Box>
-                  <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.sms < props.comparePlans.planTwo.mobilePlan.sms ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.sms > props.comparePlans.planTwo.mobilePlan.sms && classes.tableDataBad))}>{props.comparePlans.planTwo.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.sms}&nbsp;</Box>
-                  <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.price > props.comparePlans.planTwo.mobilePlan.price ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.price < props.comparePlans.planTwo.mobilePlan.price && classes.tableDataBad))}>{props.comparePlans.planTwo.mobilePlan.planName !== '' && '$' + props.comparePlans.planTwo.mobilePlan.price.toFixed(2)}&nbsp;</Box>
-                  {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <Box className={clsx(classes.tableData, props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && (props.comparePlans.planOne.mobilePlan.price > props.comparePlans.planTwo.mobilePlan.price ? classes.tableDataGood : props.comparePlans.planOne.mobilePlan.price < props.comparePlans.planTwo.mobilePlan.price && classes.tableDataBad))}>{props.comparePlans.planTwo.mobilePlan.planName !== '' && '$' + (props.comparePlans.planTwo.mobilePlan.price * 24).toFixed(2)}&nbsp;</Box>}
+                  <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="data" />
+                  <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="talktime" />
+                  <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="sms" />
+                  <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="price" />
+                  {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="2yr_price" />}
                 </Box>
               </Grid>
               <Grid item xs={12} className={classes.phoneInfo}>
