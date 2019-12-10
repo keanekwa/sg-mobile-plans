@@ -216,11 +216,11 @@ const ComparePage = props => {
                   <SelectAddons planNumber="planOne" />
                 </Box>
                 <Box>
-                  <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="data" />
-                  <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="talktime" />
-                  <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="sms" />
-                  <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="price" />
-                  {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <CompareTableBox thisMobilePlan={props.comparePlans.planOne.mobilePlan} otherMobilePlan={props.comparePlans.planTwo.mobilePlan} dataType="2yr_price" />}
+                  <CompareTableBox thisPlan={props.comparePlans.planOne} otherPlan={props.comparePlans.planTwo} dataType="data" />
+                  <CompareTableBox thisPlan={props.comparePlans.planOne} otherPlan={props.comparePlans.planTwo} dataType="talktime" />
+                  <CompareTableBox thisPlan={props.comparePlans.planOne} otherPlan={props.comparePlans.planTwo} dataType="sms" />
+                  <CompareTableBox thisPlan={props.comparePlans.planOne} otherPlan={props.comparePlans.planTwo} dataType="price" />
+                  {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <CompareTableBox thisPlan={props.comparePlans.planOne} otherPlan={props.comparePlans.planTwo} dataType="2yr_price" />}
                 </Box>
               </Grid>
               <Grid item xs={5} className={classes.planGrid}>
@@ -260,11 +260,11 @@ const ComparePage = props => {
                   <SelectAddons planNumber="planTwo" />
                 </Box>
                 <Box>
-                  <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="data" />
-                  <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="talktime" />
-                  <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="sms" />
-                  <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="price" />
-                  {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <CompareTableBox thisMobilePlan={props.comparePlans.planTwo.mobilePlan} otherMobilePlan={props.comparePlans.planOne.mobilePlan} dataType="2yr_price" />}
+                  <CompareTableBox thisPlan={props.comparePlans.planTwo} otherPlan={props.comparePlans.planOne} dataType="data" />
+                  <CompareTableBox thisPlan={props.comparePlans.planTwo} otherPlan={props.comparePlans.planOne} dataType="talktime" />
+                  <CompareTableBox thisPlan={props.comparePlans.planTwo} otherPlan={props.comparePlans.planOne} dataType="sms" />
+                  <CompareTableBox thisPlan={props.comparePlans.planTwo} otherPlan={props.comparePlans.planOne} dataType="price" />
+                  {props.comparePlans.planOne.mobilePlan.planName !== '' && props.comparePlans.planTwo.mobilePlan.planName !== '' && ((props.comparePlans.planOne.mobilePlan.planType === 'No contract' && props.comparePlans.planTwo.mobilePlan.planType === '24 month contract') || (props.comparePlans.planTwo.mobilePlan.planType === 'No contract' && props.comparePlans.planOne.mobilePlan.planType === '24 month contract')) && <CompareTableBox thisPlan={props.comparePlans.planTwo} otherPlan={props.comparePlans.planOne} dataType="2yr_price" />}
                 </Box>
               </Grid>
               <Grid item xs={12} className={classes.phoneInfo}>

@@ -220,20 +220,20 @@ const addonsData = [
   {
     appliesToTelco: 'Starhub',
     appliesToPlans: 'All',
-    addonName: '50 GB',
-    data: 50,
-    talktime: 0,
-    sms: 0,
-    price: 20
-  },
-  {
-    appliesToTelco: 'Starhub',
-    appliesToPlans: 'All',
     addonName: '10 GB',
     data: 10,
     talktime: 0,
     sms: 0,
     price: 10
+  },
+  {
+    appliesToTelco: 'Starhub',
+    appliesToPlans: 'All',
+    addonName: '50 GB',
+    data: 50,
+    talktime: 0,
+    sms: 0,
+    price: 20
   },
   {
     appliesToTelco: 'M1',

@@ -47,10 +47,10 @@ const SelectAddons = props => {
   }
 
   let addonNumber = 0
-  const handleSelectAddon = (event, planNumber) => {
+  const handleSelectAddon = (event, planNumber, addonNumber) => {
     const newAddons = Array.from(props.comparePlans[`${planNumber}`].addons)
     const newAddon = addonsData.find(addon => addon.addonName === event.target.value && addon.appliesToTelco === props.comparePlans[`${planNumber}`].mobilePlan.telco)
-    newAddons.push(newAddon)
+    newAddons[addonNumber - 1] = newAddon
     props.setComparePlans({
       ...props.comparePlans,
       [`${planNumber}`]: {
@@ -82,7 +82,7 @@ const SelectAddons = props => {
           return (
             <FormControl className={classes.formControl}>
               <InputLabel>Addon {addonNumber}</InputLabel>
-              <Select key={addonOptions} value={props.comparePlans[`${props.planNumber}`].addons[addonNumber]} onChange={event => handleSelectAddon(event, props.planNumber)}>
+              <Select key={addonOptions} value={props.comparePlans[`${props.planNumber}`].addons[addonNumber]} onChange={event => handleSelectAddon(event, props.planNumber, addonNumber)}>
                 {addonOptions.map(addonOption => (
                   <MenuItem key={addonOption.addonName} value={addonOption.addonName}>
                     {addonOption.addonName}
