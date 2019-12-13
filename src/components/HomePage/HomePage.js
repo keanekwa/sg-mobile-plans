@@ -49,14 +49,12 @@ const styles = theme => ({
     marginBottom: '14px'
   },
   buttonLeft: {
-    borderRadius: '4px  0 0 4px',
     border: '1px solid ' + theme.palette.primary.main,
     marginRight: '14px'
   },
   buttonRight: {
     color: 'white',
-    borderColor: 'white',
-    borderRadius: '0 4px 4px 0'
+    borderColor: 'white'
   },
   footnote: {
     position: 'absolute',
@@ -86,7 +84,7 @@ const HomePage = props => {
                   Finding a good mobile plan doesn't have to be confusing.
                 </Typography>
                 <Button className={clsx(classes.Button, classes.buttonLeft)} onClick={() => props.setIsShowSearch(true)} variant="contained" size="large" color="primary">
-                  Search for a suitable plan
+                  Search for a plan
                 </Button>
                 <Button className={clsx(classes.Button, classes.buttonRight)} onClick={() => props.setIsShowCompare(true)} variant="outlined" size="large">
                   Compare between plans

@@ -160,7 +160,7 @@ const ResultsList = props => {
           Maybe would you like to increase your budget, or reduce the amount of data/talktime/SMS that you need?
           <br />
           <br />
-          Tip: you can set your data/talktime/SMS to 0 if you do not require any one of them.
+          Tip: you can set your data/talktime/SMS to zero if you do not require any one of them.
         </Box>
       )}
     </Box>

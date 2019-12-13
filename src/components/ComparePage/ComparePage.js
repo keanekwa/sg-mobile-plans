@@ -16,7 +16,7 @@ import { setIsShowCompare, setComparePlans, setPlanOptions, setAddonOptions, set
 const styles = theme => ({
   outermostBox: {
     position: 'absolute',
-    minHeight: '100%',
+    height: '100%',
     display: 'flex',
     flexFlow: 'column',
     top: 0,
@@ -26,7 +26,7 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       width: '100%'
     },
-    overflowX: 'auto'
+    overflow: 'auto'
   },
   appBar: {
     minWidth: '900px'

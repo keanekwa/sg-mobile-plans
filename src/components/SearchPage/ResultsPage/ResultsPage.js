@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import components
 import { Grid, Box, AppBar, Toolbar, IconButton, Slide } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
@@ -13,11 +13,8 @@ import { setIsShowResults } from '../../../redux/results/results-actions'
 const styles = theme => ({
   outerContainer: {
     position: 'absolute',
-    minHeight: '100%',
-    [theme.breakpoints.up('md')]: {
-      height: '100%'
-    },
-    minWidth: '100%',
+    height: '100%',
+    width: '100%',
     display: 'flex',
     flexFlow: 'column',
     top: 0,
@@ -66,6 +63,10 @@ const styles = theme => ({
 
 const ResultsPage = props => {
   const { classes } = props
+
+  useEffect(() => {
+    window.scrollTo(0, 0) //scroll to top whenever ResultsPage is activated.
+  })
 
   return (
     <Slide in={props.isShowResults} direction="left" timeout={500} mountOnEnter unmountOnExit>

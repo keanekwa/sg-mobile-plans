@@ -12,7 +12,7 @@ import { setIsShowResults } from '../../redux/results/results-actions'
 const styles = theme => ({
   outermostBox: {
     position: 'absolute',
-    minHeight: '100%',
+    height: '100%',
     display: 'flex',
     flexFlow: 'column',
     top: 0,
