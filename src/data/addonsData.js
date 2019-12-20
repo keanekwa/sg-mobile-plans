@@ -61,6 +61,16 @@ const addonsData = [
   {
     appliesToTelco: 'Circles.Life',
     appliesToPlans: ['Base Plan (New number)', 'Base Plan (Transfer number)'],
+    addonName: '$10 for 2 GB',
+    data: 2,
+    talktime: 0,
+    sms: 0,
+    price: 10,
+    keepAdding: true
+  },
+  {
+    appliesToTelco: 'Circles.Life',
+    appliesToPlans: ['Base Plan (New number)', 'Base Plan (Transfer number)'],
     addonName: '$4 for 100 min',
     data: 0,
     talktime: 100,
