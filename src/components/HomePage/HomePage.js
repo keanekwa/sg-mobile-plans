@@ -16,7 +16,10 @@ const styles = theme => ({
     height: '100%',
     flex: 1,
     display: 'flex',
-    background: `url(https://firebasestorage.googleapis.com/v0/b/telco-comparison.appspot.com/o/HomePage_bg.jpg?alt=media&token=35e5b0a1-37e2-4701-b3c8-fbb6f29d68e7) center`, //todo: resize for different screen sizes
+    background: `url(https://firebasestorage.googleapis.com/v0/b/telco-comparison.appspot.com/o/bg.jpg?alt=media&token=6641202b-d2a6-490f-95d9-d1143cb98ad4) center`,
+    [theme.breakpoints.down('sm')]: {
+      backgroundPosition: '60% center'
+    },
     backgroundSize: 'cover',
     flexFlow: 'column'
   },
@@ -41,7 +44,10 @@ const styles = theme => ({
   mainTitle: {
     color: theme.palette.common.white,
     lineHeight: 1.25,
-    marginBottom: '0.6em'
+    marginBottom: '0.6em',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '3rem'
+    }
   },
   Button: {
     padding: '14px 28px',
@@ -93,7 +99,7 @@ const HomePage = props => {
             </Grid>
           </Container>
           <Box className={classes.footnote}>
-            Data last updated on 31 Oct 2019. Designed by{' '}
+            Data last updated on 20 Dec 2019. Designed by{' '}
             <Link target="_blank" className={classes.footnoteLink} href="https://keanekwa.com">
               Keane Kwa
             </Link>
