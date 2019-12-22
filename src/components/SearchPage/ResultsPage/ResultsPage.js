@@ -22,6 +22,10 @@ const styles = theme => ({
     backgroundColor: theme.palette.common.white,
     zIndex: 3
   },
+  innerContainer: {
+    flex: 1,
+    overflow: 'auto'
+  },
   fullHeight: {
     [theme.breakpoints.up('md')]: {
       height: '100%'
@@ -79,7 +83,7 @@ const ResultsPage = props => {
             <Box>Suitable Mobile Plans</Box>
           </Toolbar>
         </AppBar>
-        <Grid container className={classes.fullHeight}>
+        <Grid container className={classes.innerContainer}>
           <Grid item xs={12} md={5} className={`${classes.fullHeight} ${props.isShowMobileResultDetails ? classes.ShowMobileResultDetails : null}`}>
             <ResultsList />
           </Grid>

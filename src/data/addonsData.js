@@ -1,6 +1,6 @@
 const FREE_INCOMING_CALLS = 'Free incoming calls'
-const UNLIMITED_DATA_20 = 'Data addon is marketed as unlimited, but usage in excess of the extra 20 GB/mth may be at controlled speeds'
 const UNLIMITED_DATA_50 = 'Data addon is marketed as unlimited, but usage in excess of the extra 50 GB/mth may be at controlled speeds'
+const UNLIMITED_DATA_80 = 'Data addon is marketed as unlimited, but usage in excess of the extra 80 GB/mth may be at controlled speeds'
 const UNLIMITED_TALKTIME = 'Talktime addon is marketed as unlimited, but is capped at 10,000 min'
 
 const SINGTEL_SIGNUP_FEE = 'One-time sign up fee of $10.70'
@@ -22,11 +22,11 @@ const addonsData = [
     appliesToTelco: 'Circles.Life',
     appliesToPlans: ['Base Plan (New number)', 'Base Plan (Transfer number)'],
     addonName: 'Unlimited Data',
-    data: 20,
+    data: 80,
     talktime: 0,
     sms: 0,
     price: 20,
-    notes: [UNLIMITED_DATA_20]
+    notes: [UNLIMITED_DATA_80]
   },
   {
     appliesToTelco: 'Circles.Life',

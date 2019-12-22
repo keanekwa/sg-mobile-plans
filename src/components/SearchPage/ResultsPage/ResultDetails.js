@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 //import components
 import { Box, IconButton, Fade, Table, TableBody, TableCell, TableHead, TableRow, AppBar, Toolbar, Button } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
@@ -48,6 +48,10 @@ const addPlanTypeToProsCons = (planType, propsProsCons) => {
 
 const ResultDetails = props => {
   const { classes } = props
+
+  useEffect(() => {
+    window.scrollTo(0, 0) //scroll to top whenever ResultDetails is activated.
+  })
 
   let pros = null
   let cons = null

@@ -35,6 +35,7 @@ const styles = theme => ({
 
 const ResultsList = props => {
   const { classes } = props
+
   const options = props.options
   options.planTypesArray = []
   options.telcosArray = []
