@@ -36,5 +36,27 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+
+    <!-- SDKs for Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: 'AIzaSyDtPqer16UDUWPY_60F8ELUtb76AtWfCKA',
+        authDomain: 'telco-comparison.firebaseapp.com',
+        databaseURL: 'https://telco-comparison.firebaseio.com',
+        projectId: 'telco-comparison',
+        storageBucket: 'telco-comparison.appspot.com',
+        messagingSenderId: '1023857707146',
+        appId: '1:1023857707146:web:04dcb495fb0066f2c68573',
+        measurementId: 'G-PBCG0T9PYB'
+      }
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig)
+      firebase.analytics()
+    </script>
   </body>
 </html>
